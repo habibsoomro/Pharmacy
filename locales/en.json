@@ -82,8 +82,6 @@
     "close": "Close",
     "preparing": "Opening photo…",
     "continue": "Read prescription",
-    "readyTitle": "Photos are ready",
-    "readyText": "{n} page(s), {size} in total. Reading the prescription is added in the next stage.",
     "camera": {
       "title": "Take a photo",
       "capture": "Take photo",
@@ -126,6 +124,54 @@
         "Checking interactions",
         "Preparing summary"
       ]
+    },
+    "consent": {
+      "label": "I understand my prescription photo will be sent to an AI service (Anthropic's Claude) to read it. It is not saved on this pharmacy's server.",
+      "privacyLink": "Read our privacy policy",
+      "required": "Please tick the box to continue."
+    },
+    "apiErrors": {
+      "offline": "You're not connected to the internet. Check your connection and try again.",
+      "rate_limited": "Too many scans in a short time. Please wait a few minutes and try again.",
+      "invalid_output": "We couldn't read this prescription properly. Try again with a clearer photo, or show it to our pharmacist.",
+      "timeout": "Reading took too long. Please check your internet and try again.",
+      "not_configured": "The reading service is not set up yet. Please contact the pharmacy.",
+      "ai_failed": "Something went wrong while reading. Please try again.",
+      "bad_request": "Something went wrong with the photos. Please retake them and try again."
+    },
+    "tryAgain": "Try again",
+    "backToPhotos": "Back to photos",
+    "notRx": {
+      "title": "This doesn't look like a prescription",
+      "text": "Please take a photo of the doctor's prescription page."
+    },
+    "preview": {
+      "title": "What we read",
+      "nextStage": "In the next stage you'll be able to check and correct everything here before seeing the summary.",
+      "doctor": "Doctor",
+      "patient": "Patient",
+      "date": "Date",
+      "diagnosis": "Diagnosis / complaints",
+      "medicines": "Medicines",
+      "notReadable": "Not readable",
+      "unreadable": "Could not read",
+      "checks": "Please double-check",
+      "legibility": {
+        "good": "Handwriting: clear",
+        "fair": "Handwriting: partly unclear",
+        "poor": "Handwriting: hard to read"
+      },
+      "poorWarning": "This prescription is hard to read. To be safe, please show it to our pharmacist in person.",
+      "confidence": {
+        "high": "Sure",
+        "medium": "Fairly sure",
+        "low": "Not sure"
+      },
+      "perDay": "{n} times a day",
+      "asNeeded": "Only when needed",
+      "days": "{n} days",
+      "total": "Total: {q}",
+      "once": "Once a day"
     }
   }
 }

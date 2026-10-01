@@ -1,0 +1,244 @@
+{
+  "is_prescription": true,
+  "prescription_date": {
+    "value": "2026-09-28",
+    "confidence": "medium"
+  },
+  "doctor": {
+    "name": {
+      "value": "Dr. Abdul Rehman Memon",
+      "confidence": "high"
+    },
+    "qualifications": {
+      "value": "MBBS, FCPS (Medicine)",
+      "confidence": "high"
+    },
+    "specialty": {
+      "value": "Physician",
+      "confidence": "high"
+    },
+    "registration_no": {
+      "value": "PMDC 12345-S",
+      "confidence": "medium"
+    },
+    "clinic_or_hospital": {
+      "value": "Memon Clinic",
+      "confidence": "high"
+    },
+    "address": {
+      "value": "Station Road, Hyderabad",
+      "confidence": "medium"
+    },
+    "phone": {
+      "value": "022-0000000",
+      "confidence": "medium"
+    }
+  },
+  "patient": {
+    "name": {
+      "value": "Ghulam Rasool",
+      "confidence": "medium"
+    },
+    "age": {
+      "value": "45 years",
+      "confidence": "high"
+    },
+    "sex": {
+      "value": "Male",
+      "confidence": "high"
+    },
+    "weight": {
+      "value": null,
+      "confidence": "low"
+    },
+    "address": {
+      "value": null,
+      "confidence": "low"
+    },
+    "phone": {
+      "value": null,
+      "confidence": "low"
+    },
+    "mr_or_file_no": {
+      "value": null,
+      "confidence": "low"
+    }
+  },
+  "clinical": {
+    "diagnosis_or_complaints": {
+      "value": "Fever, sore throat, acidity",
+      "confidence": "medium"
+    },
+    "vitals": {
+      "blood_pressure": {
+        "value": "130/85",
+        "confidence": "medium"
+      },
+      "pulse": {
+        "value": "88/min",
+        "confidence": "medium"
+      },
+      "temperature": {
+        "value": "101 °F",
+        "confidence": "medium"
+      },
+      "other": {
+        "value": null,
+        "confidence": "low"
+      }
+    },
+    "tests_advised": [
+      "CBC"
+    ],
+    "allergies_mentioned": {
+      "value": null,
+      "confidence": "low"
+    },
+    "follow_up_date": {
+      "value": "After 5 days",
+      "confidence": "medium"
+    },
+    "other_advice": {
+      "value": "Drink plenty of water. Take medicines after meals.",
+      "confidence": "high"
+    }
+  },
+  "medicines": [
+    {
+      "brand_name": "Augmentin",
+      "generic_name": "Amoxicillin + Clavulanic acid",
+      "brand_mapping_certain": true,
+      "strength": "625 mg",
+      "dosage_form": "tablet",
+      "dose_per_time": "1 tablet",
+      "frequency_text": "1+0+1",
+      "times_per_day": 2,
+      "schedule": {
+        "morning": 1,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 1
+      },
+      "route": "oral",
+      "food_timing": "after meal",
+      "duration_days": 5,
+      "duration_text": "x 5 days",
+      "total_quantity_needed": "10 tablets",
+      "special_instructions": null,
+      "purpose_in_simple_words": "antibiotic for bacterial infections",
+      "confidence": "high",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Panadol",
+      "generic_name": "Paracetamol",
+      "brand_mapping_certain": true,
+      "strength": "500 mg",
+      "dosage_form": "tablet",
+      "dose_per_time": "2 tablets",
+      "frequency_text": "SOS",
+      "times_per_day": null,
+      "schedule": {
+        "morning": 0,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 0
+      },
+      "route": "oral",
+      "food_timing": null,
+      "duration_days": null,
+      "duration_text": null,
+      "total_quantity_needed": null,
+      "special_instructions": "Only when fever or pain",
+      "purpose_in_simple_words": "reduces fever and pain",
+      "confidence": "high",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Risek",
+      "generic_name": "Omeprazole",
+      "brand_mapping_certain": true,
+      "strength": "20 mg",
+      "dosage_form": "capsule",
+      "dose_per_time": "1 capsule",
+      "frequency_text": "1+0+0",
+      "times_per_day": null,
+      "schedule": {
+        "morning": 0,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 0
+      },
+      "route": "oral",
+      "food_timing": "before meal",
+      "duration_days": null,
+      "duration_text": "1/52",
+      "total_quantity_needed": null,
+      "special_instructions": null,
+      "purpose_in_simple_words": "reduces stomach acid",
+      "confidence": "high",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Rigix",
+      "generic_name": "Cetirizine",
+      "brand_mapping_certain": true,
+      "strength": "10 mg",
+      "dosage_form": "tablet",
+      "dose_per_time": "1 tablet",
+      "frequency_text": "HS",
+      "times_per_day": 1,
+      "schedule": {
+        "morning": 0,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 0
+      },
+      "route": "oral",
+      "food_timing": null,
+      "duration_days": 5,
+      "duration_text": "5/7",
+      "total_quantity_needed": "5 tablets",
+      "special_instructions": null,
+      "purpose_in_simple_words": "for allergy, runny nose and itching",
+      "confidence": "medium",
+      "uncertain_fields": [
+        "strength"
+      ]
+    },
+    {
+      "brand_name": "Klorofin?",
+      "generic_name": null,
+      "brand_mapping_certain": false,
+      "strength": null,
+      "dosage_form": "gargle",
+      "dose_per_time": null,
+      "frequency_text": "TDS",
+      "times_per_day": null,
+      "schedule": {
+        "morning": 0,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 0
+      },
+      "route": "mouth gargle",
+      "food_timing": null,
+      "duration_days": null,
+      "duration_text": null,
+      "total_quantity_needed": null,
+      "special_instructions": null,
+      "purpose_in_simple_words": null,
+      "confidence": "low",
+      "uncertain_fields": [
+        "brand_name",
+        "strength"
+      ]
+    }
+  ],
+  "unreadable_fields": [
+    "patient weight",
+    "medicine 5 name (partly readable)",
+    "medicine 5 strength"
+  ],
+  "overall_legibility": "fair"
+}

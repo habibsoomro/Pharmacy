@@ -5,9 +5,16 @@
  */
 export const AI_MODEL = "claude-sonnet-5-5";
 
-// Maximum length of each AI answer (in tokens). Extraction JSON can be long.
+// Maximum length of each AI answer (in tokens). Prescriptions with many medicines need room.
 export const AI_MAX_TOKENS = {
-  extract: 4000,
+  extract: 8000,
   interactions: 3000,
   translate: 4000,
 } as const;
+
+// 0 = most consistent answers (best for reading prescriptions).
+// If the API ever says temperature isn't supported for this model, the app retries without it.
+export const AI_TEMPERATURE: number | null = 0;
+
+// Give up waiting for the AI after this many seconds.
+export const AI_TIMEOUT_SECONDS = 55;

@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // The AI prompts are read from /prompts at runtime; make sure Vercel includes them.
+  outputFileTracingIncludes: { "/api/**": ["./prompts/**"] },
   async headers() {
     return [
       {

@@ -3,10 +3,11 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 2 of 10**
+**Current stage: 3 of 10**
 
 - Stage 1: project setup, home page, language switching
 - Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
+- Stage 3: AI reading of the prescription (`/api/extract`), shorthand double-check, brand list, consent
 
 ---
 
@@ -32,6 +33,20 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
    ```
 5. Open http://localhost:3000 in your browser.
 
+### Try it without an API key (test mode)
+
+Add `AI_MOCK=1` to `.env.local` and restart `npm run dev`. Every scan then
+returns the same sample prescription (no AI call, no cost). Remove the line to
+use the real AI. **Never set AI_MOCK on the live website.**
+
+### Run the automatic tests
+
+```
+npm test
+```
+This checks the shorthand reader (`1+0+1`, `TDS`, `1/52`, quantities), the
+double-check against the brand list, and how the app handles bad AI answers.
+
 To test on your phone: connect phone and computer to the same Wi-Fi and open
 `http://YOUR-COMPUTER-IP:3000` on the phone. (Most phones only allow the camera
 on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
@@ -54,7 +69,9 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 | Any text on the website | `locales/en.json`, `locales/ur.json`, `locales/sd.json` |
 | Logo image | put it in `public/` and update `logo` in `config/site.ts` |
 | Photo limits, compression, and the dark / blurry / too-small warning levels | `config/capture.ts` |
-| AI prompts (from Stage 3) | `prompts/` folder |
+| AI prompts | `prompts/` folder (`extract-system.md` is the main one) |
+| Brand → generic list | `data/brand-generics.json` |
+| How many scans per visitor | `app/api/extract/route.ts` (8 per 10 minutes) |
 
 **Translation safety net:** if you add a new line to `en.json` but forget it in
 `ur.json` or `sd.json`, run `npm run typecheck` and it will tell you exactly
@@ -74,7 +91,21 @@ tests/        tests and sample prescriptions (Stage 10)
 public/       logo and images
 ```
 
+## How a scan works
+
+1. The phone shrinks the photos and sends them to `/api/extract` on your server.
+2. The server sends them to Claude with the prompt from `prompts/extract-system.md`.
+3. The answer is checked against a strict format (Zod). If it's broken, Claude is asked once more.
+4. The app double-checks the AI with its own rules: it re-reads shorthand like
+   `1+0+1`, `TDS` and `1/52`, recalculates quantities, and compares brand → generic
+   names with `data/brand-generics.json`. It fills gaps and flags disagreements;
+   it never silently overwrites what the AI read.
+5. Nothing is stored on the server. The result lives only in the user's browser tab.
+
 ## Notes
+
+- **The brand list and prompts are medical content.** Have a pharmacist review
+  `data/brand-generics.json` and `prompts/extract-system.md` before going live.
 
 - **Photo quality warnings** are only advice: people can always continue.
   If the app warns too often on real prescriptions, lower `minSharpness` in
