@@ -8,7 +8,7 @@ const GROUPS = careData.groups as Record<string, GroupCare>;
 
 export type CareInfo = {
   sideEffects: { name: string; items: string[] }[]; // per medicine
-  avoid: string[]; // food and drink, from the safety check
+  avoid: { drugs: string[]; text: string }[]; // food and drink, from the safety check
   storage: string[];
   urgent: string[];
 };
@@ -33,7 +33,7 @@ export function buildCare(meds: Medicine[], safety: SafetyReport | null): CareIn
     for (const f of careData.forms) if (new RegExp(f.match).test(formText)) storage.add(f.storage);
   }
 
-  const avoid = (safety?.alerts ?? []).filter((a) => a.type === "drug-food").map((a) => `${a.drugs.join(" + ")}: ${a.whatToDo}`);
+  const avoid = (safety?.alerts ?? []).filter((a) => a.type === "drug-food").map((a) => ({ drugs: a.drugs, text: a.whatToDo }));
   careData.general.storage.forEach((s) => storage.add(s));
   careData.general.urgent.forEach((u) => urgent.add(u));
   return { sideEffects, avoid, storage: [...storage], urgent: [...urgent] };

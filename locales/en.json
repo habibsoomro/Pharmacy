@@ -10,7 +10,8 @@
     "backHome": "Back to home",
     "comingSoon": "This part is being built and will be ready in a later stage.",
     "disclaimer": "AI can make mistakes, especially with handwriting. Always confirm with your pharmacist or doctor.",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "settings": "Settings"
   },
   "nav": {
     "home": "Home",
@@ -267,7 +268,13 @@
       "pdf": "Download PDF",
       "pdfMaking": "Making PDF…",
       "pdfFailed": "Couldn't make the PDF. Try Print and choose \"Save as PDF\".",
-      "shareTitle": "Share or save the whole summary"
+      "shareTitle": "Share or save the whole summary",
+      "readAloud": "Read aloud",
+      "pause": "Pause",
+      "resume": "Resume",
+      "stop": "Stop",
+      "settings": "Settings",
+      "readCard": "Read this card aloud"
     },
     "cards": {
       "safety": "Safety alerts",
@@ -353,6 +360,53 @@
       "avoid": "Food and drink",
       "storage": "Storing your medicines",
       "urgent": "Get medical help urgently if you notice:"
+    },
+    "speech": {
+      "noVoice": "This phone has no voice for {lang}.",
+      "installHint": "You can add one in the phone's settings, under \"Text-to-speech\".",
+      "useUrdu": "Read with the Urdu voice",
+      "unsupported": "This browser can't read aloud.",
+      "dismiss": "OK"
+    },
+    "translate": {
+      "working": "Translating into {lang}…",
+      "failed": "Some parts couldn't be translated and are shown in English.",
+      "retry": "Try again",
+      "aiNote": "Translated by AI. Medicine names stay in English, as the pharmacy stocks them that way."
+    },
+    "hidden": {
+      "text": "{n} card(s) are turned off.",
+      "showAll": "Show all cards"
+    },
+    "dispensing": {
+      "title": "Dispensing list",
+      "medicine": "Medicine",
+      "qty": "Quantity to dispense",
+      "qtyUnknown": "Not calculated",
+      "confidence": "AI reading",
+      "mappingUnsure": "Brand to generic match not certain"
+    },
+    "reminders": {
+      "button": "Add reminders to my calendar",
+      "title": "Medicine reminders",
+      "intro": "We'll make a calendar file with a reminder for each medicine at these times. Open the file to add the reminders to your phone's calendar.",
+      "times": "Reminder times",
+      "count": "{n} reminder(s) will be added.",
+      "none": "No medicine has fixed times and days, so there is nothing to remind.",
+      "skipped": "No reminders for:",
+      "reasons": {
+        "done": "course finished",
+        "asNeeded": "only when needed",
+        "noDays": "number of days not written",
+        "noTime": "time of day not written",
+        "single": "one dose only"
+      },
+      "ongoingNote": "Medicines to keep taking get reminders for the next {n} days.",
+      "download": "Download calendar file",
+      "androidHint": "On Android: if the file doesn't open, open it from Downloads with your Calendar app, or import it at calendar.google.com.",
+      "eventTitle": "Take {name}",
+      "eventAmount": "Amount: {amount}",
+      "close": "Close"
     }
   },
   "safety": {
@@ -387,7 +441,79 @@
     "ageTitle": "Because of age",
     "pregnancyTitle": "Pregnancy and breastfeeding",
     "counts": "{major} serious, {moderate} moderate, {minor} minor",
-    "disclaimer": "This check is a helper, not a replacement for your doctor or pharmacist. Please confirm before making any changes.",
-    "englishOnly": "Details are in English for now. Translation is added in a later stage."
+    "disclaimer": "This check is a helper, not a replacement for your doctor or pharmacist. Please confirm before making any changes."
+  },
+  "settings": {
+    "title": "Settings",
+    "open": "Open settings",
+    "close": "Close",
+    "savedOnPhone": "Your choices are saved on this phone only.",
+    "language": {
+      "title": "Language",
+      "hint": "English, Urdu and Sindhi change the whole website. The other languages are for the prescription summary only and are translated by AI.",
+      "summaryOnly": "Summary only",
+      "summaryNote": "The summary will be shown in {lang}. Menus stay in {site}.",
+      "beta": "beta"
+    },
+    "level": {
+      "title": "Reading level",
+      "simple": "Simple",
+      "simpleHint": "Very easy words, less detail",
+      "detailed": "Detailed",
+      "detailedHint": "More medical detail"
+    },
+    "textSize": {
+      "title": "Text size",
+      "normal": "Normal",
+      "large": "Large",
+      "xl": "Extra large"
+    },
+    "theme": {
+      "title": "Light or dark",
+      "auto": "Same as phone",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "view": {
+      "title": "View",
+      "patient": "Patient",
+      "patientHint": "Simple cards for the patient and family",
+      "pharmacist": "Pharmacist",
+      "pharmacistHint": "Adds generic names, strengths, quantities to dispense and how sure the AI was. Also lets staff edit every field on the checking screen."
+    },
+    "pictures": {
+      "title": "Picture mode",
+      "hint": "Pictures for morning, afternoon, evening, night and food",
+      "on": "On",
+      "off": "Off"
+    },
+    "speech": {
+      "title": "Reading-aloud speed",
+      "slow": "Slow",
+      "normal": "Normal"
+    },
+    "cards": {
+      "title": "Cards on the summary",
+      "hint": "Turn off cards you don't need. Safety alerts are always shown.",
+      "safety": "Safety alerts (always shown)",
+      "names": {
+        "patient": "Patient",
+        "doctor": "Doctor",
+        "diagnosis": "Diagnosis and advice",
+        "medicines": "Medicine cards",
+        "timetable": "Daily timetable",
+        "calendar": "Course calendar",
+        "interactions": "Interactions in detail",
+        "care": "General care",
+        "dispensing": "Dispensing list (pharmacist view)"
+      }
+    },
+    "privacy": {
+      "title": "Saved on this phone",
+      "clearTranslations": "Delete saved translations",
+      "cleared": "Deleted",
+      "reset": "Reset all settings",
+      "resetDone": "Settings reset"
+    }
   }
 }

@@ -104,7 +104,7 @@ export function CameraCapture({ onCapture, onClose, cameraAppInputId }: Props) {
         {status === "failed" && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 text-center">
             <p className="max-w-sm text-lg">{t.scan.camera.denied}</p>
-            <label htmlFor={cameraAppInputId} className="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl bg-white px-5 font-semibold text-brand">
+            <label htmlFor={cameraAppInputId} className="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl bg-white px-5 font-semibold text-[var(--brand)]">
               <RetakeIcon className="size-5" />
               {t.scan.camera.useCameraApp}
             </label>

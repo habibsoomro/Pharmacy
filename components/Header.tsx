@@ -5,12 +5,13 @@ import { pick, type Locale } from "@/lib/locales";
 import type { Dictionary } from "@/lib/i18n";
 import { AjrakBand } from "@/components/AjrakBand";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { SettingsButton } from "@/components/settings/SettingsButton";
 
 export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
   return (
     <header className="bg-card">
       <AjrakBand />
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 border-b border-line px-4 py-2.5">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-line px-4 py-2.5">
         <Link href="/" className="flex min-w-0 items-center gap-2.5">
           <Image src={site.logo} alt="" width={36} height={36} priority className="shrink-0" />
           <span className="text-base font-bold leading-tight text-brand sm:text-lg">{pick(site.name, locale)}</span>
@@ -22,7 +23,10 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary }) {
           <Link href="/contact" className="hover:text-brand">{t.nav.contact}</Link>
         </nav>
 
-        <LanguageSwitcher current={locale} label={t.common.language} />
+        <div className="ms-auto flex shrink-0 items-center gap-1.5">
+          <LanguageSwitcher current={locale} label={t.common.language} />
+          <SettingsButton label={t.settings.open} className="size-10 border border-line bg-card text-ink hover:border-brand" />
+        </div>
       </div>
     </header>
   );

@@ -1,8 +1,10 @@
 "use client";
 
 import { useI18n } from "@/components/I18nProvider";
+import { fmt } from "@/lib/format";
 import { fmtNode } from "@/lib/format-node";
 import type { SafetyAlert, SafetyReport, Severity } from "@/lib/schemas/safety";
+import { noTranslation, type Tx } from "@/lib/summary/share-text";
 import { AlertIcon, CheckIcon, SpinnerIcon } from "@/components/icons";
 
 // Colour codes from the brief: red = serious, orange = moderate, yellow = minor, green = none found.
@@ -12,10 +14,18 @@ const STYLE: Record<Severity, { card: string; pill: string; bar: string }> = {
   minor: { card: "border-yellow-300 bg-yellow-50", pill: "bg-yellow-300 text-yellow-950", bar: "bg-yellow-400" },
 };
 
-type Props = { report: SafetyReport | null; pending: boolean; onRetry?: () => void; embedded?: boolean };
+type Props = {
+  report: SafetyReport | null; pending: boolean; onRetry?: () => void; embedded?: boolean;
+  /** Translates the alert texts (they come from the AI or our list in English). */
+  tx?: Tx;
+  /** Show the kind of problem and where it was found (Detailed reading level or pharmacist view). */
+  detailed?: boolean;
+  /** Also show how sure the AI was (pharmacist view). */
+  pharmacist?: boolean;
+};
 
-export function SafetyPanel({ report, pending, onRetry, embedded }: Props) {
-  const { t, locale } = useI18n();
+export function SafetyPanel({ report, pending, onRetry, embedded, tx = noTranslation, detailed = true, pharmacist = false }: Props) {
+  const { t } = useI18n();
   const s = t.safety;
 
   if (!report) {
@@ -59,24 +69,23 @@ export function SafetyPanel({ report, pending, onRetry, embedded }: Props) {
         </div>
       ) : (
         <ul className="space-y-3">
-          {report.alerts.map((a) => <AlertCard key={a.id} a={a} />)}
+          {report.alerts.map((a) => <AlertCard key={a.id} a={a} tx={tx} detailed={detailed || pharmacist} pharmacist={pharmacist} />)}
         </ul>
       )}
 
       {report.ageWarnings.length > 0 && (
         <div className="rounded-xl border border-line bg-card p-4">
           <p className="font-semibold">{s.ageTitle}</p>
-          <ul className="mt-1 list-disc space-y-1 ps-5 text-sm">{report.ageWarnings.map((w) => <li key={w} dir="auto">{w}</li>)}</ul>
+          <ul className="mt-1 list-disc space-y-1 ps-5 text-sm">{report.ageWarnings.map((w) => <li key={w} dir="auto">{tx(w)}</li>)}</ul>
         </div>
       )}
       {report.pregnancyNote && (
         <div className="rounded-xl border border-line bg-card p-4">
           <p className="font-semibold">{s.pregnancyTitle}</p>
-          <p className="mt-1 text-sm" dir="auto">{report.pregnancyNote}</p>
+          <p className="mt-1 text-sm" dir="auto">{tx(report.pregnancyNote)}</p>
         </div>
       )}
 
-      {locale !== "en" && !none && <p className="text-xs text-muted">{s.englishOnly}</p>}
       <p className="flex gap-2 rounded-xl bg-surface p-3 text-sm font-medium">
         <AlertIcon className="mt-0.5 size-4 shrink-0" />
         {s.disclaimer}
@@ -85,7 +94,7 @@ export function SafetyPanel({ report, pending, onRetry, embedded }: Props) {
   );
 }
 
-function AlertCard({ a }: { a: SafetyAlert }) {
+function AlertCard({ a, tx, detailed, pharmacist }: { a: SafetyAlert; tx: Tx; detailed: boolean; pharmacist: boolean }) {
   const { t } = useI18n();
   const s = t.safety;
   const st = STYLE[a.severity];
@@ -103,13 +112,18 @@ function AlertCard({ a }: { a: SafetyAlert }) {
         </p>
         <div className="text-sm">
           <p className="font-medium text-muted">{s.whatHappens}</p>
-          <p dir="auto">{a.whatHappens}</p>
+          <p dir="auto">{tx(a.whatHappens)}</p>
         </div>
         <div className="text-sm">
           <p className="font-medium text-muted">{s.whatToDo}</p>
-          <p dir="auto" className="font-medium">{a.whatToDo}</p>
+          <p dir="auto" className="font-medium">{tx(a.whatToDo)}</p>
         </div>
-        <p className="text-xs text-muted">{source}</p>
+        {detailed && (
+          <p className="text-xs text-muted">
+            {source}
+            {pharmacist && a.confidence && a.sources.includes("ai") && <> · {fmt(t.review.flag.ai, { c: t.review.confidence[a.confidence] })}</>}
+          </p>
+        )}
       </div>
     </li>
   );

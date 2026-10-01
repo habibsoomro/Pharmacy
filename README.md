@@ -3,7 +3,7 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 6 of 10**
+**Current stage: 7 of 10**
 
 - Stage 1: project setup, home page, language switching
 - Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
@@ -11,6 +11,7 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
 - Stage 4: "Check what we read" review-and-edit screen (`/review`), pharmacist mode
 - Stage 5: safety check: interactions, duplicates, dose/age/allergy checks (`/api/interactions` + the pharmacy's own list)
 - Stage 6: summary cards (`/summary`): safety alerts, doctor, patient, diagnosis, one card per medicine with pictures, daily timetable, course calendar, interactions, general care; copy, WhatsApp, print, PDF
+- Stage 7: Settings panel (gear button in the header, and on the summary): summary languages incl. Roman Urdu, Punjabi, Pashto, Balochi (AI translation via `/api/translate`, saved on the phone), Simple/Detailed reading level, text size, read aloud, patient/pharmacist view, show/hide cards, picture mode, light/dark theme, medicine reminders (.ics calendar file)
 
 ---
 
@@ -21,7 +22,7 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
 
 ## Run it on your computer
 
-1. Unzip the project and open a terminal in the `nuskha` folder.
+1. Download the project (or `git clone` it) and open a terminal in the project folder (the one with `package.json`).
 2. Install the building blocks (one time only):
    ```
    npm install
@@ -40,6 +41,8 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
 
 Add `AI_MOCK=1` to `.env.local` and restart `npm run dev`. Every scan then
 returns the same sample prescription (no AI call, no cost).
+Translations in test mode are not real: each text just gets a marker such as
+`[ps]` in front, so you can see where translated text appears.
 Use `AI_MOCK=elderly` instead to get a 72-year-old patient on 9 medicines with
 real interactions, a duplicate, a penicillin allergy and an antibiotic with no duration. Remove the line to
 use the real AI. **Never set AI_MOCK on the live website.**
@@ -74,13 +77,17 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 | Any text on the website | `locales/en.json`, `locales/ur.json`, `locales/sd.json` |
 | Logo image | put it in `public/` and update `logo` in `config/site.ts` |
 | Photo limits, compression, and the dark / blurry / too-small warning levels | `config/capture.ts` |
-| AI prompts | `prompts/` folder (`extract-system.md` is the main one) |
+| AI prompts | `prompts/` folder (`extract-system.md` is the main one; `translate-system.md` for translations) |
+| Summary languages (names, right-to-left, fonts, phone voices) | `lib/languages.ts` |
+| How each language is described to the AI (script, style) | `lib/server/translate.ts` (`LANGUAGE`) |
+| Default settings (reading level, text size, reminder times…) | `lib/settings.ts` |
 | Brand → generic list | `data/brand-generics.json` |
 | The pharmacy's interaction list (58 rules) | `data/interactions.json` |
 | Medicine groups used by the rules (e.g. NSAIDs) | `data/drug-groups.json` |
 | Side effects, storage tips and urgent warning signs (General Care card) | `data/care.json` |
 | Maximum doses and age rules | `lib/rx/safety.ts` (`ADULT_MAX_MG_PER_DAY`, `CHILD_MG_PER_KG`, `AGE_RULES`) |
 | How many scans per visitor | `app/api/extract/route.ts` (8 per 10 minutes) |
+| How many translation requests per visitor | `app/api/translate/route.ts` (40 per 10 minutes) |
 
 **Translation safety net:** if you add a new line to `en.json` but forget it in
 `ur.json` or `sd.json`, run `npm run typecheck` and it will tell you exactly
@@ -94,7 +101,7 @@ components/   header, footer, language switcher, buttons, cards
 config/       site.ts (pharmacy details), ai.ts (model)
 lib/          language helpers, WhatsApp link helper
 locales/      translation files
-prompts/      AI prompts (Stage 3+)
+prompts/      AI prompts (Stage 3+): reading, safety check, translation
 data/         interaction list, brand-to-generic list (Stage 3+)
 tests/        tests and sample prescriptions (Stage 10)
 public/       logo and images
@@ -122,6 +129,37 @@ public/       logo and images
    - A safety net replaces any advice telling people to stop or change a medicine
      with "Talk to your doctor or pharmacist".
 7. Nothing is stored on the server. The result lives only in the user's browser tab.
+
+## Settings (Stage 7)
+
+Everything is saved on the phone only (in the browser), and there is a
+"Reset all settings" button at the bottom of the panel.
+
+- **Language.** English, Urdu and Sindhi change the whole website (menus come from
+  `locales/*.json`). Roman Urdu, Punjabi, Pashto and Balochi are for the **summary only**:
+  its headings and labels, and the texts from the prescription and safety check, are
+  translated by the AI. Punjabi, Pashto and Balochi are marked "beta" because they
+  have no hand-checked translation file. For Urdu and Sindhi, only the prescription and
+  safety-check texts are AI-translated; the labels come from your own translation files.
+  Medicine brand and generic names always stay in English.
+  Translations are saved on the phone, so each text is translated (and paid for) only
+  once; "Delete saved translations" in Settings removes them. Website labels are also
+  remembered on the server for everyone; prescription texts never are. Only the texts
+  are sent for translation, never the patient's or doctor's name or phone number.
+- **Reading level.** *Simple* (default) uses the easiest words when translating and
+  shows less detail. *Detailed* adds the prescription's own shorthand (e.g. "1+0+1"),
+  how it is taken, vital signs, doctor's qualifications, and all side effects.
+- **Pharmacist view** is the same switch as "Pharmacist mode" on the checking screen.
+  On the summary it adds a Dispensing list card, AI confidence for each medicine,
+  generic name + strength + form, PMDC and MR numbers, and "brand match not certain" warnings.
+- **Read aloud** uses the phone's own voices (works offline). Many phones have no
+  Sindhi, Punjabi, Pashto or Balochi voice; the app then says so and, if the phone has
+  an Urdu voice, offers to read with it.
+- **Reminders** ("Add reminders to my calendar" on the Daily timetable card) download
+  a `.ics` calendar file with one daily reminder per medicine and time, until the
+  course's last day (30 days for medicines to keep taking). As-needed medicines and
+  ones without a number of days get no reminders, and the screen says why.
+- **Light / dark** follows the phone by default. Printing and PDFs are always light.
 
 ## Notes
 

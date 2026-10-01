@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { useI18n } from "@/components/I18nProvider";
+import { useSettings } from "@/components/SettingsProvider";
 import { fmt } from "@/lib/format";
 import { loadCurrentScan, saveCurrentScan, type CurrentScan } from "@/lib/client/scan-session";
 import {
@@ -15,14 +16,14 @@ import { MedicineEditor } from "@/components/review/MedicineEditor";
 import { PhotoPane, PhotoViewer } from "@/components/review/PhotoPane";
 import { AlertIcon, CheckIcon, PlusIcon } from "@/components/icons";
 
-const MODE_KEY = "nuskha:pharmacist-mode";
-
 export function ReviewScreen() {
   const { t } = useI18n();
   const router = useRouter();
   const [scan, setScan] = useState<CurrentScan | null | undefined>(undefined); // undefined = still loading
   const [state, setState] = useState<ReviewState | null>(null);
-  const [pharmacist, setPharmacist] = useState(false);
+  // Pharmacist mode here is the same setting as "Pharmacist view" in Settings.
+  const { settings, update } = useSettings();
+  const pharmacist = settings.view === "pharmacist";
   const [photoOpen, setPhotoOpen] = useState(false);
 
   useEffect(() => {
@@ -30,11 +31,6 @@ export function ReviewScreen() {
     setScan(s);
     // Coming back from the summary: start from the already-checked version.
     if (s?.result.is_prescription) setState(initReview(s.result, s.review ? [] : s.checks));
-    try {
-      setPharmacist(localStorage.getItem(MODE_KEY) === "on");
-    } catch {
-      /* ignore */
-    }
   }, []);
 
   if (scan === undefined) return null;
@@ -54,12 +50,7 @@ export function ReviewScreen() {
   const remaining = attentionCount(state, pharmacist);
 
   function togglePharmacist(on: boolean) {
-    setPharmacist(on);
-    try {
-      localStorage.setItem(MODE_KEY, on ? "on" : "off");
-    } catch {
-      /* ignore */
-    }
+    update({ view: on ? "pharmacist" : "patient" });
   }
 
   function jumpToFirst() {

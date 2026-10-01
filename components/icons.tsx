@@ -89,3 +89,30 @@ export const SpinnerIcon = ({ className }: P) => (
     <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
   </svg>
 );
+export const GearIcon = ({ className }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base}>
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" />
+  </svg>
+);
+export const SpeakerIcon = ({ className }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base}>
+    <path d="M4 9v6h4l5 4V5L8 9H4z" />
+    <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" />
+  </svg>
+);
+export const PauseIcon = ({ className }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base}>
+    <path d="M8 5v14M16 5v14" />
+  </svg>
+);
+export const StopIcon = ({ className }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base}>
+    <rect x="6" y="6" width="12" height="12" rx="1.5" />
+  </svg>
+);
+export const BellIcon = ({ className }: P) => (
+  <svg viewBox="0 0 24 24" className={className} {...base}>
+    <path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16zM10 20.5a2 2 0 0 0 4 0" />
+  </svg>
+);

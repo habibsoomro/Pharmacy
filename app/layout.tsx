@@ -10,6 +10,9 @@ import { I18nProvider } from "@/components/I18nProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { SettingsProvider } from "@/components/SettingsProvider";
+import { SettingsDialog } from "@/components/settings/SettingsDialog";
+import { EARLY_SETTINGS_SCRIPT } from "@/lib/settings";
 
 // Fonts are downloaded once and served from our own site (no Google request from the phone).
 // Urdu and Sindhi fonts are NOT preloaded, so English users don't download them.
@@ -32,6 +35,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: site.colors.brand,
+  colorScheme: "light dark",
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
@@ -45,16 +49,23 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   } as CSSProperties;
 
   return (
-    <html lang={locale} dir={getDir(locale)} style={brandVars} className={`${inter.variable} ${urdu.variable} ${sindhi.variable}`}>
+    // suppressHydrationWarning: the small script below sets theme and text size on <html> before React starts.
+    <html lang={locale} dir={getDir(locale)} style={brandVars} className={`${inter.variable} ${urdu.variable} ${sindhi.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: EARLY_SETTINGS_SCRIPT }} />
+      </head>
       <body className="min-h-dvh">
         <a href="#main" className="sr-only rounded bg-brand px-4 py-2 text-white focus:not-sr-only focus:absolute focus:start-2 focus:top-2 focus:z-50">
           {t.common.skipToContent}
         </a>
         <I18nProvider locale={locale} dict={t}>
-          <Header locale={locale} t={t} />
-          <main id="main">{children}</main>
-          <Footer locale={locale} t={t} />
-          <WhatsAppFloat locale={locale} label={t.home.whatsapp} />
+          <SettingsProvider>
+            <Header locale={locale} t={t} />
+            <main id="main">{children}</main>
+            <Footer locale={locale} t={t} />
+            <WhatsAppFloat locale={locale} label={t.home.whatsapp} />
+            <SettingsDialog />
+          </SettingsProvider>
         </I18nProvider>
       </body>
     </html>

@@ -22,8 +22,10 @@
   --line: #d6dce6;
 }
 
+/* Text size from Settings (Normal / Large / Extra large). Everything is sized in rem, so it all grows. */
 html {
   -webkit-text-size-adjust: 100%;
+  font-size: calc(100% * var(--text-scale, 1));
 }
 
 body {
@@ -34,7 +36,7 @@ body {
 }
 
 /* Urdu: Nastaliq needs extra line height and a slightly larger size to stay readable. */
-html[lang="ur"] { font-size: 106%; }
+html[lang="ur"] { font-size: calc(106% * var(--text-scale, 1)); }
 html[lang="ur"] body {
   font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
   line-height: 2.25;
@@ -47,6 +49,13 @@ html[lang="sd"] body {
   line-height: 1.9;
 }
 html[lang="sd"] :is(h1, h2, h3) { line-height: 1.6; }
+
+/* A summary shown in another language than the website (e.g. Roman Urdu, Pashto) picks its own font. */
+.script-latin { font-family: var(--font-inter), system-ui, sans-serif; line-height: 1.55; }
+.script-nastaliq { font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif; line-height: 2.25; }
+.script-nastaliq :is(h1, h2, h3) { line-height: 1.95; }
+.script-naskh { font-family: var(--font-sindhi), "Noto Naskh Arabic", serif; line-height: 1.9; }
+.script-naskh :is(h1, h2, h3) { line-height: 1.6; }
 
 /* For phone numbers, medicine names and other English text inside Urdu/Sindhi pages. */
 .latin {
@@ -66,6 +75,42 @@ html[lang="sd"] :is(h1, h2, h3) { line-height: 1.6; }
     transition: none !important;
   }
 }
+
+/* ---------- Dark theme ---------- */
+/*
+ * Chosen in Settings (or follows the phone). The page's own colours swap, and the
+ * light warning boxes (red, orange, amber…) become dark boxes with light text.
+ * Strong colours used for buttons and badges (shades 400 to 600) stay the same.
+ */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #e6eaf2;
+  --muted: #a7b1c4;
+  --surface: #0f141d;
+  --card: #18202d;
+  --line: #2e3a4d;
+
+  --color-red-50: #3a1513; --color-red-100: #4a1a17; --color-red-200: #6b2420; --color-red-300: #8a2f29; --color-red-400: #b23a32;
+  --color-red-700: #fca5a5; --color-red-800: #fecaca; --color-red-900: #fee2e2; --color-red-950: #fef2f2;
+  --color-orange-50: #3a2010; --color-orange-100: #4a2812; --color-orange-200: #6b3a17; --color-orange-300: #8a4a1c;
+  --color-orange-700: #fdba74; --color-orange-800: #fed7aa; --color-orange-900: #ffedd5; --color-orange-950: #fff7ed;
+  --color-amber-50: #33260b; --color-amber-100: #44320e; --color-amber-200: #5e4512; --color-amber-300: #7a5a17; --color-amber-400: #a17518;
+  --color-amber-700: #fcd34d; --color-amber-800: #fde68a; --color-amber-900: #fef3c7; --color-amber-950: #fffbeb;
+  --color-yellow-50: #302a0b; --color-yellow-100: #3f370e; --color-yellow-200: #5a4e12; --color-yellow-300: #e2c43a;
+  --color-yellow-700: #fde047; --color-yellow-800: #fef08a; --color-yellow-900: #fef9c3; --color-yellow-950: #2a2306;
+  --color-emerald-50: #0d2b22; --color-emerald-100: #10372b; --color-emerald-200: #154a3a; --color-emerald-300: #1d6650;
+  --color-emerald-700: #10b981; --color-emerald-800: #6ee7b7; --color-emerald-900: #d1fae5; --color-emerald-950: #ecfdf5;
+  --color-sky-50: #0e2533; --color-sky-100: #12303f;
+}
+/* Buttons in the main colour keep white text; text and outlines in the main colour get lighter so they can be read. */
+html[data-theme="dark"] :is(.text-brand, .hover\:text-brand:hover) { color: color-mix(in oklab, var(--brand) 25%, white); }
+html[data-theme="dark"] .text-whatsapp { color: #4ade80; }
+html[data-theme="dark"] .border-brand { border-color: color-mix(in oklab, var(--brand) 40%, white); }
+html[data-theme="dark"] .bg-brand\/5 { background-color: color-mix(in oklab, var(--brand) 30%, transparent); }
+/* Emerald 700 is used both for big green buttons (keep dark) and green text (make light). */
+html[data-theme="dark"] .bg-emerald-700 { background-color: #047857; }
+html[data-theme="dark"] .hover\:bg-emerald-800:hover { background-color: #065f46; }
+html[data-theme="dark"] .bg-emerald-800 { background-color: #065f46; }
 
 /* ---------- Printing and PDF ---------- */
 /* Buttons and page chrome are hidden; each card stays in one piece where possible. */

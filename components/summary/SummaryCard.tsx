@@ -2,7 +2,8 @@
 
 import { useState, type ReactNode } from "react";
 import { useI18n } from "@/components/I18nProvider";
-import { CheckIcon, WhatsAppIcon } from "@/components/icons";
+import { useSpeech } from "@/components/summary/Speech";
+import { CheckIcon, SpeakerIcon, StopIcon, WhatsAppIcon } from "@/components/icons";
 
 export function whatsappShare(text: string) {
   const max = 3800; // long links can fail on some phones
@@ -28,22 +29,31 @@ export async function copyText(text: string): Promise<boolean> {
   }
 }
 
-/** One summary box: emoji icon, heading, Copy and WhatsApp buttons. */
+/** One summary box: emoji icon, heading, and Read aloud, Copy and WhatsApp buttons. */
 export function SummaryCard({ id, icon, title, text, tone = "plain", children }: {
   id: string; icon: string; title: string; text?: () => string; tone?: "plain" | "danger"; children: ReactNode;
 }) {
   const { t } = useI18n();
+  const speech = useSpeech();
   const [copied, setCopied] = useState(false);
+  const reading = speech?.current === id;
   return (
     <section id={`card-${id}`} data-card={id} aria-labelledby={`card-${id}-title`}
       className={`break-inside-avoid rounded-2xl border ${tone === "danger" ? "border-red-300 bg-red-50/60" : "border-line bg-card"}`}>
-      <div className="flex items-center justify-between gap-2 border-b border-line/70 px-4 py-3">
-        <h2 id={`card-${id}-title`} className="flex items-center gap-2 text-lg font-bold text-ink">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line/70 px-4 py-3">
+        <h2 id={`card-${id}-title`} className="flex min-w-0 items-center gap-2 text-lg font-bold text-ink">
           <span aria-hidden="true">{icon}</span>
           <bdi>{title}</bdi>
         </h2>
         {text && (
-          <div className="no-print flex shrink-0 gap-1">
+          <div className="no-print ms-auto flex shrink-0 gap-1">
+            {speech?.supported && (
+              <button type="button" aria-label={reading ? `${t.summary.actions.stop}: ${title}` : `${t.summary.actions.readCard}: ${title}`} aria-pressed={reading}
+                onClick={() => (reading ? speech.stop() : speech.speak(id, text()))}
+                className={`flex min-h-9 min-w-9 items-center justify-center rounded-lg px-2 text-muted hover:bg-surface ${reading ? "bg-surface text-brand" : ""}`}>
+                {reading ? <StopIcon className="size-4" /> : <SpeakerIcon className="size-4" />}
+              </button>
+            )}
             <button type="button" aria-label={`${t.summary.actions.copy}: ${title}`}
               onClick={async () => { if (await copyText(text())) { setCopied(true); setTimeout(() => setCopied(false), 2000); } }}
               className="flex min-h-9 items-center gap-1 rounded-lg px-2 text-xs font-medium text-muted hover:bg-surface">

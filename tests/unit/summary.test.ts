@@ -83,7 +83,7 @@ describe("general care", () => {
     const care = buildCare(elderly.medicines, localReport(elderly));
     expect(care.sideEffects.find((s) => s.name === "Coumadin")?.items).toContain("Bruising more easily");
     expect(care.urgent.some((u) => /black stools/i.test(u))).toBe(true);
-    expect(care.avoid.some((a) => /milk/i.test(a))).toBe(true);
+    expect(care.avoid.some((a) => /milk/i.test(a.text))).toBe(true);
     expect(care.storage.some((s) => /effervescent/i.test(s))).toBe(true); // Cac-1000
     expect(care.storage.some((s) => /30°C/.test(s))).toBe(true);
   });

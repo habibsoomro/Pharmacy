@@ -59,7 +59,7 @@ export function FieldRow({ id, label, flag, confirmed, onConfirm, currentValue, 
       {needs ? (
         <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
           <span className="text-sm font-semibold text-amber-800">{t.review.flag.needsCheck}</span>
-          <button type="button" onClick={onConfirm} className="flex min-h-10 items-center gap-1.5 rounded-lg border-2 border-emerald-700 bg-white px-3 text-sm font-semibold text-emerald-800">
+          <button type="button" onClick={onConfirm} className="flex min-h-10 items-center gap-1.5 rounded-lg border-2 border-emerald-700 bg-card px-3 text-sm font-semibold text-emerald-800">
             <CheckIcon className="size-4" />
             {t.review.flag.looksRight}
           </button>

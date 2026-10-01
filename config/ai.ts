@@ -9,7 +9,7 @@ export const AI_MODEL = "claude-sonnet-5-5";
 export const AI_MAX_TOKENS = {
   extract: 8000,
   interactions: 3000,
-  translate: 4000,
+  translate: 8000, // Urdu, Sindhi and Pashto letters use more tokens than English
 } as const;
 
 // 0 = most consistent answers (best for reading prescriptions).

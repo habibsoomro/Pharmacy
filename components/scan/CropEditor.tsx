@@ -107,7 +107,7 @@ export function CropEditor({ canvas, onApply, onCancel }: { canvas: HTMLCanvasEl
         <button type="button" onClick={() => setRect(FULL)} className="min-h-12 rounded-xl border border-white/50 px-4">
           {t.scan.cropper.reset}
         </button>
-        <button type="button" onClick={() => onApply(rect)} className="min-h-12 rounded-xl bg-white px-5 font-semibold text-brand">
+        <button type="button" onClick={() => onApply(rect)} className="min-h-12 rounded-xl bg-white px-5 font-semibold text-[var(--brand)]">
           {t.scan.cropper.apply}
         </button>
       </div>
