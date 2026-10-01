@@ -3,7 +3,10 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 1 of 10** (project setup, home page, language switching).
+**Current stage: 2 of 10**
+
+- Stage 1: project setup, home page, language switching
+- Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
 
 ---
 
@@ -50,6 +53,7 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 | AI model name | `config/ai.ts` |
 | Any text on the website | `locales/en.json`, `locales/ur.json`, `locales/sd.json` |
 | Logo image | put it in `public/` and update `logo` in `config/site.ts` |
+| Photo limits, compression, and the dark / blurry / too-small warning levels | `config/capture.ts` |
 | AI prompts (from Stage 3) | `prompts/` folder |
 
 **Translation safety net:** if you add a new line to `en.json` but forget it in
@@ -71,6 +75,13 @@ public/       logo and images
 ```
 
 ## Notes
+
+- **Photo quality warnings** are only advice: people can always continue.
+  If the app warns too often on real prescriptions, lower `minSharpness` in
+  `config/capture.ts` (or raise it if blurry photos get through).
+- **PDF reading** uses the "legacy" version of pdf.js on purpose: the newest
+  version doesn't work on many Android phones. Its helper file
+  (`public/pdf.worker.min.mjs`) is copied automatically by `npm install`.
 
 - Fonts (Inter, Noto Nastaliq Urdu, Noto Naskh Arabic) are downloaded once when
   the site is built and served from your own site. Urdu and Sindhi fonts are

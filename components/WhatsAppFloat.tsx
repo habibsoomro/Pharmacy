@@ -1,10 +1,18 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { site } from "@/config/site";
 import { pick, type Locale } from "@/lib/locales";
 import { whatsappLink } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/icons";
 
-/** Round WhatsApp button that stays in the bottom corner on every page. */
+// Pages where the floating button would cover important buttons.
+const HIDE_ON = ["/scan"];
+
+/** Round WhatsApp button that stays in the bottom corner. */
 export function WhatsAppFloat({ locale, label }: { locale: Locale; label: string }) {
+  const path = usePathname();
+  if (HIDE_ON.some((p) => path?.startsWith(p))) return null;
   return (
     <a
       href={whatsappLink(site.whatsappNumber, pick(site.whatsappMessage, locale))}

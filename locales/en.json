@@ -28,9 +28,18 @@
     "reassure": "Free to use. Your photo is read by AI and is not saved on our server.",
     "howTitle": "How it works",
     "steps": [
-      { "title": "Take a photo of the prescription", "text": "Fit the whole page in good light." },
-      { "title": "Check what we read", "text": "Compare it with your prescription and fix anything that looks wrong." },
-      { "title": "See a simple summary", "text": "Medicines, timings and warnings, all in one place." }
+      {
+        "title": "Take a photo of the prescription",
+        "text": "Fit the whole page in good light."
+      },
+      {
+        "title": "Check what we read",
+        "text": "Compare it with your prescription and fix anything that looks wrong."
+      },
+      {
+        "title": "See a simple summary",
+        "text": "Medicines, timings and warnings, all in one place."
+      }
     ],
     "visitTitle": "Visit the pharmacy",
     "hoursTitle": "Opening hours",
@@ -55,5 +64,68 @@
       "We never sell or share your information."
     ],
     "privacyDraft": "This is a draft. The full policy will be added before the website goes live."
+  },
+  "scan": {
+    "intro": "Take a clear photo of each page. You can add up to {max} pages.",
+    "takePhoto": "Take photo",
+    "uploadPhoto": "Upload photo",
+    "uploadHint": "Photos (JPG, PNG, iPhone) or a PDF",
+    "pageLabel": "Page {n}",
+    "pagesCount": "{n} of {max} pages",
+    "addPage": "Add another page",
+    "maxPagesReached": "You've added the most pages allowed ({max}).",
+    "rotate": "Rotate",
+    "crop": "Crop",
+    "retake": "Retake",
+    "remove": "Remove",
+    "viewLarger": "View larger",
+    "close": "Close",
+    "preparing": "Opening photo…",
+    "continue": "Read prescription",
+    "readyTitle": "Photos are ready",
+    "readyText": "{n} page(s), {size} in total. Reading the prescription is added in the next stage.",
+    "camera": {
+      "title": "Take a photo",
+      "capture": "Take photo",
+      "flashOn": "Turn light on",
+      "flashOff": "Turn light off",
+      "frameHint": "Fit the whole page inside the frame",
+      "useCameraApp": "Use the phone's camera app instead",
+      "denied": "We can't use the camera here. You can use your phone's camera app or upload a photo instead.",
+      "starting": "Starting camera…"
+    },
+    "cropper": {
+      "title": "Crop photo",
+      "hint": "Drag the corners so only the prescription is inside.",
+      "apply": "Use this crop",
+      "reset": "Reset",
+      "cancel": "Cancel"
+    },
+    "quality": {
+      "good": "Photo looks clear",
+      "tooDark": "Photo is too dark",
+      "tooDarkTip": "Use more light, or turn on the phone's light.",
+      "blurry": "Photo looks blurry",
+      "blurryTip": "Hold the phone steady and tap the screen to focus.",
+      "tooSmall": "Photo is too small",
+      "tooSmallTip": "Move closer, but fit the whole page.",
+      "canContinue": "You can still continue, but the reading may have mistakes. A retake is better."
+    },
+    "errors": {
+      "unsupported": "This file type can't be used. Please choose a photo (JPG, PNG) or a PDF.",
+      "tooLarge": "This file is too large. Please choose a file under {mb} MB.",
+      "readFailed": "We couldn't open this file. Please try another photo.",
+      "heicFailed": "We couldn't open this iPhone photo. Please take a screenshot of it and upload that instead.",
+      "pdfFailed": "We couldn't open this PDF. Please take a photo of the page instead."
+    },
+    "loading": {
+      "title": "Please wait",
+      "steps": [
+        "Reading prescription",
+        "Identifying medicines",
+        "Checking interactions",
+        "Preparing summary"
+      ]
+    }
   }
 }
