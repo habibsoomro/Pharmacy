@@ -31,6 +31,8 @@ class SampleProblem extends Error {
 /** Claude's error codes → the app's own error codes (which have messages in every language). */
 function appError(e: unknown): { status: number; error: string } {
   const code = e instanceof SampleProblem ? e.code : ((e as { code?: string } | null)?.code ?? "upstream_error");
+  // Shown in the browser's developer console, to help find out why reading failed.
+  console.warn("[nuskha] Claude call failed:", code, (e as { message?: string } | null)?.message ?? "");
   const map: Record<string, string> = {
     not_granted: "not_allowed",
     sampling_disabled: "signed_out", not_declared: "signed_out", capability_disabled: "signed_out", capability_removed: "signed_out", session_expired: "signed_out", unavailable: "signed_out",
@@ -98,9 +100,12 @@ async function extract(body: ExtractRequest): Promise<Answer<ExtractResponse>> {
   try {
     const sample = await getSample();
     if (!sample) throw new SampleProblem("unavailable");
+    // How many pictures one question may carry. Some Claude apps don't say: then the pages are
+    // joined into one picture. Whether photos work at all is decided by the call itself
+    // (it rejects "images_unavailable"), never guessed in advance.
     const limits = await sample.limits().catch(() => null);
-    if (!limits?.images) throw new SampleProblem("images_unavailable");
-    const images = await fitPages(body.images.map((i) => toBlob(i.base64, i.mediaType)), Math.max(1, limits.images.maxCount));
+    const maxCount = Math.max(1, limits?.images?.maxCount ?? 1);
+    const images = await fitPages(body.images.map((i) => toBlob(i.base64, i.mediaType)), maxCount);
     const vars = extractVars(new Date().toISOString().slice(0, 10), body.images.length);
     const prompt = both(fillPrompt(PROMPTS["extract-system.md"], vars), fillPrompt(PROMPTS["extract-user.md"], vars));
     const result = await askJson(prompt, ExtractionResult, images);
