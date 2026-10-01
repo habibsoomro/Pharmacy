@@ -18,6 +18,8 @@ async function post<T>(path: string, body: unknown): Promise<Answer<T>> {
 
 export const aiTransport = {
   extract: (body: ExtractRequest) => post<ExtractResponse>("/api/extract", body),
+  /** Reading typed text instead of photos: only the version inside Claude offers it (when photos can't be sent). */
+  extractText: async (_text: string): Promise<Answer<ExtractResponse>> => ({ status: 400, data: { ok: false, error: "bad_request" } }),
   interactions: (body: InteractionRequest) => post<InteractionResponse>("/api/interactions", body),
   translate: (body: TranslateRequest) => post<TranslateResponse>("/api/translate", body),
 };

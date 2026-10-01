@@ -135,12 +135,19 @@
       "too_large": "The photos are too big to send. Please remove a page or take the photos again.",
       "not_allowed": "Reading needs your permission to use Claude. Tap \"Read prescription\" again and choose Allow.",
       "signed_out": "Please sign in to Claude to read prescriptions on this page.",
-      "no_images": "This Claude app can't send photos. Please open this page in the Claude website or the latest Claude app."
+      "no_images": "This Claude app doesn't let the page send photos to Claude. You can type the prescription below instead."
     },
     "tryAgain": "Try again",
     "notRx": {
       "title": "This doesn't look like a prescription",
       "text": "Please take a photo of the doctor's prescription page."
+    },
+    "typed": {
+      "title": "Type the prescription instead",
+      "hint": "Copy what is written on the prescription, line by line: each medicine's name and strength, and how to take it (for example \"1+0+1 x 5 days\" or \"کھانے کے بعد\"). Add the patient's age and weight if written. Type ? for anything you can't read.",
+      "label": "Prescription text",
+      "read": "Read typed prescription",
+      "empty": "Please type the prescription first."
     }
   },
   "review": {

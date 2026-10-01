@@ -10,7 +10,7 @@ import { crop, rotate90, scaleTo, toJpegBlob, type CropRect } from "@/lib/image/
 import { ImageLoadError, loadFile, type LoadError } from "@/lib/image/load";
 import { checkQuality, hasProblem, type QualityReport } from "@/lib/image/quality";
 import { prepareForUpload } from "@/lib/image/prepare";
-import { requestExtraction, type ClientErrorCode } from "@/lib/client/extract";
+import { requestExtraction, requestTextExtraction, type ClientErrorCode } from "@/lib/client/extract";
 import { hasConsent, saveConsent } from "@/lib/client/consent";
 import { saveCurrentScan } from "@/lib/client/scan-session";
 import { ConsentBox } from "@/components/scan/ConsentBox";
@@ -49,6 +49,9 @@ export function ScanFlow() {
   const [step, setStep] = useState(0);
   const [apiError, setApiError] = useState<ClientErrorCode | null>(null);
   const [notRx, setNotRx] = useState(false);
+  const [typeInstead, setTypeInstead] = useState(false); // photos can't be sent (inside some Claude apps)
+  const [typed, setTyped] = useState("");
+  const [typedEmpty, setTypedEmpty] = useState(false);
   const [consent, setConsent] = useState(false);
   const [consentAsked, setConsentAsked] = useState(true); // hide the box for people who already agreed
   const [consentError, setConsentError] = useState(false);
@@ -157,7 +160,7 @@ export function ScanFlow() {
     setPages((prev) => prev.filter((_, i) => i !== index));
   }
 
-  async function onContinue() {
+  async function onContinue(typedText?: string) {
     if (!consent) {
       setConsentError(true);
       return;
@@ -172,8 +175,10 @@ export function ScanFlow() {
     const timer = window.setTimeout(() => setStep(1), 5000);
     try {
       const images = await Promise.all(pages.map((p) => prepareForUpload(p.canvas)));
-      const res = await requestExtraction(images);
+      // Inside Claude, some apps can't send photos: then the person types the text (the photos stay for checking).
+      const res = typedText !== undefined ? await requestTextExtraction(typedText) : await requestExtraction(images);
       if (!res.ok) {
+        if (res.error === "no_images") setTypeInstead(true);
         setApiError(res.error);
         setPhase("capture");
         return;
@@ -318,14 +323,43 @@ export function ScanFlow() {
               }}
             />
           )}
-          <button
-            type="button"
-            onClick={onContinue}
-            disabled={busy}
-            className="flex min-h-16 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-700 text-xl font-bold text-white hover:bg-emerald-800 disabled:opacity-60"
-          >
-            {apiError ? t.scan.tryAgain : t.scan.continue}
-          </button>
+          {typeInstead ? (
+            <div className="space-y-3 rounded-2xl border-2 border-brand bg-card p-4">
+              <p className="text-lg font-bold">{t.scan.typed.title}</p>
+              <p className="text-sm text-muted">{t.scan.typed.hint}</p>
+              <label htmlFor="typed-rx" className="sr-only">{t.scan.typed.label}</label>
+              <textarea
+                id="typed-rx"
+                dir="auto"
+                rows={8}
+                value={typed}
+                onChange={(e) => {
+                  setTyped(e.target.value);
+                  if (e.target.value.trim()) setTypedEmpty(false);
+                }}
+                placeholder={"Tab Augmentin 625mg  1+0+1  x 5 days\nSyp Calpol 5 ml  TDS  SOS"}
+                className="latin w-full rounded-xl border border-line bg-card p-3 text-base"
+              />
+              {typedEmpty && <p className="text-sm font-medium text-red-700" role="alert">{t.scan.typed.empty}</p>}
+              <button
+                type="button"
+                onClick={() => (typed.trim() ? onContinue(typed.trim()) : setTypedEmpty(true))}
+                disabled={busy}
+                className="flex min-h-16 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-700 text-xl font-bold text-white hover:bg-emerald-800 disabled:opacity-60"
+              >
+                {t.scan.typed.read}
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onContinue()}
+              disabled={busy}
+              className="flex min-h-16 w-full items-center justify-center gap-2 rounded-2xl bg-emerald-700 text-xl font-bold text-white hover:bg-emerald-800 disabled:opacity-60"
+            >
+              {apiError ? t.scan.tryAgain : t.scan.continue}
+            </button>
+          )}
         </div>
       )}
 

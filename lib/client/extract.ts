@@ -20,3 +20,14 @@ export async function requestExtraction(images: PreparedImage[]): Promise<Extrac
     return { ok: false, error: navigator.onLine ? "ai_failed" : "offline" };
   }
 }
+
+/** Read a prescription the person typed (used inside Claude when photos can't be sent). */
+export async function requestTextExtraction(text: string): Promise<ExtractResponse | { ok: false; error: ClientErrorCode }> {
+  if (typeof navigator !== "undefined" && !navigator.onLine) return { ok: false, error: "offline" };
+  try {
+    const { data } = await aiTransport.extractText(text);
+    return data && typeof data.ok === "boolean" ? data : { ok: false, error: "ai_failed" };
+  } catch {
+    return { ok: false, error: navigator.onLine ? "ai_failed" : "offline" };
+  }
+}

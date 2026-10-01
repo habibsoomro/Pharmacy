@@ -118,6 +118,21 @@ async function extract(body: ExtractRequest): Promise<Answer<ExtractResponse>> {
   }
 }
 
+/** When this Claude app can't send photos, the person types the prescription and Claude reads the text. */
+async function extractText(text: string): Promise<Answer<ExtractResponse>> {
+  try {
+    const vars = { ...extractVars(new Date().toISOString().slice(0, 10), 0), TEXT: text.slice(0, 20_000) };
+    const prompt = both(fillPrompt(PROMPTS["extract-system.md"], vars), fillPrompt(PROMPTS["extract-text-user.md"], vars));
+    const result = await askJson(prompt, ExtractionResult);
+    if (!result.is_prescription) return { status: 200, data: { ok: true, result, checks: [] } };
+    const { prescription, checks } = crossCheck(result);
+    return { status: 200, data: { ok: true, result: prescription, checks } };
+  } catch (e) {
+    const { status, error } = appError(e);
+    return { status, data: { ok: false, error: error as never } };
+  }
+}
+
 async function interactions(body: InteractionRequest): Promise<Answer<InteractionResponse>> {
   try {
     const prompt = both(PROMPTS["interactions-system.md"], fillPrompt(PROMPTS["interactions-user.md"], interactionVars(body)));
@@ -140,5 +155,5 @@ async function translate(body: TranslateRequest): Promise<Answer<TranslateRespon
   }
 }
 
-export const aiTransport = { extract, interactions, translate };
+export const aiTransport = { extract, extractText, interactions, translate };
 export type { Answer };
