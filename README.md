@@ -3,13 +3,14 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 5 of 10**
+**Current stage: 6 of 10**
 
 - Stage 1: project setup, home page, language switching
 - Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
 - Stage 3: AI reading of the prescription (`/api/extract`), shorthand double-check, brand list, consent
 - Stage 4: "Check what we read" review-and-edit screen (`/review`), pharmacist mode
 - Stage 5: safety check: interactions, duplicates, dose/age/allergy checks (`/api/interactions` + the pharmacy's own list)
+- Stage 6: summary cards (`/summary`): safety alerts, doctor, patient, diagnosis, one card per medicine with pictures, daily timetable, course calendar, interactions, general care; copy, WhatsApp, print, PDF
 
 ---
 
@@ -77,6 +78,7 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 | Brand → generic list | `data/brand-generics.json` |
 | The pharmacy's interaction list (58 rules) | `data/interactions.json` |
 | Medicine groups used by the rules (e.g. NSAIDs) | `data/drug-groups.json` |
+| Side effects, storage tips and urgent warning signs (General Care card) | `data/care.json` |
 | Maximum doses and age rules | `lib/rx/safety.ts` (`ADULT_MAX_MG_PER_DAY`, `CHILD_MG_PER_KG`, `AGE_RULES`) |
 | How many scans per visitor | `app/api/extract/route.ts` (8 per 10 minutes) |
 
@@ -122,6 +124,10 @@ public/       logo and images
 7. Nothing is stored on the server. The result lives only in the user's browser tab.
 
 ## Notes
+
+- **Download PDF** turns each card into a picture inside the PDF, so Urdu and
+  Sindhi look exactly as on screen. The text in the PDF is therefore not
+  selectable. "Print" uses the phone or computer's own printing (and "Save as PDF").
 
 - **The brand list and prompts are medical content.** Have a pharmacist review
   `data/brand-generics.json` and `prompts/extract-system.md` before going live.

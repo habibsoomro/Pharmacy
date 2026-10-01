@@ -66,3 +66,19 @@ html[lang="sd"] :is(h1, h2, h3) { line-height: 1.6; }
     transition: none !important;
   }
 }
+
+/* ---------- Printing and PDF ---------- */
+/* Buttons and page chrome are hidden; each card stays in one piece where possible. */
+.pdf-mode .no-print { display: none !important; }
+
+@media print {
+  @page { margin: 12mm; }
+  body { background: #fff !important; }
+  header, footer, .no-print { display: none !important; }
+  main { padding: 0 !important; }
+  [data-card] { break-inside: avoid; page-break-inside: avoid; box-shadow: none !important; }
+  a { color: inherit !important; text-decoration: none !important; }
+}
+/* While the PDF is being made, lay the summary out at tablet width so cards fit A4 nicely. */
+.pdf-mode { width: 780px !important; max-width: none !important; background: #fff; }
+.pdf-mode header { background: #fff; }

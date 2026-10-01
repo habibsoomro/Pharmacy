@@ -1,0 +1,295 @@
+{
+  "_note": "Simple care information shown on the General Care card. Side effects are common, usually mild ones in plain words. MUST be reviewed by a pharmacist. 'storage' lines are shown only when a matching medicine is on the prescription.",
+  "groups": {
+    "@penicillin": {
+      "side_effects": [
+        "Loose stools or diarrhoea",
+        "Feeling sick"
+      ],
+      "urgent": [
+        "A rash, itching or swelling after a dose (possible allergy)"
+      ]
+    },
+    "@cephalosporin": {
+      "side_effects": [
+        "Loose stools or diarrhoea",
+        "Feeling sick"
+      ],
+      "urgent": [
+        "A rash, itching or swelling after a dose (possible allergy)"
+      ]
+    },
+    "@macrolide": {
+      "side_effects": [
+        "Stomach upset",
+        "Loose stools"
+      ]
+    },
+    "@fluoroquinolone": {
+      "side_effects": [
+        "Feeling sick",
+        "Dizziness",
+        "Trouble sleeping"
+      ],
+      "urgent": [
+        "Pain or swelling in a tendon, such as the back of the ankle"
+      ]
+    },
+    "@nitroimidazole": {
+      "side_effects": [
+        "A metallic taste in the mouth",
+        "Feeling sick",
+        "Dark urine"
+      ]
+    },
+    "@tetracycline": {
+      "side_effects": [
+        "Stomach upset",
+        "Skin burns more easily in the sun"
+      ]
+    },
+    "@co_trimoxazole": {
+      "side_effects": [
+        "Feeling sick",
+        "Rash"
+      ],
+      "urgent": [
+        "A spreading rash, blisters or mouth sores"
+      ]
+    },
+    "@nsaid": {
+      "side_effects": [
+        "Stomach pain or heartburn",
+        "Feeling sick"
+      ],
+      "urgent": [
+        "Black, tarry stools or vomiting blood"
+      ]
+    },
+    "@aspirin": {
+      "side_effects": [
+        "Stomach upset",
+        "Bruising more easily"
+      ],
+      "urgent": [
+        "Black, tarry stools or vomiting blood"
+      ]
+    },
+    "@paracetamol": {
+      "side_effects": [
+        "Side effects are rare at the right dose"
+      ]
+    },
+    "@opioid": {
+      "side_effects": [
+        "Drowsiness",
+        "Constipation",
+        "Feeling sick"
+      ],
+      "urgent": [
+        "Very slow or shallow breathing, or being hard to wake"
+      ]
+    },
+    "@ppi": {
+      "side_effects": [
+        "Headache",
+        "Stomach ache or wind"
+      ]
+    },
+    "@antihistamine": {
+      "side_effects": [
+        "Sleepiness (take care when driving)",
+        "Dry mouth"
+      ]
+    },
+    "@sedating_antihistamine": {
+      "side_effects": [
+        "Strong sleepiness — do not drive or use machines"
+      ]
+    },
+    "@benzodiazepine": {
+      "side_effects": [
+        "Drowsiness",
+        "Unsteadiness"
+      ],
+      "urgent": [
+        "Very slow breathing or being hard to wake"
+      ]
+    },
+    "@warfarin": {
+      "side_effects": [
+        "Bruising more easily"
+      ],
+      "urgent": [
+        "Unusual bleeding: black stools, blood in urine, nosebleeds that won't stop"
+      ]
+    },
+    "@clopidogrel": {
+      "side_effects": [
+        "Bruising more easily"
+      ],
+      "urgent": [
+        "Black stools or bleeding that won't stop"
+      ]
+    },
+    "@metformin": {
+      "side_effects": [
+        "Stomach upset or loose stools in the first weeks",
+        "A metallic taste"
+      ]
+    },
+    "@sulfonylurea": {
+      "side_effects": [
+        "Low blood sugar: shaking, sweating, hunger, confusion — eat or drink something sweet"
+      ],
+      "urgent": [
+        "Low sugar that doesn't improve after something sweet, or fainting"
+      ]
+    },
+    "@insulin": {
+      "side_effects": [
+        "Low blood sugar: shaking, sweating, hunger — eat or drink something sweet"
+      ],
+      "urgent": [
+        "Low sugar that doesn't improve after something sweet, or fainting"
+      ]
+    },
+    "@ace_inhibitor": {
+      "side_effects": [
+        "A dry, tickly cough",
+        "Dizziness when standing up"
+      ],
+      "urgent": [
+        "Swelling of the lips, tongue or face"
+      ]
+    },
+    "@arb": {
+      "side_effects": [
+        "Dizziness when standing up"
+      ]
+    },
+    "@ccb": {
+      "side_effects": [
+        "Swollen ankles",
+        "Headache",
+        "Flushing"
+      ]
+    },
+    "@beta_blocker": {
+      "side_effects": [
+        "Tiredness",
+        "Cold hands and feet"
+      ]
+    },
+    "@statin": {
+      "side_effects": [
+        "Mild muscle aches",
+        "Stomach upset"
+      ],
+      "urgent": [
+        "Severe muscle pain or weakness with dark urine"
+      ]
+    },
+    "@thiazide": {
+      "side_effects": [
+        "Passing urine more often",
+        "Dizziness"
+      ]
+    },
+    "@loop_diuretic": {
+      "side_effects": [
+        "Passing urine more often",
+        "Dizziness",
+        "Thirst"
+      ]
+    },
+    "@oral_steroid": {
+      "side_effects": [
+        "Stomach upset",
+        "Higher blood sugar",
+        "Feeling more hungry"
+      ]
+    },
+    "@iron": {
+      "side_effects": [
+        "Black or dark green stools (this is normal)",
+        "Constipation or stomach upset"
+      ]
+    },
+    "@calcium_supplement": {
+      "side_effects": [
+        "Constipation",
+        "Wind or bloating"
+      ]
+    },
+    "@antiemetic": {
+      "side_effects": [
+        "Drowsiness",
+        "Dry mouth"
+      ],
+      "urgent": [
+        "Uncontrolled movements of the face, tongue or body"
+      ]
+    },
+    "@levothyroxine": {
+      "side_effects": [
+        "Usually none at the right dose; a racing heart can mean the dose is too high"
+      ]
+    },
+    "@ssri": {
+      "side_effects": [
+        "Feeling sick for the first week or two",
+        "Trouble sleeping or feeling sleepy"
+      ]
+    },
+    "@inhaled_steroid": {
+      "side_effects": [
+        "Hoarse voice or sore mouth — rinse your mouth after each use"
+      ]
+    }
+  },
+  "forms": [
+    {
+      "match": "suspension|dry syrup|powder for",
+      "storage": "After mixing with water, follow the label: many antibiotic suspensions must be kept in the fridge and thrown away after 7 to 10 days."
+    },
+    {
+      "match": "syrup|suspension|liquid|elixir",
+      "storage": "Shake liquid medicines well and measure with the cup or spoon that comes with them, not a kitchen spoon."
+    },
+    {
+      "match": "eye drop|ear drop",
+      "storage": "Do not let the dropper touch the eye or ear. Most drops must be thrown away 4 weeks after opening."
+    },
+    {
+      "match": "insulin",
+      "storage": "Keep unopened insulin in the fridge (not the freezer). The pen in use can stay at room temperature for about 4 weeks."
+    },
+    {
+      "match": "effervescent",
+      "storage": "Keep effervescent tablets tightly closed in their tube; moisture spoils them."
+    },
+    {
+      "match": "suppositor",
+      "storage": "Keep suppositories in a cool place so they don't melt."
+    },
+    {
+      "match": "inhaler",
+      "storage": "Keep the inhaler away from heat and direct sunlight. Never puncture it."
+    }
+  ],
+  "general": {
+    "storage": [
+      "Keep medicines in a cool, dry place below 30°C, away from direct sunlight. Do not leave them in a hot car or on a window sill.",
+      "Keep all medicines out of reach of children.",
+      "Keep medicines in their original pack so you can see the name and expiry date."
+    ],
+    "urgent": [
+      "Swelling of the face, lips or tongue, or difficulty breathing",
+      "A widespread rash, blisters or peeling skin",
+      "Chest pain, fainting or a very fast or uneven heartbeat",
+      "Yellow eyes or skin",
+      "The illness gets much worse instead of better"
+    ]
+  }
+}

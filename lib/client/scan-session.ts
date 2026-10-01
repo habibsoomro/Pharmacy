@@ -23,6 +23,8 @@ export type CurrentScan = {
   };
   /** Result of the safety check, with a fingerprint of what was checked. */
   safety?: { key: string; report: SafetyReport };
+  /** Course start date chosen on the summary (YYYY-MM-DD). */
+  startDate?: string;
 };
 
 const KEY = "nuskha:current-scan";

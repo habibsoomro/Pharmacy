@@ -19,7 +19,7 @@ export function WhatsAppFloat({ locale, label }: { locale: Locale; label: string
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="fixed end-4 z-40 grid size-14 place-items-center rounded-full bg-whatsapp text-white shadow-lg shadow-black/20 hover:brightness-110"
+      className="no-print fixed end-4 z-40 grid size-14 place-items-center rounded-full bg-whatsapp text-white shadow-lg shadow-black/20 hover:brightness-110"
       style={{ bottom: "max(1rem, env(safe-area-inset-bottom))" }}
     >
       <WhatsAppIcon className="size-7" />

@@ -12,9 +12,9 @@ const STYLE: Record<Severity, { card: string; pill: string; bar: string }> = {
   minor: { card: "border-yellow-300 bg-yellow-50", pill: "bg-yellow-300 text-yellow-950", bar: "bg-yellow-400" },
 };
 
-type Props = { report: SafetyReport | null; pending: boolean; onRetry?: () => void };
+type Props = { report: SafetyReport | null; pending: boolean; onRetry?: () => void; embedded?: boolean };
 
-export function SafetyPanel({ report, pending, onRetry }: Props) {
+export function SafetyPanel({ report, pending, onRetry, embedded }: Props) {
   const { t, locale } = useI18n();
   const s = t.safety;
 
@@ -33,9 +33,9 @@ export function SafetyPanel({ report, pending, onRetry }: Props) {
   const none = report.alerts.length === 0;
 
   return (
-    <section aria-labelledby="safety-title" className="space-y-3">
+    <div className="space-y-3">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="safety-title" className="text-xl font-bold text-brand">🚨 {s.title}</h2>
+        {!embedded && <h2 id="safety-title" className="text-xl font-bold text-brand">🚨 {s.title}</h2>}
         {!none && <p className="text-sm text-muted">{fmtNode(s.counts, { major: count("major"), moderate: count("moderate"), minor: count("minor") })}</p>}
       </div>
 
@@ -45,7 +45,7 @@ export function SafetyPanel({ report, pending, onRetry }: Props) {
       {!pending && !report.aiChecked && (
         <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-card p-3 text-sm text-muted">
           <span>{s.aiUnavailable}</span>
-          {onRetry && <button type="button" onClick={onRetry} className="min-h-9 rounded-lg border-2 border-brand px-3 font-semibold text-brand">{s.retry}</button>}
+          {onRetry && <button type="button" onClick={onRetry} data-retry className="no-print min-h-9 rounded-lg border-2 border-brand px-3 font-semibold text-brand">{s.retry}</button>}
         </div>
       )}
 
@@ -81,7 +81,7 @@ export function SafetyPanel({ report, pending, onRetry }: Props) {
         <AlertIcon className="mt-0.5 size-4 shrink-0" />
         {s.disclaimer}
       </p>
-    </section>
+    </div>
   );
 }
 

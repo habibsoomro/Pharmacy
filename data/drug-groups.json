@@ -366,6 +366,54 @@
       "imipenem",
       "fusidic acid",
       "rifaximin"
+    ],
+    "cephalosporin": [
+      "cefixime",
+      "cefuroxime",
+      "cefradine",
+      "cefalexin",
+      "cefaclor",
+      "cefdinir",
+      "cefpodoxime",
+      "ceftriaxone",
+      "cefotaxime",
+      "cefepime",
+      "ceftazidime",
+      "cefoperazone"
+    ],
+    "macrolide": [
+      "azithromycin",
+      "clarithromycin",
+      "erythromycin"
+    ],
+    "ccb": [
+      "amlodipine",
+      "nifedipine",
+      "felodipine"
+    ],
+    "iron": [
+      "ferrous",
+      "iron"
+    ],
+    "calcium_supplement": [
+      "calcium"
+    ],
+    "loop_diuretic": [
+      "furosemide",
+      "torsemide",
+      "bumetanide"
+    ],
+    "antiemetic": [
+      "domperidone",
+      "metoclopramide",
+      "ondansetron",
+      "prochlorperazine"
+    ],
+    "inhaled_steroid": [
+      "fluticasone",
+      "budesonide",
+      "beclometasone",
+      "beclomethasone"
     ]
   }
 }

@@ -256,9 +256,104 @@
     "poorWarning": "This prescription is hard to read. To be safe, please show it to our pharmacist in person."
   },
   "summary": {
-    "title": "Summary",
-    "comingSoon": "The summary cards are built in Stage 6. Your checked prescription is saved for this visit.",
-    "backToReview": "Back to checking"
+    "title": "Your prescription summary",
+    "backToReview": "Back to checking",
+    "scanAnother": "Scan another prescription",
+    "actions": {
+      "copy": "Copy",
+      "copied": "Copied",
+      "whatsapp": "WhatsApp",
+      "print": "Print",
+      "pdf": "Download PDF",
+      "pdfMaking": "Making PDF…",
+      "pdfFailed": "Couldn't make the PDF. Try Print and choose \"Save as PDF\".",
+      "shareTitle": "Share or save the whole summary"
+    },
+    "cards": {
+      "safety": "Safety alerts",
+      "doctor": "Doctor",
+      "patient": "Patient",
+      "diagnosis": "Diagnosis and advice",
+      "timetable": "Daily timetable",
+      "calendar": "Course calendar",
+      "interactions": "Interactions in detail",
+      "care": "General care"
+    },
+    "safetyCard": {
+      "unreadable": "Some parts could not be read:",
+      "stillFlagged": "{n} item(s) were not checked on the review screen.",
+      "seeDetails": "Details are in the \"Interactions in detail\" card below.",
+      "none": "No safety alerts found."
+    },
+    "info": {
+      "tests": "Tests advised",
+      "followUp": "Next visit",
+      "advice": "Advice",
+      "pharmacistNote": "Pharmacist's note",
+      "date": "Prescription date",
+      "call": "Call"
+    },
+    "med": {
+      "whatFor": "What it's for",
+      "howMuch": "How much",
+      "howOften": "How often",
+      "food": "Food",
+      "howToTake": "How to take it",
+      "howLong": "For how long",
+      "total": "Total needed",
+      "warnings": "Special instructions",
+      "asNeeded": "Only when needed",
+      "ongoing": "Keep taking until your doctor says",
+      "once": "Once a day",
+      "perDay": "{n} times a day",
+      "days": "{n} days",
+      "notWritten": "Not written",
+      "note": "Pharmacist's note",
+      "alerts": "See safety alerts for this medicine"
+    },
+    "howTo": {
+      "swallow": "Swallow with water",
+      "dissolve": "Dissolve in a glass of water, then drink",
+      "chew": "Chew, then swallow",
+      "liquid": "Measure with the cup or spoon that comes with it",
+      "shake": "Shake the bottle well first",
+      "eye": "Put the drops in the eye",
+      "ear": "Put the drops in the ear",
+      "nose": "Use in the nose",
+      "skin": "Apply a thin layer on the skin",
+      "inhale": "Breathe in from the inhaler",
+      "injection": "Given as an injection by a nurse or doctor",
+      "sachet": "Mix in water, then drink",
+      "gargle": "Gargle and spit out; do not swallow",
+      "suppository": "Not taken by mouth; use as shown by your pharmacist",
+      "underTongue": "Let it dissolve under the tongue",
+      "asDirected": "As explained by your doctor or pharmacist"
+    },
+    "timetable": {
+      "asNeeded": "Only when needed",
+      "unscheduled": "Time of day not written",
+      "empty": "Nothing at this time"
+    },
+    "calendar": {
+      "startDate": "Start date",
+      "startHint": "Change this if you started on a different day.",
+      "lastDay": "Last day: {date}",
+      "dayOf": "Day {n} of {total}",
+      "upcoming": "Starts {date}",
+      "done": "Finished",
+      "lastDayToday": "Today is the last day",
+      "ongoing": "Keep taking until your doctor says",
+      "asNeeded": "Only when needed; no fixed end",
+      "unknown": "Number of days not written",
+      "single": "One dose only"
+    },
+    "care": {
+      "sideEffects": "Side effects to watch for",
+      "sideEffectsHint": "Most people get no side effects. Tell your doctor or pharmacist if these bother you.",
+      "avoid": "Food and drink",
+      "storage": "Storing your medicines",
+      "urgent": "Get medical help urgently if you notice:"
+    }
   },
   "safety": {
     "title": "Safety check",
