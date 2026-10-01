@@ -1,5 +1,6 @@
 import type { Prescription } from "@/lib/schemas/extraction";
-import { AiInteractions, type InteractionRequest, type InteractionResponse, type SafetyReport } from "@/lib/schemas/safety";
+import { AiInteractions, type InteractionRequest, type SafetyReport } from "@/lib/schemas/safety";
+import { aiTransport } from "@/lib/client/ai-transport";
 import { localSafetyCheck, mergeReports } from "@/lib/rx/safety";
 
 /** Only what the safety check needs. No patient name, phone or address is sent. */
@@ -33,12 +34,7 @@ export async function fullSafetyCheck(rx: Prescription): Promise<SafetyReport> {
   let ai: AiInteractions | null = null;
   try {
     if (navigator.onLine) {
-      const res = await fetch("/api/interactions", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(buildInteractionRequest(rx)),
-      });
-      const data = (await res.json().catch(() => null)) as InteractionResponse | null;
+      const { data } = await aiTransport.interactions(buildInteractionRequest(rx));
       if (data?.ok) {
         const parsed = AiInteractions.safeParse(data.ai);
         ai = parsed.success ? parsed.data : null;

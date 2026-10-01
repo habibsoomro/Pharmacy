@@ -1,6 +1,7 @@
 import "server-only";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { fillPrompt } from "@/lib/ai/prompts";
 
 const cache = new Map<string, string>();
 
@@ -12,5 +13,5 @@ export function loadPrompt(name: string, vars: Record<string, string | number> =
     // Re-read on every request while developing, so prompt edits show up immediately.
     if (process.env.NODE_ENV === "production") cache.set(name, text);
   }
-  return text.replace(/\{\{(\w+)\}\}/g, (_, k) => (k in vars ? String(vars[k]) : `{{${k}}}`));
+  return fillPrompt(text, vars);
 }

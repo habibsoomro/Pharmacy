@@ -58,11 +58,4 @@ export async function askClaude(opts: { system: string; messages: ChatMessage[];
   return (data.content ?? []).filter((b) => b.type === "text").map((b) => b.text ?? "").join("\n");
 }
 
-/** Pull the JSON object out of the AI's reply (ignores stray text or ``` fences). */
-export function extractJson(text: string): unknown {
-  const cleaned = text.replace(/```(?:json)?/gi, "").trim();
-  const start = cleaned.indexOf("{");
-  const end = cleaned.lastIndexOf("}");
-  if (start === -1 || end <= start) throw new SyntaxError("No JSON object found");
-  return JSON.parse(cleaned.slice(start, end + 1));
-}
+export { extractJson } from "@/lib/ai/json";

@@ -12,6 +12,7 @@ import { loadCurrentScan, saveCurrentScan, type CurrentScan } from "@/lib/client
 import { fullSafetyCheck, localReport, safetyKey } from "@/lib/client/safety";
 import { downloadSummaryPdf } from "@/lib/client/pdf";
 import { withLightTheme } from "@/lib/client/theme";
+import { IN_CLAUDE_PAGE } from "@/lib/runtime";
 import { fmt } from "@/lib/format";
 import type { Prescription } from "@/lib/schemas/extraction";
 import type { SafetyReport } from "@/lib/schemas/safety";
@@ -171,7 +172,7 @@ function SummaryBody({ scan, rx, report, pending, start, onStartChange, onRetryS
         {/* Whole-summary actions */}
         <div className="no-print rounded-2xl border border-line bg-card p-3">
           <p className="mb-2 text-sm font-medium text-muted">{t.summary.actions.shareTitle}</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <div className={`grid grid-cols-2 gap-2 ${IN_CLAUDE_PAGE ? "" : "sm:grid-cols-4"}`}>
             <button type="button" onClick={() => whatsappShare(everything())}
               className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-whatsapp font-semibold text-white">
               <WhatsAppIcon className="size-5" />{t.summary.actions.whatsapp}
@@ -180,11 +181,13 @@ function SummaryBody({ scan, rx, report, pending, start, onStartChange, onRetryS
               className="flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-brand font-semibold text-brand">
               {copied && <CheckIcon className="size-5" />}{copied ? t.summary.actions.copied : t.summary.actions.copy}
             </button>
-            <button type="button" onClick={() => window.print()} className="min-h-12 rounded-xl border-2 border-brand font-semibold text-brand">
-              {t.summary.actions.print}
-            </button>
+            {!IN_CLAUDE_PAGE && (
+              <button type="button" onClick={() => window.print()} className="min-h-12 rounded-xl border-2 border-brand font-semibold text-brand">
+                {t.summary.actions.print}
+              </button>
+            )}
             <button type="button" onClick={makePdf} disabled={pdfState === "making"}
-              className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand font-semibold text-white disabled:opacity-70">
+              className={`flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand font-semibold text-white disabled:opacity-70 ${IN_CLAUDE_PAGE ? "col-span-2" : ""}`}>
               {pdfState === "making" && <SpinnerIcon className="size-5" />}
               {pdfState === "making" ? t.summary.actions.pdfMaking : t.summary.actions.pdf}
             </button>

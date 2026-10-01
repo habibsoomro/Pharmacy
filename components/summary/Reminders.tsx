@@ -9,6 +9,7 @@ import { howToTake } from "@/lib/summary/how-to-take";
 import { ONGOING_DAYS, buildIcs, planReminders, type IcsEvent } from "@/lib/summary/reminders";
 import { SLOTS } from "@/lib/summary/timetable";
 import type { ShareCtx } from "@/lib/summary/share-text";
+import { saveFile } from "@/lib/client/save-file";
 
 /** Lets the person pick reminder times and download a calendar (.ics) file for their phone. */
 export function RemindersDialog({ ctx, onClose }: { ctx: ShareCtx; onClose: () => void }) {
@@ -41,15 +42,7 @@ export function RemindersDialog({ ctx, onClose }: { ctx: ShareCtx; onClose: () =
       ].filter((l) => l !== false && l !== null).join("\n");
       return { uid: `${stamp}-${i}@nuskha`, firstDay: x.firstDay, time: x.time, days: x.days, title, description };
     });
-    const blob = new Blob([buildIcs(events)], { type: "text/calendar;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "medicine-reminders.ics";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 10_000);
+    saveFile("medicine-reminders.ics", new Blob([buildIcs(events)], { type: "text/calendar;charset=utf-8" })).catch(() => {});
   }
 
   return (

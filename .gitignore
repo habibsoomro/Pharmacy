@@ -15,3 +15,6 @@ public/pdf.worker.min.mjs
 # Browser test results
 /test-results
 /playwright-report
+
+# Single-page version for Claude (npm run build:artifact)
+/dist-artifact

@@ -132,7 +132,10 @@
       "ai_failed": "Something went wrong while reading. Please try again.",
       "bad_request": "Something went wrong with the photos. Please retake them and try again.",
       "busy": "The reading service is very busy today. Please try again later, or show your prescription to our pharmacist.",
-      "too_large": "The photos are too big to send. Please remove a page or take the photos again."
+      "too_large": "The photos are too big to send. Please remove a page or take the photos again.",
+      "not_allowed": "Reading needs your permission to use Claude. Tap \"Read prescription\" again and choose Allow.",
+      "signed_out": "Please sign in to Claude to read prescriptions on this page.",
+      "no_images": "This Claude app can't send photos. Please open this page in the Claude website or the latest Claude app."
     },
     "tryAgain": "Try again",
     "notRx": {
@@ -647,5 +650,8 @@
     ],
     "contactTitle": "Questions?",
     "contactText": "Call, send a WhatsApp message, or visit us. We can't see anything saved on your phone, but we're happy to help you delete it."
+  },
+  "claudePage": {
+    "note": "This version runs inside Claude. Reading a prescription uses your own Claude account; nothing is sent to the pharmacy."
   }
 }

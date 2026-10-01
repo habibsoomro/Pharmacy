@@ -2,36 +2,12 @@ import "server-only";
 import { AI_MAX_TOKENS } from "@/config/ai";
 import { askForJson } from "@/lib/server/ask-json";
 import { loadPrompt } from "@/lib/server/prompts";
-import type { SummaryLang } from "@/lib/languages";
+import { translateVars } from "@/lib/ai/prompts";
 import { translationsFor, type TranslateRequest } from "@/lib/schemas/translate";
 
-/** How each language is described to the AI. Edit here if a translation comes out in the wrong script or style. */
-const LANGUAGE: Record<Exclude<SummaryLang, "en">, { name: string; script: string }> = {
-  ur: { name: "Urdu", script: "Write in Urdu script (Nastaliq/Arabic letters), as used in Pakistan." },
-  sd: { name: "Sindhi", script: "Write in Sindhi Arabic script as used in Sindh, Pakistan, with the Sindhi letters (ڪ ڳ ڄ ٻ ڀ ٽ ڏ ڌ ڙ ڻ etc.)." },
-  roman: {
-    name: "Roman Urdu",
-    script: "Write Urdu in English (Latin) letters, the way Pakistanis type Urdu on WhatsApp, for example \"Khana khane ke baad 1 goli lein.\" Do not use Urdu script.",
-  },
-  pa: { name: "Punjabi (Shahmukhi)", script: "Write Punjabi in Shahmukhi (Urdu-style Arabic) script, as used in Pakistani Punjab. Do NOT use Gurmukhi." },
-  ps: { name: "Pashto", script: "Write in Pashto Arabic script as used in Khyber Pakhtunkhwa, Pakistan, with the Pashto letters (ټ ډ ړ ښ ږ ځ څ ڼ ګ)." },
-  bal: { name: "Balochi", script: "Write in Balochi using the Arabic (Urdu-style) script as used in Balochistan, Pakistan." },
-};
-
-const STYLE: Record<TranslateRequest["level"], string> = {
-  simple:
-    "Use the simplest everyday words and very short sentences, as you would speak to an elderly person who cannot read well. Avoid medical terms; explain them in plain words instead.",
-  detailed:
-    "Use clear, natural language. You may keep an important medical term, with the English term in brackets after it the first time.",
-  ui: "These are labels, headings and button texts from a pharmacy app. Use short, natural, everyday words.",
-};
-
 export function buildTranslatePrompts(req: TranslateRequest): { system: string; user: string } {
-  const lang = LANGUAGE[req.target as Exclude<SummaryLang, "en">];
-  const system = loadPrompt("translate-system.md", { LANGUAGE: lang.name, STYLE: STYLE[req.level], SCRIPT_RULE: `10. ${lang.script}` });
-  const texts = JSON.stringify(req.texts.map((text, i) => ({ i, text })), null, 1);
-  const user = loadPrompt("translate-user.md", { LANGUAGE: lang.name, COUNT: req.texts.length, TEXTS: texts });
-  return { system, user };
+  const vars = translateVars(req);
+  return { system: loadPrompt("translate-system.md", vars.system), user: loadPrompt("translate-user.md", vars.user) };
 }
 
 /**

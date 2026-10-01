@@ -1,4 +1,5 @@
 import { CAPTURE } from "@/config/capture";
+import { PDF_WORKER_URL } from "@/lib/runtime";
 import { scaleTo } from "@/lib/image/canvas";
 
 export type LoadError = "unsupported" | "tooLarge" | "readFailed" | "heicFailed" | "pdfFailed";
@@ -88,7 +89,7 @@ async function loadPdfFirstPage(f: File): Promise<Loaded> {
     // "legacy" build = works on older Android browsers too.
     const pdfjs = await import("pdfjs-dist/legacy/build/pdf.min.mjs");
     // The worker file is copied into /public by scripts/copy-pdf-worker.mjs on install.
-    pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+    pdfjs.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
     const task = pdfjs.getDocument({ data: new Uint8Array(await f.arrayBuffer()) });
     const doc = await task.promise;
     const page = await doc.getPage(1);

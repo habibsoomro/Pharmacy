@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState, type ChangeEvent } from "reac
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/I18nProvider";
 import { CAPTURE } from "@/config/capture";
+import { IN_CLAUDE_PAGE } from "@/lib/runtime";
 import { fmt } from "@/lib/format";
 import { crop, rotate90, scaleTo, toJpegBlob, type CropRect } from "@/lib/image/canvas";
 import { ImageLoadError, loadFile, type LoadError } from "@/lib/image/load";
@@ -132,7 +133,7 @@ export function ScanFlow() {
 
   function openCamera(forIndex: number | null) {
     setReplaceAt(forIndex);
-    const canUseLiveCamera = typeof navigator !== "undefined" && !!navigator.mediaDevices?.getUserMedia && window.isSecureContext;
+    const canUseLiveCamera = !IN_CLAUDE_PAGE && typeof navigator !== "undefined" && !!navigator.mediaDevices?.getUserMedia && window.isSecureContext;
     if (canUseLiveCamera) setCameraOpen(true);
     else cameraAppRef.current?.click(); // older phones / non-HTTPS: phone's own camera app
   }

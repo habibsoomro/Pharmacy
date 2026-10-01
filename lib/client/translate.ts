@@ -1,5 +1,6 @@
 import type { SummaryLang } from "@/lib/languages";
-import type { TranslateResponse } from "@/lib/schemas/translate";
+import type { TranslateRequest, TranslateResponse } from "@/lib/schemas/translate";
+import { aiTransport } from "@/lib/client/ai-transport";
 import { chunkTexts, translationOk } from "@/lib/translate/core";
 
 export type TranslateLevel = "simple" | "detailed" | "ui";
@@ -107,14 +108,9 @@ export async function translateTexts(texts: string[], lang: SummaryLang, level: 
 
 async function requestChunk(texts: string[], target: SummaryLang, level: TranslateLevel): Promise<TranslateResponse> {
   try {
-    const res = await fetch("/api/translate", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ target, level, texts }),
-    });
-    const data = (await res.json().catch(() => null)) as TranslateResponse | null;
+    const { status, data } = await aiTransport.translate({ target: target as TranslateRequest["target"], level, texts });
     if (data?.ok && Array.isArray(data.translations) && data.translations.length === texts.length) return data;
-    return { ok: false, error: data && !data.ok ? data.error : res.status === 429 ? "rate_limited" : "ai_failed" };
+    return { ok: false, error: data && !data.ok ? data.error : status === 429 ? "rate_limited" : "ai_failed" };
   } catch {
     return { ok: false, error: navigator.onLine ? "ai_failed" : "offline" };
   }

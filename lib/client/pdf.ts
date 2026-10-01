@@ -1,3 +1,5 @@
+import { saveFile } from "@/lib/client/save-file";
+
 /**
  * Turns the summary on screen into a PDF, one picture per card, so Urdu and
  * Sindhi text look exactly as on screen. The libraries (~500 KB) are only
@@ -54,5 +56,5 @@ export async function downloadSummaryPdf(container: HTMLElement, fileName: strin
   } finally {
     container.classList.remove("pdf-mode");
   }
-  pdf.save(fileName);
+  await saveFile(fileName, pdf.output("blob"));
 }

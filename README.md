@@ -98,6 +98,22 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 
 ---
 
+## Version inside Claude (no server, no API key)
+
+`npm run build:artifact` builds the same website as one page that runs inside Claude
+(an "Artifact") into `dist-artifact/`. There, reading, the safety check and
+translations are done by Claude **on each visitor's own Claude account**: no API key,
+no server, no hosting bill. Everything else (screens, rules, languages, My
+prescriptions) is the same code as the website. The differences:
+
+- Visitors must be signed in to Claude, and the page must be shared with them
+  (Share menu on the page). The first time, Claude asks them to allow the page to use Claude.
+- The in-page camera isn't allowed there: "Take photo" opens the phone's own camera or
+  photo picker instead. Printing isn't available; "Download PDF" and calendar reminders
+  are saved through Claude's own "save file" prompt.
+- What changes: `artifact/` (app shell, page switching, the Claude connection) and
+  `scripts/build-artifact.mjs`. The website itself is unchanged.
+
 ## Before going live (checklist)
 
 1. **Pharmacy details**: name, logo, colours, phone, WhatsApp, address, hours in `config/site.ts`.
@@ -106,7 +122,7 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
    limits in `lib/rx/safety.ts`.
 3. **Translations checked by native speakers**: `locales/ur.json` and `locales/sd.json`.
 4. **Privacy policy checked**, ideally by a lawyer, and compared with Anthropic's current
-   terms (see "Privacy and safety" below). Update `POLICY_UPDATED` in `app/privacy/page.tsx`.
+   terms (see "Privacy and safety" below). Update `POLICY_UPDATED` in `components/PrivacyContent.tsx`.
 5. **On Vercel**: `ANTHROPIC_API_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`,
    and if you like `RATE_LIMIT_SALT` and `AI_DAILY_LIMIT`. Make sure `AI_MOCK` is **not** set.
 6. **Try real prescriptions** on real phones: a few handwritten ones, an iPhone photo
@@ -136,7 +152,7 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 | How many translation requests per visitor | `app/api/translate/route.ts` (40 per 10 minutes) |
 | How many safety checks per visitor | `app/api/interactions/route.ts` (20 per 10 minutes) |
 | Daily limit for the whole website | `AI_DAILY_LIMIT` environment variable (none by default) |
-| Privacy policy text | `locales/*.json` → `privacy`; the "Last updated" date is `POLICY_UPDATED` in `app/privacy/page.tsx` |
+| Privacy policy text | `locales/*.json` → `privacy`; the "Last updated" date is `POLICY_UPDATED` in `components/PrivacyContent.tsx` |
 
 **Translation safety net:** if you add a new line to `en.json` but forget it in
 `ur.json` or `sd.json`, run `npm run typecheck` and it will tell you exactly
