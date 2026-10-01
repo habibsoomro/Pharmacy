@@ -1,4 +1,5 @@
 import type { CheckWarning, ExtractionResult } from "@/lib/schemas/extraction";
+import type { SafetyReport } from "@/lib/schemas/safety";
 
 /**
  * The scan currently being worked on, kept in this browser tab only
@@ -20,6 +21,8 @@ export type CurrentScan = {
     generalNote: string;
     medicineNotes: string[]; // same order as result.medicines
   };
+  /** Result of the safety check, with a fingerprint of what was checked. */
+  safety?: { key: string; report: SafetyReport };
 };
 
 const KEY = "nuskha:current-scan";

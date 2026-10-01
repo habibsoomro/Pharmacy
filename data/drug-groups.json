@@ -1,0 +1,371 @@
+{
+  "_note": "Medicine groups used by the safety rules. Names are generic (salt) names in lower case. A medicine matches a group if its generic name contains one of these words. MUST be reviewed by a pharmacist.",
+  "groups": {
+    "nsaid": [
+      "ibuprofen",
+      "diclofenac",
+      "naproxen",
+      "mefenamic acid",
+      "meloxicam",
+      "piroxicam",
+      "etoricoxib",
+      "celecoxib",
+      "ketorolac",
+      "indomethacin",
+      "aceclofenac",
+      "nimesulide",
+      "ketoprofen",
+      "flurbiprofen",
+      "dexketoprofen",
+      "lornoxicam"
+    ],
+    "aspirin": [
+      "aspirin",
+      "acetylsalicylic acid"
+    ],
+    "warfarin": [
+      "warfarin",
+      "acenocoumarol"
+    ],
+    "statin_3a4": [
+      "simvastatin",
+      "lovastatin"
+    ],
+    "statin": [
+      "atorvastatin",
+      "rosuvastatin",
+      "simvastatin",
+      "lovastatin",
+      "pravastatin"
+    ],
+    "macrolide_3a4": [
+      "clarithromycin",
+      "erythromycin"
+    ],
+    "azole": [
+      "fluconazole",
+      "itraconazole",
+      "ketoconazole",
+      "voriconazole"
+    ],
+    "fluoroquinolone": [
+      "ciprofloxacin",
+      "levofloxacin",
+      "ofloxacin",
+      "moxifloxacin",
+      "norfloxacin",
+      "gemifloxacin"
+    ],
+    "tetracycline": [
+      "doxycycline",
+      "tetracycline",
+      "minocycline"
+    ],
+    "cation": [
+      "aluminium",
+      "aluminum",
+      "magnesium hydroxide",
+      "magnesium trisilicate",
+      "magnesium oxide",
+      "calcium carbonate",
+      "calcium",
+      "ferrous",
+      "iron",
+      "zinc",
+      "sucralfate"
+    ],
+    "ace_inhibitor": [
+      "captopril",
+      "enalapril",
+      "lisinopril",
+      "ramipril",
+      "perindopril",
+      "fosinopril",
+      "quinapril"
+    ],
+    "arb": [
+      "losartan",
+      "valsartan",
+      "irbesartan",
+      "telmisartan",
+      "olmesartan",
+      "candesartan"
+    ],
+    "potassium": [
+      "potassium chloride",
+      "potassium citrate",
+      "potassium bicarbonate"
+    ],
+    "k_sparing": [
+      "spironolactone",
+      "eplerenone",
+      "amiloride",
+      "triamterene"
+    ],
+    "ssri": [
+      "fluoxetine",
+      "sertraline",
+      "escitalopram",
+      "citalopram",
+      "paroxetine",
+      "fluvoxamine"
+    ],
+    "serotonergic_ad": [
+      "fluoxetine",
+      "sertraline",
+      "escitalopram",
+      "citalopram",
+      "paroxetine",
+      "fluvoxamine",
+      "venlafaxine",
+      "duloxetine",
+      "clomipramine"
+    ],
+    "tramadol": [
+      "tramadol"
+    ],
+    "opioid": [
+      "tramadol",
+      "codeine",
+      "morphine",
+      "tapentadol",
+      "oxycodone",
+      "nalbuphine",
+      "pentazocine",
+      "dextropropoxyphene"
+    ],
+    "benzodiazepine": [
+      "alprazolam",
+      "bromazepam",
+      "diazepam",
+      "lorazepam",
+      "clonazepam",
+      "midazolam",
+      "chlordiazepoxide"
+    ],
+    "ppi_2c19": [
+      "omeprazole",
+      "esomeprazole"
+    ],
+    "ppi": [
+      "omeprazole",
+      "esomeprazole",
+      "pantoprazole",
+      "lansoprazole",
+      "rabeprazole"
+    ],
+    "clopidogrel": [
+      "clopidogrel"
+    ],
+    "pde5": [
+      "sildenafil",
+      "tadalafil",
+      "vardenafil"
+    ],
+    "nitrate": [
+      "glyceryl trinitrate",
+      "nitroglycerin",
+      "isosorbide mononitrate",
+      "isosorbide dinitrate"
+    ],
+    "digoxin": [
+      "digoxin"
+    ],
+    "amiodarone": [
+      "amiodarone"
+    ],
+    "rate_ccb": [
+      "verapamil",
+      "diltiazem"
+    ],
+    "beta_blocker": [
+      "atenolol",
+      "propranolol",
+      "bisoprolol",
+      "metoprolol",
+      "carvedilol",
+      "nebivolol",
+      "labetalol",
+      "sotalol"
+    ],
+    "nonselective_bb": [
+      "propranolol",
+      "carvedilol",
+      "nadolol",
+      "sotalol",
+      "labetalol"
+    ],
+    "theophylline": [
+      "theophylline",
+      "aminophylline"
+    ],
+    "carbamazepine": [
+      "carbamazepine"
+    ],
+    "sulfonylurea": [
+      "glimepiride",
+      "glibenclamide",
+      "gliclazide",
+      "glipizide"
+    ],
+    "insulin": [
+      "insulin"
+    ],
+    "metformin": [
+      "metformin"
+    ],
+    "levothyroxine": [
+      "levothyroxine",
+      "thyroxine"
+    ],
+    "methotrexate": [
+      "methotrexate"
+    ],
+    "lithium": [
+      "lithium"
+    ],
+    "domperidone": [
+      "domperidone"
+    ],
+    "tizanidine": [
+      "tizanidine"
+    ],
+    "oral_steroid": [
+      "prednisolone",
+      "prednisone",
+      "dexamethasone",
+      "methylprednisolone",
+      "deflazacort"
+    ],
+    "co_trimoxazole": [
+      "sulfamethoxazole",
+      "trimethoprim",
+      "co-trimoxazole"
+    ],
+    "nitroimidazole": [
+      "metronidazole",
+      "tinidazole",
+      "secnidazole"
+    ],
+    "thiazide": [
+      "hydrochlorothiazide",
+      "chlorthalidone",
+      "indapamide"
+    ],
+    "paracetamol": [
+      "paracetamol"
+    ],
+    "sedating_antihistamine": [
+      "pheniramine",
+      "chlorpheniramine",
+      "chlorphenamine",
+      "diphenhydramine",
+      "promethazine",
+      "hydroxyzine",
+      "cyproheptadine",
+      "dimenhydrinate"
+    ],
+    "antihistamine": [
+      "pheniramine",
+      "chlorpheniramine",
+      "chlorphenamine",
+      "diphenhydramine",
+      "promethazine",
+      "hydroxyzine",
+      "cyproheptadine",
+      "cetirizine",
+      "levocetirizine",
+      "loratadine",
+      "desloratadine",
+      "fexofenadine",
+      "ebastine",
+      "bilastine",
+      "rupatadine"
+    ],
+    "decongestant": [
+      "pseudoephedrine",
+      "phenylephrine"
+    ],
+    "codeine": [
+      "codeine"
+    ],
+    "promethazine": [
+      "promethazine"
+    ],
+    "loperamide": [
+      "loperamide"
+    ],
+    "metoclopramide": [
+      "metoclopramide"
+    ],
+    "allopurinol": [
+      "allopurinol"
+    ],
+    "azathioprine": [
+      "azathioprine",
+      "mercaptopurine"
+    ],
+    "penicillin": [
+      "amoxicillin",
+      "ampicillin",
+      "cloxacillin",
+      "flucloxacillin",
+      "penicillin",
+      "piperacillin",
+      "co-amoxiclav",
+      "benzathine"
+    ],
+    "sulfonamide": [
+      "sulfamethoxazole",
+      "sulfadiazine",
+      "sulfasalazine",
+      "co-trimoxazole"
+    ],
+    "antibiotic": [
+      "amoxicillin",
+      "ampicillin",
+      "cloxacillin",
+      "flucloxacillin",
+      "penicillin",
+      "piperacillin",
+      "cefixime",
+      "cefuroxime",
+      "cefradine",
+      "cefalexin",
+      "cefaclor",
+      "cefdinir",
+      "cefpodoxime",
+      "ceftriaxone",
+      "cefotaxime",
+      "cefepime",
+      "ceftazidime",
+      "cefoperazone",
+      "azithromycin",
+      "clarithromycin",
+      "erythromycin",
+      "ciprofloxacin",
+      "levofloxacin",
+      "ofloxacin",
+      "moxifloxacin",
+      "norfloxacin",
+      "doxycycline",
+      "tetracycline",
+      "minocycline",
+      "sulfamethoxazole",
+      "co-trimoxazole",
+      "metronidazole",
+      "tinidazole",
+      "nitrofurantoin",
+      "clindamycin",
+      "linezolid",
+      "fosfomycin",
+      "vancomycin",
+      "gentamicin",
+      "amikacin",
+      "meropenem",
+      "imipenem",
+      "fusidic acid",
+      "rifaximin"
+    ]
+  }
+}

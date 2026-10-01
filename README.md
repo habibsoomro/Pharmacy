@@ -3,12 +3,13 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 4 of 10**
+**Current stage: 5 of 10**
 
 - Stage 1: project setup, home page, language switching
 - Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
 - Stage 3: AI reading of the prescription (`/api/extract`), shorthand double-check, brand list, consent
 - Stage 4: "Check what we read" review-and-edit screen (`/review`), pharmacist mode
+- Stage 5: safety check: interactions, duplicates, dose/age/allergy checks (`/api/interactions` + the pharmacy's own list)
 
 ---
 
@@ -37,7 +38,9 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
 ### Try it without an API key (test mode)
 
 Add `AI_MOCK=1` to `.env.local` and restart `npm run dev`. Every scan then
-returns the same sample prescription (no AI call, no cost). Remove the line to
+returns the same sample prescription (no AI call, no cost).
+Use `AI_MOCK=elderly` instead to get a 72-year-old patient on 9 medicines with
+real interactions, a duplicate, a penicillin allergy and an antibiotic with no duration. Remove the line to
 use the real AI. **Never set AI_MOCK on the live website.**
 
 ### Run the automatic tests
@@ -72,6 +75,9 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 | Photo limits, compression, and the dark / blurry / too-small warning levels | `config/capture.ts` |
 | AI prompts | `prompts/` folder (`extract-system.md` is the main one) |
 | Brand → generic list | `data/brand-generics.json` |
+| The pharmacy's interaction list (58 rules) | `data/interactions.json` |
+| Medicine groups used by the rules (e.g. NSAIDs) | `data/drug-groups.json` |
+| Maximum doses and age rules | `lib/rx/safety.ts` (`ADULT_MAX_MG_PER_DAY`, `CHILD_MG_PER_KG`, `AGE_RULES`) |
 | How many scans per visitor | `app/api/extract/route.ts` (8 per 10 minutes) |
 
 **Translation safety net:** if you add a new line to `en.json` but forget it in
@@ -106,7 +112,14 @@ public/       logo and images
    with a "Looks right" button and (where possible) a suggested correction.
    Pharmacist mode (checkbox at the top) shows every field plus notes.
    The original AI reading is kept alongside the edited version.
-6. Nothing is stored on the server. The result lives only in the user's browser tab.
+6. On the summary page the safety check runs on the CHECKED prescription:
+   - the pharmacy's own list runs instantly in the phone (works offline);
+   - the AI check (`prompts/interactions-system.md`) runs on the server;
+   - both are merged: an alert found by both is shown once, marked "Found by both checks",
+     with the more serious level kept. Only age, sex and weight are sent, never names.
+   - A safety net replaces any advice telling people to stop or change a medicine
+     with "Talk to your doctor or pharmacist".
+7. Nothing is stored on the server. The result lives only in the user's browser tab.
 
 ## Notes
 

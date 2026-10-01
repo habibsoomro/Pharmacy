@@ -1,5 +1,6 @@
 import brandData from "@/data/brand-generics.json";
 import type { CheckWarning, Medicine, Prescription } from "@/lib/schemas/extraction";
+import { normalizeGeneric } from "@/lib/rx/drugs";
 import { parseDose, parseDuration, parseFrequency, totalFromSchedule, totalQuantity, type Dose } from "@/lib/rx/shorthand";
 
 const BRANDS: Record<string, string> = Object.fromEntries(
@@ -23,24 +24,11 @@ export function lookupGeneric(brandName: string | null): string | null {
   return match ? BRANDS[match] : null;
 }
 
-// Different names for the same medicine.
-const SYNONYMS: [RegExp, string][] = [
-  [/co-?amoxiclav/g, "amoxicillin clavulanate"],
-  [/co-?trimoxazole/g, "sulfamethoxazole trimethoprim"],
-  [/acetaminophen/g, "paracetamol"],
-  [/albuterol/g, "salbutamol"],
-  [/cephradine/g, "cefradine"],
-  [/cephalexin/g, "cefalexin"],
-  [/glyburide/g, "glibenclamide"],
-  [/valproic|divalproex/g, "valproate"],
-  [/scopolamine/g, "hyoscine"],
-];
-
 /** Do two generic names refer to the same salt(s)? Compares main words, ignores order/case. */
 export function sameGeneric(a: string, b: string): boolean {
   const words = (s: string) =>
     new Set(
-      SYNONYMS.reduce((acc, [re, to]) => acc.replace(re, to), s.toLowerCase().replace(/\(.*?\)/g, " "))
+      normalizeGeneric(s.replace(/\(.*?\)/g, " "))
         .split(/[\s+,/&-]+|\band\b/)
         .map((w) => w.replace(/[^a-z]/g, ""))
         .filter((w) => w.length > 3 && !["acid", "sodium", "potassium", "hydrochloride", "hcl"].includes(w)),

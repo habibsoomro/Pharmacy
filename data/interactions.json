@@ -1,0 +1,783 @@
+{
+  "_note": "Pharmacy's own safety list. Used together with the AI check. 'a'/'b' are generic names or @group names from drug-groups.json. 'condition' words are looked for in the diagnosis/complaints. Advice must never tell people to stop or change a medicine on their own. MUST be reviewed by a pharmacist.",
+  "rules": [
+    {
+      "id": "warfarin-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@nsaid"
+      ],
+      "severity": "major",
+      "what_happens": "Together they greatly increase the risk of serious bleeding, including stomach bleeding.",
+      "what_to_do": "Tell your doctor you take a blood thinner. Ask your pharmacist about a safer pain medicine."
+    },
+    {
+      "id": "warfarin-aspirin",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@aspirin"
+      ],
+      "severity": "major",
+      "what_happens": "Together they greatly increase the risk of serious bleeding.",
+      "what_to_do": "Only take both if your doctor knows about both. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "warfarin-clopidogrel",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@clopidogrel"
+      ],
+      "severity": "major",
+      "what_happens": "Two blood thinners together greatly increase the risk of serious bleeding.",
+      "what_to_do": "Make sure your doctor knows you take both. Report black stools, blood in urine or unusual bruising at once."
+    },
+    {
+      "id": "warfarin-nitroimidazole",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@nitroimidazole"
+      ],
+      "severity": "major",
+      "what_happens": "This antibiotic makes the blood thinner much stronger, which can cause bleeding.",
+      "what_to_do": "Your doctor may need to check your blood (INR) more often. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "warfarin-azole",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@azole"
+      ],
+      "severity": "major",
+      "what_happens": "The antifungal makes the blood thinner much stronger, which can cause bleeding.",
+      "what_to_do": "Your doctor may need to check your blood (INR). Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "warfarin-cotrim",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@co_trimoxazole"
+      ],
+      "severity": "major",
+      "what_happens": "This antibiotic makes the blood thinner much stronger, which can cause bleeding.",
+      "what_to_do": "Your doctor may need to check your blood (INR). Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "warfarin-fq",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@fluoroquinolone"
+      ],
+      "severity": "moderate",
+      "what_happens": "This antibiotic can make the blood thinner stronger and raise bleeding risk.",
+      "what_to_do": "Watch for unusual bruising or bleeding. Tell your doctor you take a blood thinner."
+    },
+    {
+      "id": "warfarin-macrolide",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@macrolide_3a4"
+      ],
+      "severity": "moderate",
+      "what_happens": "This antibiotic can make the blood thinner stronger and raise bleeding risk.",
+      "what_to_do": "Watch for unusual bruising or bleeding. Tell your doctor you take a blood thinner."
+    },
+    {
+      "id": "warfarin-paracetamol",
+      "type": "drug-drug",
+      "a": [
+        "@warfarin"
+      ],
+      "b": [
+        "@paracetamol"
+      ],
+      "severity": "minor",
+      "what_happens": "Taking paracetamol regularly for several days can make the blood thinner a little stronger.",
+      "what_to_do": "Occasional use is usually fine. Tell your doctor if you need it every day."
+    },
+    {
+      "id": "clopidogrel-ppi",
+      "type": "drug-drug",
+      "a": [
+        "@clopidogrel"
+      ],
+      "b": [
+        "@ppi_2c19"
+      ],
+      "severity": "moderate",
+      "what_happens": "This stomach medicine can make clopidogrel work less well at protecting the heart.",
+      "what_to_do": "Ask your doctor whether a different stomach medicine (such as pantoprazole) is better for you."
+    },
+    {
+      "id": "clopidogrel-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@clopidogrel"
+      ],
+      "b": [
+        "@nsaid"
+      ],
+      "severity": "moderate",
+      "what_happens": "Together they raise the risk of bleeding, especially in the stomach.",
+      "what_to_do": "Ask your pharmacist about a safer pain medicine."
+    },
+    {
+      "id": "clopidogrel-aspirin",
+      "type": "drug-drug",
+      "a": [
+        "@clopidogrel"
+      ],
+      "b": [
+        "@aspirin"
+      ],
+      "severity": "moderate",
+      "what_happens": "Together they raise the risk of bleeding. Heart doctors often give these two together on purpose.",
+      "what_to_do": "Take both only as your doctor told you. Report black stools or unusual bleeding."
+    },
+    {
+      "id": "aspirin-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@aspirin"
+      ],
+      "b": [
+        "@nsaid"
+      ],
+      "severity": "moderate",
+      "what_happens": "Together they raise the risk of stomach bleeding, and some pain medicines can weaken aspirin's heart protection.",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "ssri-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@ssri"
+      ],
+      "b": [
+        "@nsaid",
+        "@aspirin"
+      ],
+      "severity": "moderate",
+      "what_happens": "Together they raise the risk of stomach bleeding.",
+      "what_to_do": "Report black stools or stomach pain. Ask your pharmacist about a safer pain medicine."
+    },
+    {
+      "id": "steroid-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@oral_steroid"
+      ],
+      "b": [
+        "@nsaid"
+      ],
+      "severity": "moderate",
+      "what_happens": "Together they raise the risk of stomach ulcers and bleeding.",
+      "what_to_do": "Take with food. Ask your doctor whether you need a stomach-protecting medicine."
+    },
+    {
+      "id": "statin3a4-macrolide",
+      "type": "drug-drug",
+      "a": [
+        "@statin_3a4"
+      ],
+      "b": [
+        "@macrolide_3a4"
+      ],
+      "severity": "major",
+      "what_happens": "The antibiotic raises the cholesterol medicine to harmful levels, which can damage muscles.",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together. Report muscle pain or weakness at once."
+    },
+    {
+      "id": "atorva-macrolide",
+      "type": "drug-drug",
+      "a": [
+        "atorvastatin"
+      ],
+      "b": [
+        "@macrolide_3a4"
+      ],
+      "severity": "moderate",
+      "what_happens": "The antibiotic raises the level of the cholesterol medicine, which can cause muscle pain.",
+      "what_to_do": "Report muscle pain or weakness. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "statin-azole",
+      "type": "drug-drug",
+      "a": [
+        "@statin_3a4",
+        "atorvastatin"
+      ],
+      "b": [
+        "@azole"
+      ],
+      "severity": "moderate",
+      "what_happens": "The antifungal raises the level of the cholesterol medicine, which can cause muscle pain.",
+      "what_to_do": "Report muscle pain or weakness. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "simva-amlodipine",
+      "type": "drug-drug",
+      "a": [
+        "simvastatin"
+      ],
+      "b": [
+        "amlodipine"
+      ],
+      "severity": "minor",
+      "what_happens": "Amlodipine raises the level of simvastatin a little; high simvastatin doses can cause muscle pain.",
+      "what_to_do": "Usually fine at simvastatin 20 mg or less. Ask your pharmacist if your dose is higher."
+    },
+    {
+      "id": "domperidone-3a4",
+      "type": "drug-drug",
+      "a": [
+        "@domperidone"
+      ],
+      "b": [
+        "@macrolide_3a4",
+        "@azole"
+      ],
+      "severity": "major",
+      "what_happens": "Together they can cause a dangerous change in heart rhythm.",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "carbamazepine-macrolide",
+      "type": "drug-drug",
+      "a": [
+        "@carbamazepine"
+      ],
+      "b": [
+        "@macrolide_3a4"
+      ],
+      "severity": "major",
+      "what_happens": "The antibiotic can raise carbamazepine to harmful levels (dizziness, unsteadiness, drowsiness).",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "theophylline-fq",
+      "type": "drug-drug",
+      "a": [
+        "@theophylline"
+      ],
+      "b": [
+        "ciprofloxacin"
+      ],
+      "severity": "major",
+      "what_happens": "Ciprofloxacin can raise theophylline to harmful levels (fast heartbeat, vomiting, fits).",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "theophylline-macrolide",
+      "type": "drug-drug",
+      "a": [
+        "@theophylline"
+      ],
+      "b": [
+        "@macrolide_3a4"
+      ],
+      "severity": "moderate",
+      "what_happens": "The antibiotic can raise theophylline levels (nausea, fast heartbeat).",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "tizanidine-cipro",
+      "type": "drug-drug",
+      "a": [
+        "@tizanidine"
+      ],
+      "b": [
+        "ciprofloxacin",
+        "fluvoxamine"
+      ],
+      "severity": "major",
+      "what_happens": "This combination can make blood pressure drop very low and cause extreme drowsiness.",
+      "what_to_do": "This combination is usually avoided. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "fq-cation",
+      "type": "drug-drug",
+      "a": [
+        "@fluoroquinolone"
+      ],
+      "b": [
+        "@cation"
+      ],
+      "severity": "moderate",
+      "what_happens": "Antacids, calcium, iron or zinc stop the antibiotic from being absorbed, so it may not work.",
+      "what_to_do": "Take the antibiotic 2 hours before or 6 hours after these medicines."
+    },
+    {
+      "id": "tetracycline-cation",
+      "type": "drug-drug",
+      "a": [
+        "@tetracycline"
+      ],
+      "b": [
+        "@cation"
+      ],
+      "severity": "moderate",
+      "what_happens": "Antacids, calcium, iron or zinc stop the antibiotic from being absorbed, so it may not work.",
+      "what_to_do": "Take the antibiotic 2 to 3 hours apart from these medicines."
+    },
+    {
+      "id": "levothyroxine-cation",
+      "type": "drug-drug",
+      "a": [
+        "@levothyroxine"
+      ],
+      "b": [
+        "@cation"
+      ],
+      "severity": "moderate",
+      "what_happens": "Calcium, iron and antacids reduce how much thyroid medicine the body absorbs.",
+      "what_to_do": "Take the thyroid medicine on an empty stomach, at least 4 hours apart from these."
+    },
+    {
+      "id": "iron-calcium",
+      "type": "drug-drug",
+      "a": [
+        "ferrous",
+        "iron"
+      ],
+      "b": [
+        "calcium"
+      ],
+      "severity": "minor",
+      "what_happens": "Calcium reduces how much iron the body absorbs.",
+      "what_to_do": "Take them at least 2 hours apart."
+    },
+    {
+      "id": "acei-potassium",
+      "type": "drug-drug",
+      "a": [
+        "@ace_inhibitor",
+        "@arb"
+      ],
+      "b": [
+        "@potassium",
+        "@k_sparing"
+      ],
+      "severity": "major",
+      "what_happens": "Together they can raise blood potassium to dangerous levels, which affects the heart.",
+      "what_to_do": "Your doctor should check your blood potassium. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "acei-arb",
+      "type": "drug-drug",
+      "a": [
+        "@ace_inhibitor"
+      ],
+      "b": [
+        "@arb"
+      ],
+      "severity": "major",
+      "what_happens": "Two medicines that work the same way on blood pressure increase the risk of kidney problems and high potassium.",
+      "what_to_do": "This combination is usually avoided. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "raas-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@ace_inhibitor",
+        "@arb"
+      ],
+      "b": [
+        "@nsaid"
+      ],
+      "severity": "moderate",
+      "what_happens": "Pain medicines like these can weaken the blood pressure medicine and strain the kidneys.",
+      "what_to_do": "Use the pain medicine for the shortest time possible and drink enough water. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "diuretic-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@thiazide",
+        "furosemide",
+        "torsemide"
+      ],
+      "b": [
+        "@nsaid"
+      ],
+      "severity": "moderate",
+      "what_happens": "Pain medicines like these can weaken the water tablet and strain the kidneys.",
+      "what_to_do": "Use the pain medicine for the shortest time possible. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "bb-rateccb",
+      "type": "drug-drug",
+      "a": [
+        "@beta_blocker"
+      ],
+      "b": [
+        "@rate_ccb"
+      ],
+      "severity": "major",
+      "what_happens": "Together they can slow the heart too much.",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "digoxin-amiodarone",
+      "type": "drug-drug",
+      "a": [
+        "@digoxin"
+      ],
+      "b": [
+        "@amiodarone",
+        "@macrolide_3a4",
+        "@rate_ccb"
+      ],
+      "severity": "major",
+      "what_happens": "This medicine raises digoxin to harmful levels (nausea, slow or uneven heartbeat).",
+      "what_to_do": "Your doctor may need to lower the digoxin dose. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "pde5-nitrate",
+      "type": "drug-drug",
+      "a": [
+        "@pde5"
+      ],
+      "b": [
+        "@nitrate"
+      ],
+      "severity": "major",
+      "what_happens": "Together they can make blood pressure fall dangerously low.",
+      "what_to_do": "This combination is dangerous. Talk to your doctor before taking either medicine."
+    },
+    {
+      "id": "lithium-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@lithium"
+      ],
+      "b": [
+        "@nsaid",
+        "@ace_inhibitor",
+        "@arb",
+        "@thiazide"
+      ],
+      "severity": "major",
+      "what_happens": "This medicine can raise lithium to harmful levels (shaking, confusion, vomiting).",
+      "what_to_do": "Your doctor may need to check your lithium level. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "methotrexate-nsaid",
+      "type": "drug-drug",
+      "a": [
+        "@methotrexate"
+      ],
+      "b": [
+        "@nsaid",
+        "@co_trimoxazole"
+      ],
+      "severity": "major",
+      "what_happens": "This medicine can raise methotrexate to harmful levels.",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "allopurinol-aza",
+      "type": "drug-drug",
+      "a": [
+        "@allopurinol"
+      ],
+      "b": [
+        "@azathioprine"
+      ],
+      "severity": "major",
+      "what_happens": "Allopurinol can raise azathioprine to harmful levels that affect blood cells.",
+      "what_to_do": "Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "ssri-tramadol",
+      "type": "drug-drug",
+      "a": [
+        "@serotonergic_ad"
+      ],
+      "b": [
+        "@tramadol"
+      ],
+      "severity": "major",
+      "what_happens": "Together they can cause serotonin syndrome (shaking, sweating, fever, confusion) and raise the risk of fits.",
+      "what_to_do": "Seek help urgently if these signs appear. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "benzo-opioid",
+      "type": "drug-drug",
+      "a": [
+        "@benzodiazepine"
+      ],
+      "b": [
+        "@opioid"
+      ],
+      "severity": "major",
+      "what_happens": "Together they can cause extreme sleepiness and slow, shallow breathing.",
+      "what_to_do": "Do not drive. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "sedating-combo",
+      "type": "drug-drug",
+      "a": [
+        "@benzodiazepine",
+        "@opioid"
+      ],
+      "b": [
+        "@sedating_antihistamine"
+      ],
+      "severity": "moderate",
+      "what_happens": "Together they add to each other's drowsiness.",
+      "what_to_do": "Avoid driving or operating machinery."
+    },
+    {
+      "id": "su-azole",
+      "type": "drug-drug",
+      "a": [
+        "@sulfonylurea"
+      ],
+      "b": [
+        "fluconazole"
+      ],
+      "severity": "moderate",
+      "what_happens": "Fluconazole can make the diabetes medicine stronger and cause low blood sugar.",
+      "what_to_do": "Check your sugar more often. Keep sugar or juice with you."
+    },
+    {
+      "id": "su-cotrim",
+      "type": "drug-drug",
+      "a": [
+        "@sulfonylurea"
+      ],
+      "b": [
+        "@co_trimoxazole"
+      ],
+      "severity": "moderate",
+      "what_happens": "This antibiotic can make the diabetes medicine stronger and cause low blood sugar.",
+      "what_to_do": "Check your sugar more often. Keep sugar or juice with you."
+    },
+    {
+      "id": "su-fq",
+      "type": "drug-drug",
+      "a": [
+        "@sulfonylurea",
+        "@insulin"
+      ],
+      "b": [
+        "@fluoroquinolone"
+      ],
+      "severity": "moderate",
+      "what_happens": "This antibiotic can cause blood sugar to go too low or too high.",
+      "what_to_do": "Check your sugar more often while taking the antibiotic."
+    },
+    {
+      "id": "diabetes-bb",
+      "type": "drug-drug",
+      "a": [
+        "@sulfonylurea",
+        "@insulin"
+      ],
+      "b": [
+        "@nonselective_bb"
+      ],
+      "severity": "moderate",
+      "what_happens": "This blood pressure medicine can hide the warning signs of low blood sugar (shaking, fast heartbeat).",
+      "what_to_do": "Check your sugar regularly. Sweating may be the only warning sign."
+    },
+    {
+      "id": "metronidazole-alcohol",
+      "type": "drug-food",
+      "a": [
+        "@nitroimidazole"
+      ],
+      "severity": "major",
+      "what_happens": "Alcohol with this medicine causes severe vomiting, flushing, headache and fast heartbeat.",
+      "what_to_do": "Do not drink alcohol during the course and for 3 days after the last dose."
+    },
+    {
+      "id": "benzo-alcohol",
+      "type": "drug-food",
+      "a": [
+        "@benzodiazepine",
+        "@opioid",
+        "@sedating_antihistamine"
+      ],
+      "severity": "major",
+      "what_happens": "Alcohol with this medicine causes dangerous drowsiness and slowed breathing.",
+      "what_to_do": "Do not drink alcohol while taking this medicine."
+    },
+    {
+      "id": "metformin-alcohol",
+      "type": "drug-food",
+      "a": [
+        "@metformin"
+      ],
+      "severity": "moderate",
+      "what_happens": "Alcohol with metformin can cause very low blood sugar and, rarely, a dangerous acid build-up.",
+      "what_to_do": "Avoid alcohol, especially heavy drinking."
+    },
+    {
+      "id": "paracetamol-alcohol",
+      "type": "drug-food",
+      "a": [
+        "@paracetamol"
+      ],
+      "severity": "minor",
+      "what_happens": "Regular alcohol with paracetamol increases the risk of liver damage.",
+      "what_to_do": "Avoid alcohol and do not take more than the dose on the prescription."
+    },
+    {
+      "id": "tetracycline-milk",
+      "type": "drug-food",
+      "a": [
+        "@tetracycline"
+      ],
+      "severity": "moderate",
+      "what_happens": "Milk and dairy reduce how much of the antibiotic the body absorbs.",
+      "what_to_do": "Take it with water, 2 hours apart from milk, yogurt or cheese."
+    },
+    {
+      "id": "fq-dairy",
+      "type": "drug-food",
+      "a": [
+        "ciprofloxacin",
+        "norfloxacin"
+      ],
+      "severity": "minor",
+      "what_happens": "Milk or yogurt taken alone reduces how much of the antibiotic is absorbed.",
+      "what_to_do": "Take it with water, not with a glass of milk."
+    },
+    {
+      "id": "statin-grapefruit",
+      "type": "drug-food",
+      "a": [
+        "@statin_3a4"
+      ],
+      "severity": "moderate",
+      "what_happens": "Large amounts of grapefruit juice raise the level of this cholesterol medicine.",
+      "what_to_do": "Avoid grapefruit juice."
+    },
+    {
+      "id": "nsaid-ulcer",
+      "type": "drug-disease",
+      "a": [
+        "@nsaid",
+        "@aspirin"
+      ],
+      "condition": [
+        "ulcer",
+        "gastritis",
+        "gi bleed",
+        "bleeding",
+        "melena",
+        "haematemesis",
+        "hematemesis",
+        "dyspepsia",
+        "acidity"
+      ],
+      "severity": "major",
+      "what_happens": "These pain medicines can cause or worsen stomach ulcers and bleeding.",
+      "what_to_do": "Tell your doctor about your stomach problem. Ask whether a safer pain medicine is better."
+    },
+    {
+      "id": "nsaid-kidney",
+      "type": "drug-disease",
+      "a": [
+        "@nsaid"
+      ],
+      "condition": [
+        "kidney",
+        "renal",
+        "ckd",
+        "nephr",
+        "creatinine"
+      ],
+      "severity": "major",
+      "what_happens": "These pain medicines can worsen kidney problems.",
+      "what_to_do": "Tell your doctor about your kidney problem. Ask your doctor or pharmacist before taking these together."
+    },
+    {
+      "id": "nsaid-asthma",
+      "type": "drug-disease",
+      "a": [
+        "@nsaid",
+        "@aspirin"
+      ],
+      "condition": [
+        "asthma",
+        "wheez"
+      ],
+      "severity": "moderate",
+      "what_happens": "In some people with asthma, these pain medicines can trigger an asthma attack.",
+      "what_to_do": "Get medical help at once if your breathing gets worse. Tell your doctor you have asthma."
+    },
+    {
+      "id": "bb-asthma",
+      "type": "drug-disease",
+      "a": [
+        "@nonselective_bb"
+      ],
+      "condition": [
+        "asthma",
+        "copd",
+        "wheez"
+      ],
+      "severity": "major",
+      "what_happens": "This blood pressure medicine can tighten the airways and trigger breathing problems.",
+      "what_to_do": "Tell your doctor you have asthma or breathing problems."
+    },
+    {
+      "id": "decongestant-htn",
+      "type": "drug-disease",
+      "a": [
+        "@decongestant"
+      ],
+      "condition": [
+        "hypertension",
+        "high blood pressure",
+        "htn",
+        "raised bp"
+      ],
+      "severity": "moderate",
+      "what_happens": "Decongestants can raise blood pressure.",
+      "what_to_do": "Tell your doctor you have high blood pressure."
+    },
+    {
+      "id": "metformin-kidney",
+      "type": "drug-disease",
+      "a": [
+        "@metformin"
+      ],
+      "condition": [
+        "kidney",
+        "renal",
+        "ckd",
+        "nephr"
+      ],
+      "severity": "major",
+      "what_happens": "Metformin can build up and cause a dangerous acid problem when the kidneys are weak.",
+      "what_to_do": "Your doctor should check your kidney tests. Ask your doctor or pharmacist before taking these together."
+    }
+  ]
+}

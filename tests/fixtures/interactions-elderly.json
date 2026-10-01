@@ -1,0 +1,52 @@
+{
+  "interactions": [
+    {
+      "type": "drug-drug",
+      "drugs_involved": [
+        "Warfarin",
+        "Ibuprofen"
+      ],
+      "severity": "major",
+      "what_happens": "Ibuprofen with warfarin greatly raises bleeding risk.",
+      "what_to_do": "Ask the doctor about a safer pain reliever such as paracetamol.",
+      "confidence": "high"
+    },
+    {
+      "type": "drug-drug",
+      "drugs_involved": [
+        "Warfarin",
+        "Clopidogrel"
+      ],
+      "severity": "major",
+      "what_happens": "Two blood thinners together greatly increase the risk of serious bleeding.",
+      "what_to_do": "Confirm with the doctor that both are intended, and watch for bleeding.",
+      "confidence": "high"
+    },
+    {
+      "type": "drug-drug",
+      "drugs_involved": [
+        "Ciprofloxacin",
+        "Calcium carbonate"
+      ],
+      "severity": "moderate",
+      "what_happens": "Calcium reduces absorption of ciprofloxacin.",
+      "what_to_do": "Stop taking the calcium while on the antibiotic.",
+      "confidence": "high"
+    },
+    {
+      "type": "drug-disease",
+      "drugs_involved": [
+        "Augmentin"
+      ],
+      "severity": "major",
+      "what_happens": "Augmentin is a penicillin and the patient is allergic to penicillin.",
+      "what_to_do": "Tell the doctor about the penicillin allergy before taking it.",
+      "confidence": "high"
+    }
+  ],
+  "age_specific_warnings": [
+    "At 72, the patient is at higher risk of stomach bleeding from ibuprofen and of tendon problems from ciprofloxacin."
+  ],
+  "pregnancy_breastfeeding_note": null,
+  "no_interactions_found": false
+}

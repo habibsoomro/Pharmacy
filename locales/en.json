@@ -259,5 +259,40 @@
     "title": "Summary",
     "comingSoon": "The summary cards are built in Stage 6. Your checked prescription is saved for this visit.",
     "backToReview": "Back to checking"
+  },
+  "safety": {
+    "title": "Safety check",
+    "checking": "Checking your medicines for problems…",
+    "stillChecking": "Still checking with the AI. More results may appear.",
+    "noneTitle": "No problems found",
+    "noneText": "We didn't find interactions, duplicate medicines or dose problems.",
+    "severity": {
+      "major": "Serious",
+      "moderate": "Moderate",
+      "minor": "Minor"
+    },
+    "types": {
+      "drug-drug": "Medicines together",
+      "drug-food": "Food and drink",
+      "drug-disease": "With a health condition",
+      "duplicate-therapy": "Same medicine twice",
+      "dose-check": "Dose",
+      "age-check": "Age",
+      "allergy": "Allergy"
+    },
+    "whatHappens": "What can happen",
+    "whatToDo": "What to do",
+    "sources": {
+      "both": "Found by both checks",
+      "local": "From the pharmacy's safety list",
+      "ai": "From the AI check"
+    },
+    "aiUnavailable": "The online check isn't available right now, so only the pharmacy's own safety list was used.",
+    "retry": "Check again",
+    "ageTitle": "Because of age",
+    "pregnancyTitle": "Pregnancy and breastfeeding",
+    "counts": "{major} serious, {moderate} moderate, {minor} minor",
+    "disclaimer": "This check is a helper, not a replacement for your doctor or pharmacist. Please confirm before making any changes.",
+    "englishOnly": "Details are in English for now. Translation is added in a later stage."
   }
 }

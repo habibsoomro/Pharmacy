@@ -182,7 +182,7 @@ export function ScanFlow() {
         setPhase("capture");
         return;
       }
-      setStep(3);
+      setStep(2);
       saveCurrentScan({
         createdAt: new Date().toISOString(),
         result: res.result,
@@ -200,7 +200,8 @@ export function ScanFlow() {
 
   const anyProblem = pages.some((p) => hasProblem(p.quality));
 
-  if (phase === "reading") return <LoadingSteps current={step} />;
+  // Only reading happens here; the interaction check runs after the person has checked the result.
+  if (phase === "reading") return <LoadingSteps current={step} upTo={2} />;
 
   return (
     <div className="space-y-6">
