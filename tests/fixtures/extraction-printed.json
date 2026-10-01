@@ -1,0 +1,212 @@
+{
+  "is_prescription": true,
+  "prescription_date": {
+    "value": "2026-09-29",
+    "confidence": "high"
+  },
+  "doctor": {
+    "name": {
+      "value": "Dr. Farzana Shaikh",
+      "confidence": "high"
+    },
+    "qualifications": {
+      "value": "MBBS, FCPS (Medicine)",
+      "confidence": "high"
+    },
+    "specialty": {
+      "value": "Consultant Physician & Diabetologist",
+      "confidence": "high"
+    },
+    "registration_no": {
+      "value": "PMDC 54321-S",
+      "confidence": "high"
+    },
+    "clinic_or_hospital": {
+      "value": "City Diabetes Centre",
+      "confidence": "high"
+    },
+    "address": {
+      "value": "Saddar, Hyderabad",
+      "confidence": "high"
+    },
+    "phone": {
+      "value": "022-1111111",
+      "confidence": "high"
+    }
+  },
+  "patient": {
+    "name": {
+      "value": "Nasreen Bibi",
+      "confidence": "high"
+    },
+    "age": {
+      "value": "52 years",
+      "confidence": "high"
+    },
+    "sex": {
+      "value": "Female",
+      "confidence": "high"
+    },
+    "weight": {
+      "value": "68 kg",
+      "confidence": "high"
+    },
+    "address": {
+      "value": null,
+      "confidence": "low"
+    },
+    "phone": {
+      "value": null,
+      "confidence": "low"
+    },
+    "mr_or_file_no": {
+      "value": "CDC-2026-0412",
+      "confidence": "high"
+    }
+  },
+  "clinical": {
+    "diagnosis_or_complaints": {
+      "value": "Type 2 diabetes, high blood pressure, acidity",
+      "confidence": "high"
+    },
+    "vitals": {
+      "blood_pressure": {
+        "value": "148/92",
+        "confidence": "high"
+      },
+      "pulse": {
+        "value": "84/min",
+        "confidence": "high"
+      },
+      "temperature": {
+        "value": null,
+        "confidence": "low"
+      },
+      "other": {
+        "value": "Random blood sugar 210 mg/dL",
+        "confidence": "high"
+      }
+    },
+    "tests_advised": [
+      "HbA1c",
+      "Lipid profile",
+      "Serum creatinine"
+    ],
+    "allergies_mentioned": {
+      "value": "NKDA",
+      "confidence": "high"
+    },
+    "follow_up_date": {
+      "value": "After 1 month",
+      "confidence": "high"
+    },
+    "other_advice": {
+      "value": "Walk 30 minutes daily. Avoid sugar and sweet drinks. Less salt.",
+      "confidence": "high"
+    }
+  },
+  "medicines": [
+    {
+      "brand_name": "Glucophage",
+      "generic_name": "Metformin",
+      "brand_mapping_certain": true,
+      "strength": "500 mg",
+      "dosage_form": "tablet",
+      "dose_per_time": "1 tablet",
+      "frequency_text": "1+0+1",
+      "times_per_day": 2,
+      "schedule": {
+        "morning": 1,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 1
+      },
+      "route": "oral",
+      "food_timing": "after meal",
+      "duration_days": 30,
+      "duration_text": "x 1/12",
+      "total_quantity_needed": "60 tablets",
+      "special_instructions": null,
+      "purpose_in_simple_words": "controls blood sugar in diabetes",
+      "confidence": "high",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Concor",
+      "generic_name": "Bisoprolol",
+      "brand_mapping_certain": true,
+      "strength": "5 mg",
+      "dosage_form": "tablet",
+      "dose_per_time": "1 tablet",
+      "frequency_text": "1+0+0",
+      "times_per_day": 1,
+      "schedule": {
+        "morning": 1,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 0
+      },
+      "route": "oral",
+      "food_timing": "any",
+      "duration_days": 30,
+      "duration_text": "x 1/12",
+      "total_quantity_needed": "30 tablets",
+      "special_instructions": null,
+      "purpose_in_simple_words": "lowers blood pressure",
+      "confidence": "high",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Risek",
+      "generic_name": "Omeprazole",
+      "brand_mapping_certain": true,
+      "strength": "20 mg",
+      "dosage_form": "capsule",
+      "dose_per_time": "1 capsule",
+      "frequency_text": "1+0+0",
+      "times_per_day": 1,
+      "schedule": {
+        "morning": 1,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 0
+      },
+      "route": "oral",
+      "food_timing": "before meal",
+      "duration_days": 14,
+      "duration_text": "x 2/52",
+      "total_quantity_needed": "14 capsules",
+      "special_instructions": "Take 30 minutes before breakfast",
+      "purpose_in_simple_words": "reduces stomach acid",
+      "confidence": "high",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Softin",
+      "generic_name": "Loratadine",
+      "brand_mapping_certain": true,
+      "strength": "10 mg",
+      "dosage_form": "tablet",
+      "dose_per_time": "1 tablet",
+      "frequency_text": "0+0+1",
+      "times_per_day": 1,
+      "schedule": {
+        "morning": 0,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 1
+      },
+      "route": "oral",
+      "food_timing": "any",
+      "duration_days": 5,
+      "duration_text": "x 5 days",
+      "total_quantity_needed": "5 tablets",
+      "special_instructions": null,
+      "purpose_in_simple_words": "for allergy, runny nose and itching",
+      "confidence": "high",
+      "uncertain_fields": []
+    }
+  ],
+  "unreadable_fields": [],
+  "overall_legibility": "good"
+}

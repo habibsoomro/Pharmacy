@@ -1,11 +1,10 @@
 import "server-only";
 import brandData from "@/data/brand-generics.json";
-import mockHandwritten from "@/tests/fixtures/extraction-handwritten.json";
-import mockElderly from "@/tests/fixtures/extraction-elderly.json";
 import { AI_MAX_TOKENS } from "@/config/ai";
 import { AIError, type ContentBlock } from "@/lib/server/anthropic";
 import { askForJson, InvalidOutputError, validateJson } from "@/lib/server/ask-json";
 import { loadPrompt } from "@/lib/server/prompts";
+import { mockSample } from "@/lib/server/mock";
 import { crossCheck } from "@/lib/rx/checks";
 import { ExtractionResult, type CheckWarning, type ExtractRequest } from "@/lib/schemas/extraction";
 
@@ -18,10 +17,9 @@ export async function extractPrescription(req: ExtractRequest): Promise<{ result
   let result: ExtractionResult;
 
   if (process.env.AI_MOCK) {
-    // Test mode: no API call. AI_MOCK=elderly gives the 9-medicine sample; anything else the handwritten one.
+    // Test mode: no API call (see lib/server/mock.ts for the samples).
     await new Promise((r) => setTimeout(r, 2500));
-    const sample = process.env.AI_MOCK === "elderly" ? mockElderly : mockHandwritten;
-    const v = validateJson(JSON.stringify(sample), ExtractionResult);
+    const v = validateJson(JSON.stringify(mockSample().extraction), ExtractionResult);
     if (!v.ok) throw new InvalidOutputError(v.problems);
     result = v.value;
   } else {

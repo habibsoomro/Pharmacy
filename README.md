@@ -3,24 +3,29 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 9 of 10**
+## What it does
 
-- Stage 1: project setup, home page, language switching
-- Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
-- Stage 3: AI reading of the prescription (`/api/extract`), shorthand double-check, brand list, consent
-- Stage 4: "Check what we read" review-and-edit screen (`/review`), pharmacist mode
-- Stage 5: safety check: interactions, duplicates, dose/age/allergy checks (`/api/interactions` + the pharmacy's own list)
-- Stage 6: summary cards (`/summary`): safety alerts, doctor, patient, diagnosis, one card per medicine with pictures, daily timetable, course calendar, interactions, general care; copy, WhatsApp, print, PDF
-- Stage 7: Settings panel (gear button in the header, and on the summary): summary languages incl. Roman Urdu, Punjabi, Pashto, Balochi (AI translation via `/api/translate`, saved on the phone), Simple/Detailed reading level, text size, read aloud, patient/pharmacist view, show/hide cards, picture mode, light/dark theme, medicine reminders (.ics calendar file)
-- Stage 8: My prescriptions (`/history`): save summaries on the phone only (IndexedDB), open them again, search, delete one or delete all; optional automatic saving
-- Stage 9: privacy and safety: full privacy policy (English, Urdu, Sindhi), shared rate limits (Upstash), size limits on every request, optional daily AI budget, security headers, offline banner, friendly error and "page not found" pages, loading placeholders, strong "hard to read" warning with call/WhatsApp buttons
+- **Home page** with a big "Scan your prescription" button, how it works, opening hours, call and WhatsApp.
+- **Scan** (`/scan`): take photos with the back camera or upload (JPG, PNG, iPhone HEIC, first page of a PDF), up to 4 pages; crop, rotate, retake; warnings for dark, blurry or small photos; photos are shrunk on the phone to save data. Asks permission before the first scan.
+- **AI reading** (`/api/extract`): Claude reads the prescription as a Pakistani clinical pharmacist would (shorthand like `1+0+1`, `TDS`, `x 1/52`, Urdu instructions, Pakistani brands). The answer is checked against a strict format, and our own rules double-check the shorthand, quantities and brand → generic names.
+- **Check what we read** (`/review`): editable form beside the photo; unsure or unreadable items in amber with ⚠; pharmacist mode for staff.
+- **Summary** (`/summary`): safety alerts, doctor, patient, diagnosis, one card per medicine with pictures, daily timetable, course calendar, interactions, general care. Copy, WhatsApp, print, PDF, read aloud, calendar reminders, save on the phone.
+- **Safety check** (`/api/interactions` plus the pharmacy's own list of 58 rules): interactions, duplicates, doses for age and weight, allergies, antibiotics without a duration. Never tells anyone to stop or change a medicine.
+- **Settings**: 7 summary languages (English, Urdu, Sindhi, Roman Urdu, Punjabi, Pashto, Balochi; the last three "beta"), Simple/Detailed, text size, light/dark, patient/pharmacist view, picture mode, show/hide cards, read-aloud speed, automatic saving.
+- **My prescriptions** (`/history`): saved only on the phone; open, search, delete one or all.
+- **Privacy and safety**: nothing about prescriptions is stored on the server; rate limits, size limits, optional daily budget, security headers, friendly errors in the person's language.
+
+Built in 10 stages: (1) setup and home page, (2) photo capture, (3) AI reading,
+(4) review screen, (5) safety check, (6) summary cards, (7) settings, translation,
+read aloud and reminders, (8) My prescriptions, (9) privacy, limits and errors,
+(10) sample prescriptions, tests and this guide.
 
 ---
 
 ## What you need
 
 - **Node.js 20 or newer**: download from https://nodejs.org (choose "LTS").
-- **An Anthropic API key**: from https://console.anthropic.com (needed from Stage 3).
+- **An Anthropic API key**: from https://console.anthropic.com. (You can try everything without one in test mode, below.)
 
 ## Run it on your computer
 
@@ -41,21 +46,41 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
 
 ### Try it without an API key (test mode)
 
-Add `AI_MOCK=1` to `.env.local` and restart `npm run dev`. Every scan then
-returns the same sample prescription (no AI call, no cost).
+Add one of these lines to `.env.local` and restart `npm run dev`. Every scan then
+returns a fixed sample prescription (no AI call, no cost, any photo will do):
+
+| Line | Sample |
+|---|---|
+| `AI_MOCK=1` | messy handwriting, 5 medicines, some unreadable parts |
+| `AI_MOCK=printed` | clean printed prescription (diabetes, blood pressure) |
+| `AI_MOCK=child` | 4-year-old with syrups in ml, one dose too high for the weight |
+| `AI_MOCK=elderly` | 72-year-old on 9 medicines with serious interactions |
+| `AI_MOCK=notrx` | a photo that is not a prescription |
+
 Translations in test mode are not real: each text just gets a marker such as
 `[ps]` in front, so you can see where translated text appears.
-Use `AI_MOCK=elderly` instead to get a 72-year-old patient on 9 medicines with
-real interactions, a duplicate, a penicillin allergy and an antibiotic with no duration. Remove the line to
-use the real AI. **Never set AI_MOCK on the live website.**
+Remove the line to use the real AI. **Never set AI_MOCK on the live website.**
+
+To try the real AI with known answers, upload the pictures in `tests/samples/`
+(see `tests/samples/README.md` for what each one should show).
 
 ### Run the automatic tests
 
 ```
-npm test
+npm test            # quick checks of the logic (about 2 seconds)
+npm run typecheck   # also catches a missing line in ur.json / sd.json
+npm run test:e2e    # browser tests on a 360 px phone screen (about 2 minutes)
 ```
-This checks the shorthand reader (`1+0+1`, `TDS`, `1/52`, quantities), the
-double-check against the brand list, and how the app handles bad AI answers.
+
+- `npm test` checks the shorthand reader (`1+0+1` → 2 times a day, `1/52` → 7 days),
+  quantities, duplicate medicines, the safety rules, the 5 sample prescriptions from
+  start to finish, translations, reminders, saving on the phone, and the request limits.
+- `npm run test:e2e` builds the site, starts it in test mode and, in a real browser:
+  checks every page in Urdu and Sindhi is right-to-left with the right font and never
+  scrolls sideways at 360 px (also with Extra-large text and the Settings panel open),
+  and goes through upload → check → summary → save → delete. The first time on a
+  computer, run `npx playwright install chromium` once. Screenshots of every Urdu and
+  Sindhi page are saved in `test-results/` for you to look at.
 
 To test on your phone: connect phone and computer to the same Wi-Fi and open
 `http://YOUR-COMPUTER-IP:3000` on the phone. (Most phones only allow the camera
@@ -72,6 +97,22 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 4. Click **Deploy**. Vercel gives you a web address you can share.
 
 ---
+
+## Before going live (checklist)
+
+1. **Pharmacy details**: name, logo, colours, phone, WhatsApp, address, hours in `config/site.ts`.
+2. **Medical content reviewed by a pharmacist**: `prompts/` (all three prompts),
+   `data/brand-generics.json`, `data/interactions.json`, `data/care.json`, and the dose
+   limits in `lib/rx/safety.ts`.
+3. **Translations checked by native speakers**: `locales/ur.json` and `locales/sd.json`.
+4. **Privacy policy checked**, ideally by a lawyer, and compared with Anthropic's current
+   terms (see "Privacy and safety" below). Update `POLICY_UPDATED` in `app/privacy/page.tsx`.
+5. **On Vercel**: `ANTHROPIC_API_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`,
+   and if you like `RATE_LIMIT_SALT` and `AI_DAILY_LIMIT`. Make sure `AI_MOCK` is **not** set.
+6. **Try real prescriptions** on real phones: a few handwritten ones, an iPhone photo
+   (HEIC), a PDF, and the camera on a cheap Android phone. Check Read aloud and the
+   calendar reminders on those phones too.
+7. Set a monthly spending limit in the Anthropic console.
 
 ## Where to change things
 
@@ -104,14 +145,15 @@ which line is missing.
 ## Folder map
 
 ```
-app/          pages: home, scan, history, about, contact, privacy (+ api/ from Stage 3)
+app/          pages: home, scan, review, summary, history, about, contact, privacy; api/ (extract, interactions, translate)
 components/   header, footer, language switcher, buttons, cards
-config/       site.ts (pharmacy details), ai.ts (model)
-lib/          language helpers, WhatsApp link helper
+config/       site.ts (pharmacy details), ai.ts (model), capture.ts (photo limits)
+lib/          the logic: rx/ (shorthand, checks, safety), summary/, client/ (phone side), server/ (AI, limits), schemas/
 locales/      translation files
-prompts/      AI prompts (Stage 3+): reading, safety check, translation
-data/         interaction list, brand-to-generic list (Stage 3+)
-tests/        tests and sample prescriptions (Stage 10)
+prompts/      AI prompts: reading, safety check, translation
+data/         interaction rules, medicine groups, brand → generic list, general care texts
+tests/        unit/ (npm test), e2e/ (npm run test:e2e), fixtures/ (sample AI answers), samples/ (sample pictures)
+scripts/      helper scripts (PDF reader file, sample pictures)
 public/       logo and images
 ```
 
@@ -138,7 +180,7 @@ public/       logo and images
      with "Talk to your doctor or pharmacist".
 7. Nothing is stored on the server. The result lives only in the user's browser tab.
 
-## Settings (Stage 7)
+## Settings
 
 Everything is saved on the phone only (in the browser), and there is a
 "Reset all settings" button at the bottom of the panel.
@@ -169,7 +211,7 @@ Everything is saved on the phone only (in the browser), and there is a
   ones without a number of days get no reminders, and the screen says why.
 - **Light / dark** follows the phone by default. Printing and PDFs are always light.
 
-## My prescriptions (Stage 8)
+## My prescriptions
 
 - Nothing is saved until the person taps **Save to My prescriptions** on the summary
   (or turns on "Save summaries automatically" in Settings; it is off by default because
@@ -184,7 +226,7 @@ Everything is saved on the phone only (in the browser), and there is a
   person is told. In a private window saving isn't possible and the page says so.
 - Clearing the browser's site data for this website also deletes everything.
 
-## Privacy and safety (Stage 9)
+## Privacy and safety
 
 - **Nothing about a prescription is stored on the server.** Photos and results are used
   for one request and forgotten. Error logs contain only the kind of error.

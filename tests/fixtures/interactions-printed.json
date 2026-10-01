@@ -1,0 +1,18 @@
+{
+  "interactions": [
+    {
+      "type": "drug-disease",
+      "drugs_involved": [
+        "Concor",
+        "Glucophage"
+      ],
+      "severity": "minor",
+      "what_happens": "Concor can hide some signs of low blood sugar, such as a fast heartbeat.",
+      "what_to_do": "Learn other signs of low sugar, like sweating and shaking, and check your sugar if you feel unwell.",
+      "confidence": "high"
+    }
+  ],
+  "age_specific_warnings": [],
+  "pregnancy_breastfeeding_note": null,
+  "no_interactions_found": false
+}

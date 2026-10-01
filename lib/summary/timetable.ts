@@ -28,10 +28,11 @@ export function buildTimetable(meds: Medicine[]): { slots: Record<Slot, Timetabl
   meds.forEach((med, medIndex) => {
     const base = { medIndex, name: displayName(med), strength: med.strength, food: med.food_timing };
     const freq = parseFrequency(med.frequency_text);
+    // "SOS", "PRN", "TDS SOS": only when needed, never at fixed times (even if a maximum per day is written).
+    if (freq?.asNeeded) return asNeeded.push({ ...base, amount: med.dose_per_time });
     // If the times of day are empty, work them out from the written frequency ("1+0+1", "BD").
     const schedule = SLOTS.some((k) => med.schedule[k] > 0) || !freq ? med.schedule : freq.schedule;
     const total = SLOTS.reduce((s, k) => s + schedule[k], 0);
-    if (freq?.asNeeded && total === 0) return asNeeded.push({ ...base, amount: med.dose_per_time });
     if (total === 0) return unscheduled.push({ ...base, amount: med.dose_per_time });
     for (const slot of SLOTS) {
       const n = schedule[slot];

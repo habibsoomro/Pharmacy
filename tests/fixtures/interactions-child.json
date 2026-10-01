@@ -1,0 +1,19 @@
+{
+  "interactions": [
+    {
+      "type": "dose-check",
+      "drugs_involved": [
+        "Calpol"
+      ],
+      "severity": "major",
+      "what_happens": "10 ml of Calpol is 240 mg of paracetamol, which is more than usual for a 14 kg child.",
+      "what_to_do": "Please confirm the dose with your pharmacist or doctor before giving it.",
+      "confidence": "high"
+    }
+  ],
+  "age_specific_warnings": [
+    "Use the measuring syringe or spoon that comes with the medicine, not a kitchen spoon."
+  ],
+  "pregnancy_breastfeeding_note": null,
+  "no_interactions_found": false
+}

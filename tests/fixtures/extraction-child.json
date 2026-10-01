@@ -1,0 +1,185 @@
+{
+  "is_prescription": true,
+  "prescription_date": {
+    "value": "2026-09-30",
+    "confidence": "high"
+  },
+  "doctor": {
+    "name": {
+      "value": "Dr. Imran Qureshi",
+      "confidence": "high"
+    },
+    "qualifications": {
+      "value": "MBBS, DCH",
+      "confidence": "high"
+    },
+    "specialty": {
+      "value": "Child Specialist",
+      "confidence": "high"
+    },
+    "registration_no": {
+      "value": "PMDC 67890-S",
+      "confidence": "high"
+    },
+    "clinic_or_hospital": {
+      "value": "Qureshi Children Clinic",
+      "confidence": "high"
+    },
+    "address": {
+      "value": "Latifabad Unit 7, Hyderabad",
+      "confidence": "high"
+    },
+    "phone": {
+      "value": "0300-2222222",
+      "confidence": "medium"
+    }
+  },
+  "patient": {
+    "name": {
+      "value": "Ayaan",
+      "confidence": "high"
+    },
+    "age": {
+      "value": "4 years",
+      "confidence": "high"
+    },
+    "sex": {
+      "value": "Male",
+      "confidence": "high"
+    },
+    "weight": {
+      "value": "14 kg",
+      "confidence": "high"
+    },
+    "address": {
+      "value": null,
+      "confidence": "low"
+    },
+    "phone": {
+      "value": null,
+      "confidence": "low"
+    },
+    "mr_or_file_no": {
+      "value": null,
+      "confidence": "low"
+    }
+  },
+  "clinical": {
+    "diagnosis_or_complaints": {
+      "value": "Fever, ear pain (otitis media)",
+      "confidence": "medium"
+    },
+    "vitals": {
+      "blood_pressure": {
+        "value": null,
+        "confidence": "low"
+      },
+      "pulse": {
+        "value": null,
+        "confidence": "low"
+      },
+      "temperature": {
+        "value": "102 °F",
+        "confidence": "high"
+      },
+      "other": {
+        "value": null,
+        "confidence": "low"
+      }
+    },
+    "tests_advised": [],
+    "allergies_mentioned": {
+      "value": null,
+      "confidence": "low"
+    },
+    "follow_up_date": {
+      "value": "After 3 days if fever continues",
+      "confidence": "medium"
+    },
+    "other_advice": {
+      "value": "Give plenty of fluids. Sponge with lukewarm water for high fever.",
+      "confidence": "medium"
+    }
+  },
+  "medicines": [
+    {
+      "brand_name": "Amoxil",
+      "generic_name": "Amoxicillin",
+      "brand_mapping_certain": true,
+      "strength": "250 mg/5 ml",
+      "dosage_form": "dry suspension",
+      "dose_per_time": "5 ml",
+      "frequency_text": "TDS",
+      "times_per_day": 3,
+      "schedule": {
+        "morning": 1,
+        "afternoon": 1,
+        "evening": 0,
+        "night": 1
+      },
+      "route": "oral",
+      "food_timing": "any",
+      "duration_days": 7,
+      "duration_text": "x 7 days",
+      "total_quantity_needed": "105 ml (2 bottles of 60 ml)",
+      "special_instructions": "Add boiled cooled water to the line, shake well. Keep in the fridge after mixing.",
+      "purpose_in_simple_words": "antibiotic for the ear infection",
+      "confidence": "high",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Calpol",
+      "generic_name": "Paracetamol",
+      "brand_mapping_certain": true,
+      "strength": "120 mg/5 ml",
+      "dosage_form": "syrup",
+      "dose_per_time": "10 ml",
+      "frequency_text": "TDS SOS",
+      "times_per_day": 3,
+      "schedule": {
+        "morning": 0,
+        "afternoon": 0,
+        "evening": 0,
+        "night": 0
+      },
+      "route": "oral",
+      "food_timing": "any",
+      "duration_days": null,
+      "duration_text": "when fever is above 100 °F",
+      "total_quantity_needed": "1 bottle",
+      "special_instructions": "Only if fever. At least 6 hours between doses.",
+      "purpose_in_simple_words": "for fever and pain",
+      "confidence": "medium",
+      "uncertain_fields": []
+    },
+    {
+      "brand_name": "Brufen",
+      "generic_name": "Ibuprofen",
+      "brand_mapping_certain": true,
+      "strength": "100 mg/5 ml",
+      "dosage_form": "suspension",
+      "dose_per_time": "5 ml",
+      "frequency_text": "1+1+1",
+      "times_per_day": 3,
+      "schedule": {
+        "morning": 1,
+        "afternoon": 1,
+        "evening": 0,
+        "night": 1
+      },
+      "route": "oral",
+      "food_timing": "after meal",
+      "duration_days": 3,
+      "duration_text": "x 3 days",
+      "total_quantity_needed": "45 ml",
+      "special_instructions": "Give after food.",
+      "purpose_in_simple_words": "for pain and swelling in the ear",
+      "confidence": "high",
+      "uncertain_fields": []
+    }
+  ],
+  "unreadable_fields": [
+    "medicine 2 dose (10 ml or 5 ml? partly unclear)"
+  ],
+  "overall_legibility": "fair"
+}
