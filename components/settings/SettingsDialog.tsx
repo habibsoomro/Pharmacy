@@ -175,7 +175,19 @@ export function SettingsDialog() {
           ]}
         />
 
-        {/* 8. Cards */}
+        {/* 8. Save automatically in My prescriptions */}
+        <Choice<"on" | "off">
+          title={s.autoSave.title}
+          hint={s.autoSave.hint}
+          value={settings.autoSave ? "on" : "off"}
+          onChange={(v) => update({ autoSave: v === "on" })}
+          options={[
+            { value: "on", label: s.autoSave.on },
+            { value: "off", label: s.autoSave.off },
+          ]}
+        />
+
+        {/* 9. Cards */}
         <Group title={s.cards.title} hint={s.cards.hint}>
           <ul className="divide-y divide-line rounded-xl border border-line">
             <li className="flex min-h-12 items-center gap-3 px-3 text-muted">
@@ -198,7 +210,7 @@ export function SettingsDialog() {
           </ul>
         </Group>
 
-        {/* 9. Saved on this phone */}
+        {/* 10. Saved on this phone */}
         <Group title={s.privacy.title}>
           <div className="flex flex-wrap gap-2">
             <button type="button" onClick={() => { clearTranslations(); setDone("translations"); }}

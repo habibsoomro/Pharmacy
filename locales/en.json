@@ -52,7 +52,7 @@
   "pages": {
     "scanTitle": "Scan prescription",
     "historyTitle": "My prescriptions",
-    "historyText": "Prescriptions you scan will be saved only on this phone. You can delete them at any time.",
+    "historyText": "Prescriptions you save are kept only on this phone, never on our server. You can delete them at any time.",
     "aboutTitle": "About us",
     "aboutText": "We are a local pharmacy in Sindh. This tool helps you understand your prescription in your own language. Our pharmacist is always happy to check it with you in person.",
     "contactTitle": "Contact us",
@@ -407,6 +407,16 @@
       "eventTitle": "Take {name}",
       "eventAmount": "Amount: {amount}",
       "close": "Close"
+    },
+    "save": {
+      "button": "Save to My prescriptions",
+      "saving": "Saving…",
+      "saved": "Saved in My prescriptions",
+      "seeAll": "See all",
+      "hint": "Kept only on this phone. Not sent anywhere.",
+      "failed": "Couldn't save on this phone.",
+      "noPhotos": "Saved without the photos, because the phone's storage is full.",
+      "unavailable": "Saving isn't possible in this browser (for example in a private window)."
     }
   },
   "safety": {
@@ -514,6 +524,39 @@
       "cleared": "Deleted",
       "reset": "Reset all settings",
       "resetDone": "Settings reset"
+    },
+    "autoSave": {
+      "title": "Save summaries automatically",
+      "hint": "Every summary you open is saved in My prescriptions on this phone.",
+      "on": "On",
+      "off": "Off"
     }
+  },
+  "history": {
+    "empty": "No saved prescriptions yet.",
+    "emptyHint": "After scanning, tap \"Save to My prescriptions\" on the summary.",
+    "scan": "Scan a prescription",
+    "count": "{n} saved",
+    "search": "Search by patient, doctor or medicine",
+    "noMatch": "Nothing matches your search.",
+    "noName": "Patient name not written",
+    "rxDate": "Prescription date: {date}",
+    "savedOn": "Saved {date}",
+    "medicines": "{n} medicine(s)",
+    "more": "+{n} more",
+    "serious": "{n} serious alert(s)",
+    "noPhoto": "No photo",
+    "open": "Open",
+    "opening": "Opening…",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this prescription from this phone? This can't be undone.",
+    "deleteAll": "Delete all",
+    "deleteAllConfirm": "Delete ALL saved prescriptions and saved translations from this phone? This can't be undone.",
+    "deletedAll": "All saved prescriptions were deleted.",
+    "unavailable": "Saving isn't possible in this browser (for example in a private window). Your summary still works, but it won't be kept.",
+    "openFailed": "We couldn't open this saved prescription.",
+    "storage": "This website uses about {size} on this phone.",
+    "sharedPhone": "Anyone who uses this phone can see these. If you share your phone, delete them when you're done.",
+    "loading": "Loading…"
   }
 }

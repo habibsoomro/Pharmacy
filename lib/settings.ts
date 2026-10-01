@@ -23,6 +23,8 @@ export const Settings = z.object({
   pictures: z.boolean().catch(true),
   hiddenCards: z.array(z.enum(HIDEABLE_CARDS)).catch([]),
   speechRate: z.enum(["slow", "normal"]).catch("normal"),
+  /** Save every summary in My prescriptions without asking (off by default: phones are often shared). */
+  autoSave: z.boolean().catch(false),
   reminderTimes: z
     .object({ morning: time, afternoon: time, evening: time, night: time })
     .catch({ morning: "08:00", afternoon: "14:00", evening: "19:00", night: "22:00" }),

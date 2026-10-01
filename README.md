@@ -3,7 +3,7 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 7 of 10**
+**Current stage: 8 of 10**
 
 - Stage 1: project setup, home page, language switching
 - Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
@@ -12,6 +12,7 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
 - Stage 5: safety check: interactions, duplicates, dose/age/allergy checks (`/api/interactions` + the pharmacy's own list)
 - Stage 6: summary cards (`/summary`): safety alerts, doctor, patient, diagnosis, one card per medicine with pictures, daily timetable, course calendar, interactions, general care; copy, WhatsApp, print, PDF
 - Stage 7: Settings panel (gear button in the header, and on the summary): summary languages incl. Roman Urdu, Punjabi, Pashto, Balochi (AI translation via `/api/translate`, saved on the phone), Simple/Detailed reading level, text size, read aloud, patient/pharmacist view, show/hide cards, picture mode, light/dark theme, medicine reminders (.ics calendar file)
+- Stage 8: My prescriptions (`/history`): save summaries on the phone only (IndexedDB), open them again, search, delete one or delete all; optional automatic saving
 
 ---
 
@@ -160,6 +161,21 @@ Everything is saved on the phone only (in the browser), and there is a
   course's last day (30 days for medicines to keep taking). As-needed medicines and
   ones without a number of days get no reminders, and the screen says why.
 - **Light / dark** follows the phone by default. Printing and PDFs are always light.
+
+## My prescriptions (Stage 8)
+
+- Nothing is saved until the person taps **Save to My prescriptions** on the summary
+  (or turns on "Save summaries automatically" in Settings; it is off by default because
+  phones are often shared).
+- Saved prescriptions live only in the phone's browser storage (IndexedDB), never on the
+  server. The reading, the checks, notes, start date and a small preview picture are in one
+  store; the full photos in another, loaded only when a prescription is opened.
+- Once saved, later changes (editing on the checking screen, changing the start date,
+  the safety check finishing) are kept up to date automatically.
+- **Delete** removes one; **Delete all** removes every saved prescription and the saved
+  translations. If the phone is full, the prescription is saved without its photos and the
+  person is told. In a private window saving isn't possible and the page says so.
+- Clearing the browser's site data for this website also deletes everything.
 
 ## Notes
 

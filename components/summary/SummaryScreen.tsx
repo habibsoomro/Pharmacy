@@ -23,6 +23,7 @@ import {
 } from "@/components/summary/cards";
 import { copyText, whatsappShare } from "@/components/summary/SummaryCard";
 import { SpeechProvider, useSpeech } from "@/components/summary/Speech";
+import { SaveBar } from "@/components/summary/SaveBar";
 import { useSummaryTranslation, type TranslationStatus } from "@/components/summary/useSummaryTranslation";
 import { AlertIcon, CheckIcon, GearIcon, PauseIcon, SpeakerIcon, SpinnerIcon, StopIcon, WhatsAppIcon } from "@/components/icons";
 
@@ -98,6 +99,7 @@ export function SummaryScreen() {
             if (latest) saveCurrentScan({ ...latest, startDate: iso });
           }}
           onRetrySafety={() => runSafety(scan)}
+          onSaved={setScan}
           translation={translation}
         />
       </SpeechProvider>
@@ -105,9 +107,9 @@ export function SummaryScreen() {
   );
 }
 
-function SummaryBody({ scan, rx, report, pending, start, onStartChange, onRetrySafety, translation }: {
+function SummaryBody({ scan, rx, report, pending, start, onStartChange, onRetrySafety, onSaved, translation }: {
   scan: CurrentScan; rx: Prescription; report: SafetyReport | null; pending: boolean; start: string;
-  onStartChange: (iso: string) => void; onRetrySafety: () => void;
+  onStartChange: (iso: string) => void; onRetrySafety: () => void; onSaved: (scan: CurrentScan) => void;
   translation: ReturnType<typeof useSummaryTranslation>;
 }) {
   const { t, lang, locale } = useI18n();
@@ -193,6 +195,8 @@ function SummaryBody({ scan, rx, report, pending, start, onStartChange, onRetryS
           </div>
           <SpeechNotice />
         </div>
+
+        <SaveBar scan={scan} onSaved={onSaved} />
 
         <div data-pdf-block><SafetyAlertsCard ctx={ctx} stillFlagged={scan.review?.stillFlagged ?? 0} unreadable={rx.unreadable_fields} /></div>
         {shown("dispensing") && <div data-pdf-block><DispensingCard ctx={ctx} /></div>}
