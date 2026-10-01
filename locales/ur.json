@@ -140,38 +140,124 @@
       "bad_request": "تصاویر میں کوئی مسئلہ ہے۔ براہ کرم دوبارہ تصویر لے کر کوشش کریں۔"
     },
     "tryAgain": "دوبارہ کوشش کریں",
-    "backToPhotos": "تصاویر پر واپس",
     "notRx": {
       "title": "یہ نسخہ نہیں لگتا",
       "text": "براہ کرم ڈاکٹر کے نسخے والے صفحے کی تصویر لیں۔"
-    },
-    "preview": {
-      "title": "ہم نے کیا پڑھا",
-      "nextStage": "اگلے مرحلے میں آپ خلاصہ دیکھنے سے پہلے یہاں سب کچھ چیک اور درست کر سکیں گے۔",
+    }
+  },
+  "review": {
+    "title": "پڑھی گئی معلومات چیک کریں",
+    "intro": "اسے اپنے نسخے سے ملائیں اور جو غلط ہو اسے درست کریں۔ ⚠ والی چیزوں پر خاص توجہ دیں۔",
+    "attention": "{n} چیزیں چیک کرنی ہیں",
+    "attentionNone": "چیک کرنے کے لیے کچھ نشان زد نہیں",
+    "jumpToFirst": "دکھائیں",
+    "viewPhoto": "نسخہ دیکھیں",
+    "photoTitle": "آپ کا نسخہ",
+    "page": "صفحہ {n}",
+    "zoomIn": "بڑا کریں",
+    "zoomOut": "چھوٹا کریں",
+    "close": "بند کریں",
+    "noScan": "ابھی چیک کرنے کے لیے کوئی نسخہ نہیں۔ پہلے نسخہ اسکین کریں۔",
+    "scanNow": "نسخہ اسکین کریں",
+    "scanAgain": "دوبارہ اسکین کریں",
+    "pharmacistMode": "فارماسسٹ موڈ",
+    "pharmacistModeHint": "ہر خانہ تبدیل کریں اور نوٹ لکھیں",
+    "sections": {
       "doctor": "ڈاکٹر",
       "patient": "مریض",
-      "date": "تاریخ",
-      "diagnosis": "تشخیص / شکایات",
+      "clinical": "تشخیص اور ہدایات",
       "medicines": "دوائیں",
-      "notReadable": "پڑھا نہیں جا سکا",
-      "unreadable": "یہ نہیں پڑھا جا سکا",
-      "checks": "براہ کرم دوبارہ چیک کریں",
-      "legibility": {
-        "good": "لکھائی: صاف",
-        "fair": "لکھائی: کچھ غیر واضح",
-        "poor": "لکھائی: پڑھنا مشکل"
-      },
-      "poorWarning": "یہ نسخہ پڑھنا مشکل ہے۔ احتیاط کے لیے براہ کرم اسے ہمارے فارماسسٹ کو خود دکھائیں۔",
-      "confidence": {
-        "high": "یقینی",
-        "medium": "کافی حد تک یقینی",
-        "low": "یقینی نہیں"
-      },
-      "perDay": "دن میں {n} بار",
-      "asNeeded": "صرف ضرورت کے وقت",
-      "days": "{n} دن",
-      "total": "کل: {q}",
-      "once": "دن میں ایک بار"
-    }
+      "unreadable": "جو پڑھا نہیں جا سکا"
+    },
+    "fields": {
+      "name": "نام",
+      "qualifications": "تعلیمی قابلیت",
+      "specialty": "شعبہ",
+      "registration_no": "PMDC نمبر",
+      "clinic_or_hospital": "کلینک / ہسپتال",
+      "address": "پتہ",
+      "phone": "فون",
+      "age": "عمر",
+      "sex": "جنس",
+      "weight": "وزن",
+      "mr_or_file_no": "MR / فائل نمبر",
+      "prescription_date": "نسخے کی تاریخ",
+      "diagnosis_or_complaints": "تشخیص / شکایات",
+      "blood_pressure": "بلڈ پریشر",
+      "pulse": "نبض",
+      "temperature": "بخار / درجہ حرارت",
+      "other": "دیگر معائنہ",
+      "tests_advised": "تجویز کردہ ٹیسٹ",
+      "testsHint": "ہر لائن میں ایک ٹیسٹ",
+      "allergies_mentioned": "الرجی",
+      "follow_up_date": "اگلی ملاقات",
+      "other_advice": "دیگر ہدایات"
+    },
+    "med": {
+      "title": "دوا {n}",
+      "brand_name": "برانڈ کا نام",
+      "generic_name": "اصل (سالٹ) نام",
+      "strength": "طاقت",
+      "dosage_form": "شکل (گولی، شربت…)",
+      "dose_per_time": "ہر بار کتنی",
+      "frequency_text": "کتنی بار (جیسا لکھا ہے)",
+      "frequencyHint": "اسے بدلنے سے نیچے کے اوقات بھی بدل جائیں گے۔",
+      "times_per_day": "دن میں کتنی بار",
+      "schedule": "کب لینی ہے",
+      "morning": "صبح",
+      "afternoon": "دوپہر",
+      "evening": "شام",
+      "night": "رات",
+      "food_timing": "کھانا",
+      "route": "کیسے لینی ہے",
+      "duration_text": "کتنے دن (جیسا لکھا ہے)",
+      "duration_days": "دنوں کی تعداد",
+      "total_quantity_needed": "کل مقدار",
+      "special_instructions": "خاص ہدایات",
+      "purpose_in_simple_words": "کس لیے ہے",
+      "calculate": "حساب کریں",
+      "add": "دوا شامل کریں",
+      "remove": "ہٹائیں",
+      "removeConfirm": "یہ دوا فہرست سے ہٹا دیں؟",
+      "notes": "فارماسسٹ کا نوٹ",
+      "unnamed": "نئی دوا"
+    },
+    "food": {
+      "before meal": "کھانے سے پہلے",
+      "after meal": "کھانے کے بعد",
+      "with meal": "کھانے کے ساتھ",
+      "empty stomach": "خالی پیٹ",
+      "any": "کسی بھی وقت",
+      "notWritten": "نہیں لکھا"
+    },
+    "flag": {
+      "needsCheck": "براہ کرم چیک کریں",
+      "looksRight": "درست ہے",
+      "confirmed": "چیک ہو گیا",
+      "suggestion": "ہمارے حساب سے: {value}",
+      "useSuggestion": "یہ استعمال کریں",
+      "ai": "اے آئی: {c}"
+    },
+    "generalNotes": "مریض کے لیے فارماسسٹ کے نوٹ",
+    "unreadableHint": "تصویر دیکھیں۔ اگر آپ یہ پڑھ سکیں تو اوپر لکھ دیں۔",
+    "markChecked": "میں نے چیک کر لیا",
+    "remaining": "ابھی {n} چیزوں پر ⚠ کا نشان ہے۔ آپ آگے جا سکتے ہیں، لیکن یقین کر لیں کہ وہ درست ہیں۔",
+    "continue": "درست ہے — خلاصہ دکھائیں",
+    "confidence": {
+      "high": "یقینی",
+      "medium": "کافی حد تک یقینی",
+      "low": "یقینی نہیں"
+    },
+    "legibility": {
+      "good": "لکھائی: صاف",
+      "fair": "لکھائی: کچھ غیر واضح",
+      "poor": "لکھائی: پڑھنا مشکل"
+    },
+    "poorWarning": "یہ نسخہ پڑھنا مشکل ہے۔ احتیاط کے لیے براہ کرم اسے ہمارے فارماسسٹ کو خود دکھائیں۔"
+  },
+  "summary": {
+    "title": "خلاصہ",
+    "comingSoon": "خلاصے کے کارڈ مرحلہ 6 میں بنیں گے۔ آپ کا چیک شدہ نسخہ اس وزٹ کے لیے محفوظ ہے۔",
+    "backToReview": "چیک کرنے پر واپس"
   }
 }

@@ -140,38 +140,124 @@
       "bad_request": "Something went wrong with the photos. Please retake them and try again."
     },
     "tryAgain": "Try again",
-    "backToPhotos": "Back to photos",
     "notRx": {
       "title": "This doesn't look like a prescription",
       "text": "Please take a photo of the doctor's prescription page."
-    },
-    "preview": {
-      "title": "What we read",
-      "nextStage": "In the next stage you'll be able to check and correct everything here before seeing the summary.",
+    }
+  },
+  "review": {
+    "title": "Check what we read",
+    "intro": "Compare this with your prescription and fix anything that's wrong. Items marked ⚠ need your attention.",
+    "attention": "{n} item(s) need checking",
+    "attentionNone": "Nothing is marked for checking",
+    "jumpToFirst": "Show me",
+    "viewPhoto": "View prescription",
+    "photoTitle": "Your prescription",
+    "page": "Page {n}",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "close": "Close",
+    "noScan": "There's no prescription to check yet. Please scan one first.",
+    "scanNow": "Scan a prescription",
+    "scanAgain": "Scan again",
+    "pharmacistMode": "Pharmacist mode",
+    "pharmacistModeHint": "Edit every field and add notes",
+    "sections": {
       "doctor": "Doctor",
       "patient": "Patient",
-      "date": "Date",
-      "diagnosis": "Diagnosis / complaints",
+      "clinical": "Diagnosis and advice",
       "medicines": "Medicines",
-      "notReadable": "Not readable",
-      "unreadable": "Could not read",
-      "checks": "Please double-check",
-      "legibility": {
-        "good": "Handwriting: clear",
-        "fair": "Handwriting: partly unclear",
-        "poor": "Handwriting: hard to read"
-      },
-      "poorWarning": "This prescription is hard to read. To be safe, please show it to our pharmacist in person.",
-      "confidence": {
-        "high": "Sure",
-        "medium": "Fairly sure",
-        "low": "Not sure"
-      },
-      "perDay": "{n} times a day",
-      "asNeeded": "Only when needed",
-      "days": "{n} days",
-      "total": "Total: {q}",
-      "once": "Once a day"
-    }
+      "unreadable": "Things we couldn't read"
+    },
+    "fields": {
+      "name": "Name",
+      "qualifications": "Qualifications",
+      "specialty": "Specialty",
+      "registration_no": "PMDC number",
+      "clinic_or_hospital": "Clinic / hospital",
+      "address": "Address",
+      "phone": "Phone",
+      "age": "Age",
+      "sex": "Sex",
+      "weight": "Weight",
+      "mr_or_file_no": "MR / file number",
+      "prescription_date": "Prescription date",
+      "diagnosis_or_complaints": "Diagnosis / complaints",
+      "blood_pressure": "Blood pressure",
+      "pulse": "Pulse",
+      "temperature": "Temperature",
+      "other": "Other checks",
+      "tests_advised": "Tests advised",
+      "testsHint": "One test per line",
+      "allergies_mentioned": "Allergies",
+      "follow_up_date": "Next visit",
+      "other_advice": "Other advice"
+    },
+    "med": {
+      "title": "Medicine {n}",
+      "brand_name": "Brand name",
+      "generic_name": "Generic (salt) name",
+      "strength": "Strength",
+      "dosage_form": "Form (tablet, syrup…)",
+      "dose_per_time": "How much each time",
+      "frequency_text": "How often (as written)",
+      "frequencyHint": "Changing this updates the times below.",
+      "times_per_day": "Times a day",
+      "schedule": "When to take",
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening",
+      "night": "Night",
+      "food_timing": "Food",
+      "route": "How it's taken",
+      "duration_text": "For how long (as written)",
+      "duration_days": "Number of days",
+      "total_quantity_needed": "Total needed",
+      "special_instructions": "Special instructions",
+      "purpose_in_simple_words": "What it's for",
+      "calculate": "Calculate",
+      "add": "Add a medicine",
+      "remove": "Remove",
+      "removeConfirm": "Remove this medicine from the list?",
+      "notes": "Pharmacist note",
+      "unnamed": "New medicine"
+    },
+    "food": {
+      "before meal": "Before food",
+      "after meal": "After food",
+      "with meal": "With food",
+      "empty stomach": "Empty stomach",
+      "any": "Any time",
+      "notWritten": "Not written"
+    },
+    "flag": {
+      "needsCheck": "Please check",
+      "looksRight": "Looks right",
+      "confirmed": "Checked",
+      "suggestion": "Our check suggests: {value}",
+      "useSuggestion": "Use this",
+      "ai": "AI: {c}"
+    },
+    "generalNotes": "Pharmacist notes for the patient",
+    "unreadableHint": "Look at the photo. If you can read these, fill them in above.",
+    "markChecked": "I've checked this",
+    "remaining": "{n} item(s) are still marked ⚠. You can continue, but please make sure they are right.",
+    "continue": "Looks correct — Show Summary",
+    "confidence": {
+      "high": "Sure",
+      "medium": "Fairly sure",
+      "low": "Not sure"
+    },
+    "legibility": {
+      "good": "Handwriting: clear",
+      "fair": "Handwriting: partly unclear",
+      "poor": "Handwriting: hard to read"
+    },
+    "poorWarning": "This prescription is hard to read. To be safe, please show it to our pharmacist in person."
+  },
+  "summary": {
+    "title": "Summary",
+    "comingSoon": "The summary cards are built in Stage 6. Your checked prescription is saved for this visit.",
+    "backToReview": "Back to checking"
   }
 }

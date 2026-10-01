@@ -140,38 +140,124 @@
       "bad_request": "فوٽن ۾ ڪو مسئلو آهي. مهرباني ڪري ٻيهر فوٽو ڪڍي ڪوشش ڪريو."
     },
     "tryAgain": "ٻيهر ڪوشش ڪريو",
-    "backToPhotos": "فوٽن ڏانهن واپس",
     "notRx": {
       "title": "هي نسخو نٿو لڳي",
       "text": "مهرباني ڪري ڊاڪٽر جي نسخي واري صفحي جو فوٽو ڪڍو."
-    },
-    "preview": {
-      "title": "اسان ڇا پڙهيو",
-      "nextStage": "ايندڙ مرحلي ۾ توهان خلاصو ڏسڻ کان اڳ هتي سڀ ڪجهه چيڪ ۽ درست ڪري سگهندا.",
+    }
+  },
+  "review": {
+    "title": "پڙهيل معلومات چيڪ ڪريو",
+    "intro": "ان کي پنهنجي نسخي سان ملايو ۽ جيڪو غلط هجي اهو درست ڪريو. ⚠ وارين شين تي خاص ڌيان ڏيو.",
+    "attention": "{n} شيون چيڪ ڪرڻيون آهن",
+    "attentionNone": "چيڪ ڪرڻ لاءِ ڪجهه به نشان لڳل ناهي",
+    "jumpToFirst": "ڏيکاريو",
+    "viewPhoto": "نسخو ڏسو",
+    "photoTitle": "توهان جو نسخو",
+    "page": "صفحو {n}",
+    "zoomIn": "وڏو ڪريو",
+    "zoomOut": "ننڍو ڪريو",
+    "close": "بند ڪريو",
+    "noScan": "اڃا چيڪ ڪرڻ لاءِ ڪو نسخو ناهي. پهريان نسخو اسڪين ڪريو.",
+    "scanNow": "نسخو اسڪين ڪريو",
+    "scanAgain": "ٻيهر اسڪين ڪريو",
+    "pharmacistMode": "فارماسسٽ موڊ",
+    "pharmacistModeHint": "هر خانو تبديل ڪريو ۽ نوٽ لکو",
+    "sections": {
       "doctor": "ڊاڪٽر",
       "patient": "مريض",
-      "date": "تاريخ",
-      "diagnosis": "تشخيص / شڪايتون",
+      "clinical": "تشخيص ۽ هدايتون",
       "medicines": "دوائون",
-      "notReadable": "پڙهي نه سگهياسين",
-      "unreadable": "هي پڙهي نه سگهياسين",
-      "checks": "مهرباني ڪري ٻيهر چيڪ ڪريو",
-      "legibility": {
-        "good": "لکت: صاف",
-        "fair": "لکت: ڪجهه اڻ چٽي",
-        "poor": "لکت: پڙهڻ ڏکيو"
-      },
-      "poorWarning": "هي نسخو پڙهڻ ڏکيو آهي. احتياط لاءِ مهرباني ڪري اهو اسان جي فارماسسٽ کي پاڻ ڏيکاريو.",
-      "confidence": {
-        "high": "پڪ آهي",
-        "medium": "ڪافي حد تائين پڪ",
-        "low": "پڪ ناهي"
-      },
-      "perDay": "ڏينهن ۾ {n} ڀيرا",
-      "asNeeded": "صرف ضرورت وقت",
-      "days": "{n} ڏينهن",
-      "total": "ڪل: {q}",
-      "once": "ڏينهن ۾ هڪ ڀيرو"
-    }
+      "unreadable": "جيڪو پڙهي نه سگهياسين"
+    },
+    "fields": {
+      "name": "نالو",
+      "qualifications": "تعليمي قابليت",
+      "specialty": "شعبو",
+      "registration_no": "PMDC نمبر",
+      "clinic_or_hospital": "ڪلينڪ / اسپتال",
+      "address": "پتو",
+      "phone": "فون",
+      "age": "عمر",
+      "sex": "جنس",
+      "weight": "وزن",
+      "mr_or_file_no": "MR / فائل نمبر",
+      "prescription_date": "نسخي جي تاريخ",
+      "diagnosis_or_complaints": "تشخيص / شڪايتون",
+      "blood_pressure": "بلڊ پريشر",
+      "pulse": "نبض",
+      "temperature": "بخار / گرمي پد",
+      "other": "ٻيا معائنا",
+      "tests_advised": "تجويز ڪيل ٽيسٽ",
+      "testsHint": "هر لائين ۾ هڪ ٽيسٽ",
+      "allergies_mentioned": "الرجي",
+      "follow_up_date": "ايندڙ ملاقات",
+      "other_advice": "ٻيون هدايتون"
+    },
+    "med": {
+      "title": "دوا {n}",
+      "brand_name": "برانڊ جو نالو",
+      "generic_name": "اصل (سالٽ) نالو",
+      "strength": "طاقت",
+      "dosage_form": "شڪل (گولي، شربت…)",
+      "dose_per_time": "هر ڀيري ڪيتري",
+      "frequency_text": "ڪيترا ڀيرا (جيئن لکيل آهي)",
+      "frequencyHint": "هن کي بدلائڻ سان هيٺيان وقت به بدلجي ويندا.",
+      "times_per_day": "ڏينهن ۾ ڪيترا ڀيرا",
+      "schedule": "ڪڏهن کائڻي آهي",
+      "morning": "صبح",
+      "afternoon": "منجهند",
+      "evening": "شام",
+      "night": "رات",
+      "food_timing": "کاڌو",
+      "route": "ڪيئن وٺڻي آهي",
+      "duration_text": "ڪيترا ڏينهن (جيئن لکيل آهي)",
+      "duration_days": "ڏينهن جو تعداد",
+      "total_quantity_needed": "ڪل مقدار",
+      "special_instructions": "خاص هدايتون",
+      "purpose_in_simple_words": "ڇا لاءِ آهي",
+      "calculate": "حساب ڪريو",
+      "add": "دوا شامل ڪريو",
+      "remove": "هٽايو",
+      "removeConfirm": "هيءَ دوا لسٽ مان هٽائجي؟",
+      "notes": "فارماسسٽ جو نوٽ",
+      "unnamed": "نئين دوا"
+    },
+    "food": {
+      "before meal": "کاڌي کان اڳ",
+      "after meal": "کاڌي کان پوءِ",
+      "with meal": "کاڌي سان گڏ",
+      "empty stomach": "خالي پيٽ",
+      "any": "ڪنهن به وقت",
+      "notWritten": "لکيل ناهي"
+    },
+    "flag": {
+      "needsCheck": "مهرباني ڪري چيڪ ڪريو",
+      "looksRight": "صحيح آهي",
+      "confirmed": "چيڪ ٿي ويو",
+      "suggestion": "اسان جي حساب سان: {value}",
+      "useSuggestion": "هي استعمال ڪريو",
+      "ai": "اي آءِ: {c}"
+    },
+    "generalNotes": "مريض لاءِ فارماسسٽ جا نوٽ",
+    "unreadableHint": "فوٽو ڏسو. جيڪڏهن توهان اهي پڙهي سگهو ته مٿي لکي ڇڏيو.",
+    "markChecked": "مون چيڪ ڪري ورتو",
+    "remaining": "اڃا {n} شين تي ⚠ جو نشان آهي. توهان اڳتي وڃي سگهو ٿا، پر پڪ ڪريو ته اهي صحيح آهن.",
+    "continue": "صحيح آهي — خلاصو ڏيکاريو",
+    "confidence": {
+      "high": "پڪ آهي",
+      "medium": "ڪافي حد تائين پڪ",
+      "low": "پڪ ناهي"
+    },
+    "legibility": {
+      "good": "لکت: صاف",
+      "fair": "لکت: ڪجهه اڻ چٽي",
+      "poor": "لکت: پڙهڻ ڏکيو"
+    },
+    "poorWarning": "هي نسخو پڙهڻ ڏکيو آهي. احتياط لاءِ مهرباني ڪري اهو اسان جي فارماسسٽ کي پاڻ ڏيکاريو."
+  },
+  "summary": {
+    "title": "خلاصو",
+    "comingSoon": "خلاصي جا ڪارڊ مرحلي 6 ۾ ٺهندا. توهان جو چيڪ ٿيل نسخو هن دوري لاءِ محفوظ آهي.",
+    "backToReview": "چيڪ ڪرڻ ڏانهن واپس"
   }
 }

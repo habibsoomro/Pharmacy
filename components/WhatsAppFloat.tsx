@@ -7,7 +7,7 @@ import { whatsappLink } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/icons";
 
 // Pages where the floating button would cover important buttons.
-const HIDE_ON = ["/scan"];
+const HIDE_ON = ["/scan", "/review"];
 
 /** Round WhatsApp button that stays in the bottom corner. */
 export function WhatsAppFloat({ locale, label }: { locale: Locale; label: string }) {

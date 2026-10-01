@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/I18nProvider";
 import { CAPTURE } from "@/config/capture";
 import { fmt } from "@/lib/format";
@@ -11,9 +12,7 @@ import { prepareForUpload } from "@/lib/image/prepare";
 import { requestExtraction, type ClientErrorCode } from "@/lib/client/extract";
 import { hasConsent, saveConsent } from "@/lib/client/consent";
 import { saveCurrentScan } from "@/lib/client/scan-session";
-import type { CheckWarning, Prescription } from "@/lib/schemas/extraction";
 import { ConsentBox } from "@/components/scan/ConsentBox";
-import { ExtractionPreview } from "@/components/scan/ExtractionPreview";
 import { LoadingSteps } from "@/components/scan/LoadingSteps";
 import { CameraCapture } from "@/components/scan/CameraCapture";
 import { CropEditor } from "@/components/scan/CropEditor";
@@ -44,11 +43,11 @@ export function ScanFlow() {
   const [replaceAt, setReplaceAt] = useState<number | null>(null); // which page "Retake" replaces
   const [cropIndex, setCropIndex] = useState<number | null>(null);
   const [viewIndex, setViewIndex] = useState<number | null>(null);
-  const [phase, setPhase] = useState<"capture" | "reading" | "result">("capture");
+  const router = useRouter();
+  const [phase, setPhase] = useState<"capture" | "reading">("capture");
   const [step, setStep] = useState(0);
   const [apiError, setApiError] = useState<ClientErrorCode | null>(null);
   const [notRx, setNotRx] = useState(false);
-  const [outcome, setOutcome] = useState<{ rx: Prescription; checks: CheckWarning[] } | null>(null);
   const [consent, setConsent] = useState(false);
   const [consentAsked, setConsentAsked] = useState(true); // hide the box for people who already agreed
   const [consentError, setConsentError] = useState(false);
@@ -190,8 +189,7 @@ export function ScanFlow() {
         checks: res.checks,
         images: images.map((i) => ({ mediaType: i.mediaType, base64: i.base64 })),
       });
-      setOutcome({ rx: res.result, checks: res.checks });
-      setPhase("result");
+      router.push("/review");
     } catch {
       setApiError("ai_failed");
       setPhase("capture");
@@ -203,21 +201,6 @@ export function ScanFlow() {
   const anyProblem = pages.some((p) => hasProblem(p.quality));
 
   if (phase === "reading") return <LoadingSteps current={step} />;
-
-  if (phase === "result" && outcome) {
-    return (
-      <div className="space-y-6">
-        <ExtractionPreview rx={outcome.rx} checks={outcome.checks} />
-        <button
-          type="button"
-          onClick={() => setPhase("capture")}
-          className="min-h-12 w-full rounded-xl border-2 border-brand font-semibold text-brand hover:bg-surface"
-        >
-          {t.scan.backToPhotos}
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="space-y-6">

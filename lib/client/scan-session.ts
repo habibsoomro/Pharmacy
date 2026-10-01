@@ -10,6 +10,16 @@ export type CurrentScan = {
   result: ExtractionResult;
   checks: CheckWarning[];
   images: { mediaType: string; base64: string }[]; // for side-by-side comparison
+  /** Filled in when the person finishes the "Check what we read" screen. */
+  review?: {
+    reviewedAt: string;
+    pharmacistMode: boolean;
+    original: ExtractionResult; // what the AI read, before any edits
+    confirmedCount: number;
+    stillFlagged: number;
+    generalNote: string;
+    medicineNotes: string[]; // same order as result.medicines
+  };
 };
 
 const KEY = "nuskha:current-scan";

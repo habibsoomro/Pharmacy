@@ -3,11 +3,12 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 3 of 10**
+**Current stage: 4 of 10**
 
 - Stage 1: project setup, home page, language switching
 - Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
 - Stage 3: AI reading of the prescription (`/api/extract`), shorthand double-check, brand list, consent
+- Stage 4: "Check what we read" review-and-edit screen (`/review`), pharmacist mode
 
 ---
 
@@ -100,7 +101,12 @@ public/       logo and images
    `1+0+1`, `TDS` and `1/52`, recalculates quantities, and compares brand → generic
    names with `data/brand-generics.json`. It fills gaps and flags disagreements;
    it never silently overwrites what the AI read.
-5. Nothing is stored on the server. The result lives only in the user's browser tab.
+5. The person checks everything on `/review`. Fields the AI was unsure about,
+   couldn't read, or that disagreed with our own check are shown in amber with ⚠,
+   with a "Looks right" button and (where possible) a suggested correction.
+   Pharmacist mode (checkbox at the top) shows every field plus notes.
+   The original AI reading is kept alongside the edited version.
+6. Nothing is stored on the server. The result lives only in the user's browser tab.
 
 ## Notes
 

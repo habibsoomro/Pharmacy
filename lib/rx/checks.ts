@@ -68,6 +68,19 @@ const firstNumber = (s: string | null) => {
   return m ? Number(m[0]) : null;
 };
 
+/** Work out the total needed (e.g. "10 tablets") from dose, frequency and days. Null if anything is missing. */
+export function computeTotal(m: Pick<Medicine, "dose_per_time" | "frequency_text" | "times_per_day" | "duration_days" | "schedule" | "dosage_form">): string | null {
+  const freq = parseFrequency(m.frequency_text);
+  let dose = parseDose(m.dose_per_time);
+  if (!dose && freq?.unitsPerDoseFromPattern) dose = { amount: freq.unitsPerDoseFromPattern, unit: "unit" };
+  const uneven = freq && !freq.asNeeded && freq.unitsPerDoseFromPattern === null && !m.dose_per_time;
+  const amount = uneven
+    ? totalFromSchedule(m.schedule, m.duration_days)
+    : totalQuantity(dose, m.times_per_day, m.duration_days)?.amount ?? null;
+  if (amount === null) return null;
+  return `${amount} ${unitWord(dose ?? { amount: 1, unit: "unit" }, m.dosage_form, amount)}`;
+}
+
 /**
  * Compare the AI's numbers with our own shorthand reading.
  * - If the AI left a number empty and we can work it out, we fill it in.
