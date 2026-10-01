@@ -24,6 +24,8 @@ import {
 import { copyText, whatsappShare } from "@/components/summary/SummaryCard";
 import { SpeechProvider, useSpeech } from "@/components/summary/Speech";
 import { SaveBar } from "@/components/summary/SaveBar";
+import { PoorLegibilityWarning } from "@/components/PoorLegibilityWarning";
+import { SummarySkeleton } from "@/components/Skeletons";
 import { useSummaryTranslation, type TranslationStatus } from "@/components/summary/useSummaryTranslation";
 import { AlertIcon, CheckIcon, GearIcon, PauseIcon, SpeakerIcon, SpinnerIcon, StopIcon, WhatsAppIcon } from "@/components/icons";
 
@@ -74,7 +76,7 @@ export function SummaryScreen() {
   const sources = useMemo(() => (rx ? translatable(summaryTexts({ rx, safety: report, notes, generalNote })) : []), [rx, report, notes, generalNote]);
   const translation = useSummaryTranslation({ lang, level: settings.level, siteDict: siteT, sources, enabled: loaded && !!rx });
 
-  if (scan === undefined) return null;
+  if (scan === undefined || !loaded) return <SummarySkeleton />;
   if (!scan || !rx || !start) {
     return (
       <div className="mx-auto max-w-2xl px-4 pt-8">
@@ -161,6 +163,8 @@ function SummaryBody({ scan, rx, report, pending, start, onStartChange, onRetryS
             {t.common.disclaimer}
           </p>
         </header>
+
+        {rx.overall_legibility === "poor" && <PoorLegibilityWarning />}
 
         <TranslationBanner status={translation.status} lang={lang} onRetry={translation.retry} />
 

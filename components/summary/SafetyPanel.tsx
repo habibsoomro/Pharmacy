@@ -50,7 +50,10 @@ export function SafetyPanel({ report, pending, onRetry, embedded, tx = noTransla
       </div>
 
       {pending && (
-        <p className="flex items-center gap-2 text-sm text-brand" role="status"><SpinnerIcon className="size-4" />{s.stillChecking}</p>
+        <>
+          <p className="flex items-center gap-2 text-sm text-brand" role="status"><SpinnerIcon className="size-4" />{s.stillChecking}</p>
+          <div className="h-24 animate-pulse rounded-2xl bg-surface" aria-hidden="true" />
+        </>
       )}
       {!pending && !report.aiChecked && (
         <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-card p-3 text-sm text-muted">

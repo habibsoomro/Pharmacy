@@ -14,7 +14,7 @@ export async function requestExtraction(images: PreparedImage[]): Promise<Extrac
     });
     const data = (await res.json().catch(() => null)) as ExtractResponse | null;
     if (data && typeof data.ok === "boolean") return data;
-    return { ok: false, error: res.status === 429 ? "rate_limited" : "ai_failed" };
+    return { ok: false, error: res.status === 429 ? "rate_limited" : res.status === 413 ? "too_large" : "ai_failed" };
   } catch {
     return { ok: false, error: navigator.onLine ? "ai_failed" : "offline" };
   }

@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { useI18n } from "@/components/I18nProvider";
 import { useSettings } from "@/components/SettingsProvider";
+import { PoorLegibilityWarning } from "@/components/PoorLegibilityWarning";
+import { ReviewSkeleton } from "@/components/Skeletons";
 import { fmt } from "@/lib/format";
 import { loadCurrentScan, saveCurrentScan, type CurrentScan } from "@/lib/client/scan-session";
 import {
@@ -33,7 +35,7 @@ export function ReviewScreen() {
     if (s?.result.is_prescription) setState(initReview(s.result, s.review ? [] : s.checks));
   }, []);
 
-  if (scan === undefined) return null;
+  if (scan === undefined) return <ReviewSkeleton />;
 
   if (!scan || !state) {
     return (
@@ -104,12 +106,7 @@ export function ReviewScreen() {
           <h1 className="text-2xl font-bold text-brand sm:text-3xl">{t.review.title}</h1>
           <p className="text-muted">{t.review.intro}</p>
 
-          {rx.overall_legibility === "poor" && (
-            <p className="flex gap-2 rounded-xl border-2 border-red-300 bg-red-50 p-4 font-semibold text-red-800" role="alert">
-              <AlertIcon className="mt-1 size-5 shrink-0" />
-              {t.review.poorWarning}
-            </p>
-          )}
+          {rx.overall_legibility === "poor" && <PoorLegibilityWarning />}
 
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm text-muted">{t.review.legibility[rx.overall_legibility]}</span>

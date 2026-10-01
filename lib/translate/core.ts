@@ -12,6 +12,7 @@ export const SUMMARY_DICT_PATHS = [
   "review.legibility",
   "review.confidence",
   "review.poorWarning",
+  "poor",
   "summary",
   "safety",
 ] as const;

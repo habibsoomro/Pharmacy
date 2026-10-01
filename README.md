@@ -3,7 +3,7 @@
 A mobile-first pharmacy website that reads prescription photos (including
 handwritten ones) and explains them in English, Urdu and Sindhi.
 
-**Current stage: 8 of 10**
+**Current stage: 9 of 10**
 
 - Stage 1: project setup, home page, language switching
 - Stage 2: taking/uploading prescription photos (camera, upload, iPhone HEIC, PDF first page, crop, rotate, retake, quality check, compression)
@@ -13,6 +13,7 @@ handwritten ones) and explains them in English, Urdu and Sindhi.
 - Stage 6: summary cards (`/summary`): safety alerts, doctor, patient, diagnosis, one card per medicine with pictures, daily timetable, course calendar, interactions, general care; copy, WhatsApp, print, PDF
 - Stage 7: Settings panel (gear button in the header, and on the summary): summary languages incl. Roman Urdu, Punjabi, Pashto, Balochi (AI translation via `/api/translate`, saved on the phone), Simple/Detailed reading level, text size, read aloud, patient/pharmacist view, show/hide cards, picture mode, light/dark theme, medicine reminders (.ics calendar file)
 - Stage 8: My prescriptions (`/history`): save summaries on the phone only (IndexedDB), open them again, search, delete one or delete all; optional automatic saving
+- Stage 9: privacy and safety: full privacy policy (English, Urdu, Sindhi), shared rate limits (Upstash), size limits on every request, optional daily AI budget, security headers, offline banner, friendly error and "page not found" pages, loading placeholders, strong "hard to read" warning with call/WhatsApp buttons
 
 ---
 
@@ -65,6 +66,9 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 1. Upload the project to a GitHub repository.
 2. Go to https://vercel.com, sign in with GitHub, click **Add New → Project** and pick the repository.
 3. Under **Environment Variables**, add `ANTHROPIC_API_KEY` with your key.
+   Also add `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (free at https://upstash.com)
+   so the visitor limits work across all of Vercel's servers, and optionally
+   `RATE_LIMIT_SALT` and `AI_DAILY_LIMIT` (see `.env.example`).
 4. Click **Deploy**. Vercel gives you a web address you can share.
 
 ---
@@ -89,6 +93,9 @@ on HTTPS sites, so full camera testing is easiest after deploying to Vercel.)
 | Maximum doses and age rules | `lib/rx/safety.ts` (`ADULT_MAX_MG_PER_DAY`, `CHILD_MG_PER_KG`, `AGE_RULES`) |
 | How many scans per visitor | `app/api/extract/route.ts` (8 per 10 minutes) |
 | How many translation requests per visitor | `app/api/translate/route.ts` (40 per 10 minutes) |
+| How many safety checks per visitor | `app/api/interactions/route.ts` (20 per 10 minutes) |
+| Daily limit for the whole website | `AI_DAILY_LIMIT` environment variable (none by default) |
+| Privacy policy text | `locales/*.json` → `privacy`; the "Last updated" date is `POLICY_UPDATED` in `app/privacy/page.tsx` |
 
 **Translation safety net:** if you add a new line to `en.json` but forget it in
 `ur.json` or `sd.json`, run `npm run typecheck` and it will tell you exactly
@@ -176,6 +183,30 @@ Everything is saved on the phone only (in the browser), and there is a
   translations. If the phone is full, the prescription is saved without its photos and the
   person is told. In a private window saving isn't possible and the page says so.
 - Clearing the browser's site data for this website also deletes everything.
+
+## Privacy and safety (Stage 9)
+
+- **Nothing about a prescription is stored on the server.** Photos and results are used
+  for one request and forgotten. Error logs contain only the kind of error.
+- **Limits** on every AI route: requests must come from this website, be JSON, stay under a
+  size limit (checked while reading, so huge uploads are stopped early), and each visitor
+  has a limit per 10 minutes. Visitors are counted by a scrambled (hashed) form of their
+  internet address. With Upstash set up, counts are shared across all servers; if Upstash
+  is unreachable the site keeps working with each server's own count.
+- **`AI_DAILY_LIMIT`** (optional) caps all AI requests per day (resets at midnight UTC,
+  5 am in Pakistan). After that, people see "The reading service is very busy today".
+- **Security headers**: a Content Security Policy (the page can only load code and data from
+  this site and talk only to this site's server), no framing by other sites, camera only
+  on this site. `'unsafe-eval'` is allowed because the iPhone (HEIC) photo converter needs it.
+- **Errors** are explained in the person's language: no internet (a banner on every page,
+  and again when the connection returns), not a prescription, too many scans, service busy,
+  photos too big, reading failed or took too long. If the AI's answer is broken, the server
+  asks it once more automatically before showing a message.
+- **Hard-to-read prescriptions** ("poor" handwriting) show a strong red warning on the
+  checking screen and the summary, with buttons to call, WhatsApp or find the pharmacy.
+- **Before going live, have the privacy policy checked** (ideally by a lawyer), especially
+  the part about Anthropic: compare it with Anthropic's current commercial terms and
+  privacy policy, and make sure your Anthropic account settings match what it says.
 
 ## Notes
 

@@ -3,29 +3,18 @@ import { InteractionRequest, type InteractionResponse } from "@/lib/schemas/safe
 import { AIError } from "@/lib/server/anthropic";
 import { InvalidOutputError } from "@/lib/server/ask-json";
 import { checkInteractions } from "@/lib/server/interactions";
-import { clientIp, rateLimit } from "@/lib/server/rate-limit";
+import { guard } from "@/lib/server/guard";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
-const fail = (error: string, status: number) => NextResponse.json<InteractionResponse>({ ok: false, error }, { status });
+const fail = (error: string, status: number) => NextResponse.json<InteractionResponse>({ ok: false, error }, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function POST(req: Request) {
-  const origin = req.headers.get("origin");
-  const host = req.headers.get("host");
-  if (origin && host && new URL(origin).host !== host) return fail("bad_request", 403);
-
-  if (!rateLimit(`interactions:${clientIp(req)}`, 20, 10 * 60 * 1000).ok) return fail("rate_limited", 429);
-  if (Number(req.headers.get("content-length") ?? 0) > 50_000) return fail("bad_request", 413);
-
-  let body: unknown;
-  try {
-    body = await req.json();
-  } catch {
-    return fail("bad_request", 400);
-  }
-  const parsed = InteractionRequest.safeParse(body);
+  const g = await guard(req, { route: "interactions", limit: 20, windowSec: 10 * 60, maxBytes: 50_000 });
+  if (!g.ok) return g.response;
+  const parsed = InteractionRequest.safeParse(g.body);
   if (!parsed.success) return fail("bad_request", 400);
 
   try {

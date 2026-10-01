@@ -12,6 +12,7 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { SettingsProvider } from "@/components/SettingsProvider";
 import { SettingsDialog } from "@/components/settings/SettingsDialog";
+import { OfflineBanner } from "@/components/OfflineBanner";
 import { EARLY_SETTINGS_SCRIPT } from "@/lib/settings";
 
 // Fonts are downloaded once and served from our own site (no Google request from the phone).
@@ -60,6 +61,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         </a>
         <I18nProvider locale={locale} dict={t}>
           <SettingsProvider>
+            <OfflineBanner />
             <Header locale={locale} t={t} />
             <main id="main">{children}</main>
             <Footer locale={locale} t={t} />

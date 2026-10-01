@@ -8,7 +8,6 @@
     "language": "Language",
     "menu": "Menu",
     "backHome": "Back to home",
-    "comingSoon": "This part is being built and will be ready in a later stage.",
     "disclaimer": "AI can make mistakes, especially with handwriting. Always confirm with your pharmacist or doctor.",
     "rights": "All rights reserved.",
     "settings": "Settings"
@@ -57,14 +56,7 @@
     "aboutText": "We are a local pharmacy in Sindh. This tool helps you understand your prescription in your own language. Our pharmacist is always happy to check it with you in person.",
     "contactTitle": "Contact us",
     "contactText": "Call, send a WhatsApp message, or visit us at the pharmacy.",
-    "privacyTitle": "Privacy policy",
-    "privacyPoints": [
-      "Your prescription photo is sent to an AI service (Anthropic's Claude) only to read it.",
-      "We do not save your photo or prescription details on our server.",
-      "Your past scans are kept only on your own phone, and you can delete them at any time.",
-      "We never sell or share your information."
-    ],
-    "privacyDraft": "This is a draft. The full policy will be added before the website goes live."
+    "privacyTitle": "Privacy policy"
   },
   "scan": {
     "intro": "Take a clear photo of each page. You can add up to {max} pages.",
@@ -138,7 +130,9 @@
       "timeout": "Reading took too long. Please check your internet and try again.",
       "not_configured": "The reading service is not set up yet. Please contact the pharmacy.",
       "ai_failed": "Something went wrong while reading. Please try again.",
-      "bad_request": "Something went wrong with the photos. Please retake them and try again."
+      "bad_request": "Something went wrong with the photos. Please retake them and try again.",
+      "busy": "The reading service is very busy today. Please try again later, or show your prescription to our pharmacist.",
+      "too_large": "The photos are too big to send. Please remove a page or take the photos again."
     },
     "tryAgain": "Try again",
     "notRx": {
@@ -558,5 +552,100 @@
     "storage": "This website uses about {size} on this phone.",
     "sharedPhone": "Anyone who uses this phone can see these. If you share your phone, delete them when you're done.",
     "loading": "Loading…"
+  },
+  "errors": {
+    "offline": "You're offline. Summaries you have open and My prescriptions still work, but scanning needs internet.",
+    "online": "You're back online.",
+    "title": "Something went wrong",
+    "text": "Please try again. If it keeps happening, call or WhatsApp the pharmacy.",
+    "retry": "Try again",
+    "home": "Back to home",
+    "notFoundTitle": "Page not found",
+    "notFoundText": "This page doesn't exist. It may have been moved."
+  },
+  "poor": {
+    "title": "This prescription is hard to read",
+    "text": "The AI may have read some medicines or doses wrongly. Please show the prescription to our pharmacist in person before taking anything.",
+    "call": "Call the pharmacy",
+    "whatsapp": "WhatsApp the pharmacy",
+    "directions": "Directions"
+  },
+  "privacy": {
+    "updated": "Last updated: {date}",
+    "intro": "This page explains, in simple words, what happens to your prescription when you use this website. In short: your prescription is read by AI, it is not saved on our server, and anything you choose to keep stays on your own phone.",
+    "sections": [
+      {
+        "title": "1. When you scan a prescription",
+        "points": [
+          "Your photo is made smaller on your phone, then sent over a secure (encrypted) connection to our server.",
+          "Our server sends it to an AI service, Claude by Anthropic, only to read the prescription. The answer comes back to your phone.",
+          "Our server does not save your photo or what was read from it. They are used only for that one request and then forgotten.",
+          "We ask for your permission (the tick box) before your first scan."
+        ]
+      },
+      {
+        "title": "2. Safety check and translation",
+        "points": [
+          "To check your medicines for problems, we send only the medicine details, the patient's age, sex and weight, the diagnosis and any allergies written on the prescription.",
+          "To translate the summary, we send only the texts to be translated.",
+          "We never send the patient's or doctor's name, phone number or address for these checks."
+        ]
+      },
+      {
+        "title": "3. About Anthropic (the AI company)",
+        "points": [
+          "Anthropic processes the information for us to give you the result. Under its terms for business customers, it does not use this information to train its AI, and keeps it only for a limited time for safety checks.",
+          "Anthropic's servers may be outside Pakistan. You can read Anthropic's own privacy policy at anthropic.com/legal/privacy."
+        ]
+      },
+      {
+        "title": "4. What is kept on your phone",
+        "points": [
+          "Your settings (language, text size and so on) and that you gave permission.",
+          "Translations, so the same text isn't translated again.",
+          "My prescriptions: only prescriptions you choose to save (or all, if you turn on automatic saving).",
+          "You can delete them at any time: \"Delete all\" on My prescriptions, \"Delete saved translations\" in Settings, or by clearing this website's data in your browser.",
+          "Anyone who uses your phone can see what is saved. If you share your phone, delete them when you're done."
+        ]
+      },
+      {
+        "title": "5. What our server keeps",
+        "points": [
+          "No prescription photos, names, medicines or results.",
+          "To stop misuse, we count how many requests each visitor makes, using a scrambled form of your internet address that can't be turned back into the address. These counts delete themselves within 24 hours.",
+          "Short technical error notes (for example \"the AI did not answer\"), without any prescription details.",
+          "Our hosting company (Vercel) keeps standard visit records, such as internet address and time, under its own policy."
+        ]
+      },
+      {
+        "title": "6. Cookies and tracking",
+        "points": [
+          "We use one cookie, to remember your language.",
+          "There are no adverts, no tracking cookies and no visitor statistics tools on this website.",
+          "We never sell or share your information."
+        ]
+      },
+      {
+        "title": "7. Children",
+        "points": [
+          "For a child's prescription, a parent or guardian should do the scan."
+        ]
+      },
+      {
+        "title": "8. Not medical advice",
+        "points": [
+          "This website helps you understand your prescription. AI can make mistakes, especially with handwriting.",
+          "Always confirm with your pharmacist or doctor. Never stop or change a medicine without talking to them."
+        ]
+      },
+      {
+        "title": "9. Changes to this policy",
+        "points": [
+          "If we change this policy, we will update it on this page and change the date at the top."
+        ]
+      }
+    ],
+    "contactTitle": "Questions?",
+    "contactText": "Call, send a WhatsApp message, or visit us. We can't see anything saved on your phone, but we're happy to help you delete it."
   }
 }

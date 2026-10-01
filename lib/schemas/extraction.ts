@@ -148,7 +148,7 @@ export type CheckWarning = {
   message: string;
 };
 
-export type ExtractErrorCode = "bad_request" | "rate_limited" | "ai_failed" | "invalid_output" | "not_configured" | "timeout";
+export type ExtractErrorCode = "bad_request" | "rate_limited" | "busy" | "too_large" | "ai_failed" | "invalid_output" | "not_configured" | "timeout";
 
 export type ExtractResponse =
   | { ok: true; result: ExtractionResult; checks: CheckWarning[] }
