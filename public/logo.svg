@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Placeholder logo: replace with your own file and update config/site.ts -->
+  <rect width="64" height="64" rx="16" fill="#1E3A6E"/>
+  <path d="M32 12 L40 24 L52 32 L40 40 L32 52 L24 40 L12 32 L24 24 Z" fill="#ffffff"/>
+  <circle cx="32" cy="32" r="6" fill="#A8322B"/>
+</svg>

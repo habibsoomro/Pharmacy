@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "title": "Read your prescription",
+    "description": "Take a photo of your prescription and see each medicine, when to take it and what to watch for, in English, Urdu or Sindhi."
+  },
+  "common": {
+    "skipToContent": "Skip to main content",
+    "language": "Language",
+    "menu": "Menu",
+    "backHome": "Back to home",
+    "comingSoon": "This part is being built and will be ready in a later stage.",
+    "disclaimer": "AI can make mistakes, especially with handwriting. Always confirm with your pharmacist or doctor.",
+    "rights": "All rights reserved."
+  },
+  "nav": {
+    "home": "Home",
+    "scan": "Scan prescription",
+    "history": "My prescriptions",
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy"
+  },
+  "home": {
+    "heroTitle": "Can't read your prescription?",
+    "heroText": "Take a photo. We'll show you each medicine, when to take it, and what to watch out for, in English, Urdu or Sindhi.",
+    "scanButton": "Scan your prescription",
+    "scanHint": "Opens your camera",
+    "reassure": "Free to use. Your photo is read by AI and is not saved on our server.",
+    "howTitle": "How it works",
+    "steps": [
+      { "title": "Take a photo of the prescription", "text": "Fit the whole page in good light." },
+      { "title": "Check what we read", "text": "Compare it with your prescription and fix anything that looks wrong." },
+      { "title": "See a simple summary", "text": "Medicines, timings and warnings, all in one place." }
+    ],
+    "visitTitle": "Visit the pharmacy",
+    "hoursTitle": "Opening hours",
+    "addressTitle": "Address",
+    "openMap": "Open in Maps",
+    "call": "Call us",
+    "whatsapp": "Chat on WhatsApp"
+  },
+  "pages": {
+    "scanTitle": "Scan prescription",
+    "historyTitle": "My prescriptions",
+    "historyText": "Prescriptions you scan will be saved only on this phone. You can delete them at any time.",
+    "aboutTitle": "About us",
+    "aboutText": "We are a local pharmacy in Sindh. This tool helps you understand your prescription in your own language. Our pharmacist is always happy to check it with you in person.",
+    "contactTitle": "Contact us",
+    "contactText": "Call, send a WhatsApp message, or visit us at the pharmacy.",
+    "privacyTitle": "Privacy policy",
+    "privacyPoints": [
+      "Your prescription photo is sent to an AI service (Anthropic's Claude) only to read it.",
+      "We do not save your photo or prescription details on our server.",
+      "Your past scans are kept only on your own phone, and you can delete them at any time.",
+      "We never sell or share your information."
+    ],
+    "privacyDraft": "This is a draft. The full policy will be added before the website goes live."
+  }
+}

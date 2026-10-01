@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* Colour tokens. Brand colours come from config/site.ts (set on <html>). */
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-madder: var(--madder);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-whatsapp: #1a8a4a;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+:root {
+  --ink: #1a2233;
+  --muted: #4f5b72;
+  --surface: #f3f5f8;
+  --card: #ffffff;
+  --line: #d6dce6;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.55;
+}
+
+/* Urdu: Nastaliq needs extra line height and a slightly larger size to stay readable. */
+html[lang="ur"] { font-size: 106%; }
+html[lang="ur"] body {
+  font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
+  line-height: 2.25;
+}
+html[lang="ur"] :is(h1, h2, h3) { line-height: 1.95; }
+
+/* Sindhi: Naskh script (supports Sindhi letters like ڪ ڳ ڄ). */
+html[lang="sd"] body {
+  font-family: var(--font-sindhi), "Noto Naskh Arabic", serif;
+  line-height: 1.9;
+}
+html[lang="sd"] :is(h1, h2, h3) { line-height: 1.6; }
+
+/* For phone numbers, medicine names and other English text inside Urdu/Sindhi pages. */
+.latin {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
